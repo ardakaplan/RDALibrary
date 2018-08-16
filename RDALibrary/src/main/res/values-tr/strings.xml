@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="folder_name">Türkçe</string>
+
+    <string name="choose_mail_application">Mail programı seçiniz.</string>
+    <string name="no_mail_application_found">Yüklü mail programı bulunamadı.</string>
+    <string name="no_web_browser">İsteği karşılayacak bir uygulama bulunamadı. Lütfen bir internet tarayıcı yükleyin.</string>
+
+
+</resources>

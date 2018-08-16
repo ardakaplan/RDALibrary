@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="arda_kaplan_mail">arda.kaplan09@gmail.com</string>
+
+    <string name="arda_kaplan_web_site">www.ardakaplan.com</string>
+
+    <string name="folder_name">default</string>
+
+    <string name="choose_mail_application">Choose mail application.</string>
+    <string name="no_mail_application_found">No mail application found.</string>
+    <string name="no_web_browser">No application can handle this request. Please install a web browser.</string>
+
+</resources>
