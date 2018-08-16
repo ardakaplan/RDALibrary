@@ -1,1 +1,1 @@
-include ':app',':RDALibrary'
+include ':app',':RDALibrary', ':TestLib'

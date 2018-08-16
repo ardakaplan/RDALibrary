@@ -20,4 +20,5 @@ android {
 dependencies {
 
     implementation project (':RDALibrary')
+    implementation project (':TestLib')
 }
