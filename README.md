@@ -1,6 +1,6 @@
 **CHANGE LOG**
 
-`v0.0.2`
+`v0.0.3`
 
 - added RDALogger as a gradle link
 
