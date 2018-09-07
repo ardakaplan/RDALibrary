@@ -16,7 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.ardakaplan.rdalibrary.R;
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

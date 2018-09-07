@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 import com.google.gson.Gson;
 
 import java.net.URLDecoder;

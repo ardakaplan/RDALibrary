@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.Serializable;
 

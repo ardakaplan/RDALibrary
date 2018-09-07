@@ -13,7 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalibrary.ui.views.fontables.edittexts.OneLineRDAEdittext;
 
 /**

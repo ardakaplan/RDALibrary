@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrarytest;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalibrary.objects.RDAApplication;
 
 /**

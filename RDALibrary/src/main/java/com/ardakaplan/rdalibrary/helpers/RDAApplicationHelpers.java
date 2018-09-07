@@ -10,8 +10,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.Base64;
 
-
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 import java.security.MessageDigest;
 import java.util.Locale;

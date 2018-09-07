@@ -6,7 +6,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 @SuppressWarnings("unused")
 public abstract class RDAActivity extends AppCompatActivity {

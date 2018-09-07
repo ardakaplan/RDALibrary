@@ -3,7 +3,7 @@ package com.ardakaplan.rdalibrarytest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalibrary.ui.screen.RDAActivity;
 
 public class MainActivity extends RDAActivity {
@@ -19,9 +19,6 @@ public class MainActivity extends RDAActivity {
     private void logTest() {
 
         Person person = new Person("Arda", "Kaplan");
-
-        RDALogger.writeAsJson(person);
-
 
         RDALogger.info(person);
     }

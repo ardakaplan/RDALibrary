@@ -3,7 +3,7 @@ package com.ardakaplan.rdalibrary.ui.screen;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 /**
  * Created by Arda Kaplan on

@@ -3,7 +3,7 @@ package com.ardakaplan.rdalibrary.objects;
 import android.app.Application;
 import android.content.res.Configuration;
 
-import com.ardakaplan.rdalibrary.logger.RDALogger;
+import com.ardakaplan.rdalogger.RDALogger;
 
 
 public abstract class RDAApplication extends Application {
