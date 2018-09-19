@@ -1,6 +1,11 @@
 package com.ardakaplan.rdalibrary.ui.adapters;
 
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,27 +18,46 @@ import java.util.List;
  * www.ardakaplan.com
  */
 
-//    D for object
+//    ItemObject for object
 //    VH for view holder
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class RDARecyclerViewAdapter<D, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected List<D> dataList = new ArrayList<>();
+    protected List<ItemObject> dataList = new ArrayList<>();
 
     public RDARecyclerViewAdapter() {
 
     }
 
-    public RDARecyclerViewAdapter(List<D> dataList) {
+    public RDARecyclerViewAdapter(List<ItemObject> dataList) {
         this.dataList = dataList;
     }
 
-    public D getItem(int position) {
+    @NonNull
+    @Override
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return getNewInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
+    }
+
+    /**
+     * @param view inflated view
+     * @return object that used in every row view
+     */
+    protected abstract VH getNewInstance(View view);
+
+    /**
+     * @return item layout
+     */
+    protected abstract @LayoutRes
+    int getItemLayout();
+
+
+    public ItemObject getItem(int position) {
 
         return dataList.get(position);
     }
 
-    public void addItem(int position, D item) {
+    public void addItem(int position, ItemObject item) {
 
         dataList.add(position, item);
 
@@ -47,7 +71,7 @@ public abstract class RDARecyclerViewAdapter<D, VH extends RecyclerView.ViewHold
         notifyItemRemoved(position);
     }
 
-    public void setData(List<D> dataList) {
+    public void setData(List<ItemObject> dataList) {
 
         this.dataList = dataList;
 

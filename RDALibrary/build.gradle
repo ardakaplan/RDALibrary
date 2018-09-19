@@ -38,6 +38,9 @@ dependencies {
     //RDALogger
     api 'com.github.ardakaplan:RDALogger:1.0.0'
 
+    //JUNIT
+    testImplementation 'junit:junit:4.12'
+
     //Butter Knife
 //    implementation 'com.jakewharton:butterknife:8.8.1'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
