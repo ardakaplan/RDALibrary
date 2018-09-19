@@ -10,14 +10,13 @@ import java.util.List;
  * Created by ardakaplan on 19/11/15.
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class GeneralBaseAdapter<W> extends BaseAdapter {
-
+public abstract class RDABaseAdapter<W> extends BaseAdapter {
 
     protected Activity activity;
     protected List<W> list;
     protected LayoutInflater layoutInflater;
 
-    public GeneralBaseAdapter(Activity activity, List<W> list) {
+    public RDABaseAdapter(Activity activity, List<W> list) {
         this.activity = activity;
         this.list = list;
         layoutInflater = LayoutInflater.from(activity);
