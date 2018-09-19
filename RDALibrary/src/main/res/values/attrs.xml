@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Custom_Font">
-        <attr name="fonty" format="enum">
-            <enum name="LEHIGH_BLACK" value="1" />
-            <enum name="LEHIGH_BOLD" value="2" />
-            <enum name="LEHIGH_LIGHT" value="3" />
-            <enum name="LEHIGH_REGULAR" value="4" />
-            <enum name="LEHIGH_SEMI_BOLD" value="5" />
-            <enum name="LEHIGH_THIN" value="6" />
-            <enum name="CHOCOCOOKY" value="7" />
-            <enum name="AMATIC" value="8" />
-            <enum name="AMATIC_BOLD" value="9" />
-            <enum name="ALPHA" value="10" />
-            <enum name="BEBAS_BOLD" value="11" />
-        </attr>
-    </declare-styleable>
 
     <declare-styleable name="RDACheckBox">
         <attr name="gap" format="dimension" />
