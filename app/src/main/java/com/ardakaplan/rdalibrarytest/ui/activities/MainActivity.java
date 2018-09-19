@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ardakaplan.rdalibrary.ui.dialogs.RDAProgressDialog;
 import com.ardakaplan.rdalibrarytest.R;
 
 import butterknife.OnClick;
@@ -20,6 +21,10 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.main_button_recyclerview)
     void openRecyclerView() {
 
-        startActivity(new Intent(this, RecyclerActivity.class));
+//        startActivity(new Intent(this, RecyclerActivity.class));
+
+        RDAProgressDialog rdaProgressDialog= new RDAProgressDialog(this);
+
+        rdaProgressDialog.show();
     }
 }
