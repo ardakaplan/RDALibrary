@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ardakaplan.rdalibrary.R;
-import com.ardakaplan.rdalibrary.ui.views.fontables.Fonts;
 
 
 /**
@@ -101,8 +100,6 @@ public class RDACheckBox extends LinearLayout {
 
         TextView textView = findViewById(R.id.layout_select_box_textview);
         imageView = findViewById(R.id.layout_select_box_image_view);
-
-        Fonts.setFont(textView, context, attrs, isInEditMode());
 
         float gap = typedArray.getDimension(R.styleable.RDACheckBox_gap, 10);
 

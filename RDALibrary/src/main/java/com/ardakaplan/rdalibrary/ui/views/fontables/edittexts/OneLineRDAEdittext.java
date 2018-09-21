@@ -12,7 +12,7 @@ import android.util.AttributeSet;
  * <p/>
  * arda.kaplan09@gmail.com
  */
-public class OneLineRDAEdittext extends RDAEdittext {
+public class OneLineRDAEdittext extends android.support.v7.widget.AppCompatEditText {
 
     TextWatcher onlyOneLineTextWatcher = new TextWatcher() {
         @Override
