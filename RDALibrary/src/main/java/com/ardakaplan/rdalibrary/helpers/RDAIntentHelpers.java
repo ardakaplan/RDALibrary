@@ -127,9 +127,9 @@ public final class RDAIntentHelpers {
         }
     }
 
-    public static Intent getClearCacheIntent() {
+    public static Intent getClearCacheIntent(Context packageContext, Class<?> cls) {
 
-        Intent intent = new Intent();
+        Intent intent = new Intent(packageContext, cls);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
