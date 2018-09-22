@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".ui.activities.MainActivity"
+    tools:ignore="HardcodedText">
 
     <Button
         android:id="@+id/main_button_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RECYCLER VIEW" />
+
+    <Button
+        android:id="@+id/main_button_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NOTIFICATION TEST" />
 
     <TextView
         android:id="@+id/main_textview"
