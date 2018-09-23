@@ -18,14 +18,14 @@ import java.util.List;
  * arda.kaplan09@gmail.com
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class GeneralPagerAdapter<W> extends PagerAdapter {
+public class RDAPagerAdapter<W> extends PagerAdapter {
 
     protected Activity activity;
     protected LayoutInflater inflater;
     protected List<W> arrayList;
     protected Integer layoutID;
 
-    public GeneralPagerAdapter(Activity activity, List<W> arrayList, Integer layoutID) {
+    public RDAPagerAdapter(Activity activity, List<W> arrayList, Integer layoutID) {
         this.activity = activity;
         this.arrayList = arrayList;
         this.layoutID = layoutID;

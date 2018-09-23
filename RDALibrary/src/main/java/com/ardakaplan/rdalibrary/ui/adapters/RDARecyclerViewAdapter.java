@@ -36,14 +36,14 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return getNewInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
+        return getViewHolderInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
     }
 
     /**
      * @param view inflated view
      * @return object that used in every row view
      */
-    protected abstract VH getNewInstance(View view);
+    protected abstract VH getViewHolderInstance(View view);
 
     /**
      * @return item layout

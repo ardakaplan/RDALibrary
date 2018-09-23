@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
+    android:orientation="vertical"
+    tools:context=".ui.activities.MainActivity"
+    tools:ignore="HardcodedText">
 
     <Button
         android:id="@+id/main_button_recyclerview"
@@ -11,12 +14,29 @@
         android:layout_height="wrap_content"
         android:text="RECYCLER VIEW" />
 
+    <Button
+        android:id="@+id/main_button_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NOTIFICATION TEST" />
+
     <TextView
         android:id="@+id/main_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="@dimen/_10dp"
         android:text="Hello World!"
         android:textSize="@dimen/_25sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alpha"
+        android:gravity="center"
+        android:text="Hello World!"
+        android:textSize="@dimen/_25sp" />
+
 
 </LinearLayout>

@@ -11,13 +11,13 @@ import java.util.List;
  * Created by ardakaplan on 18/11/15.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public abstract class GeneralSpinnerAdapter<W> extends GeneralBaseAdapter<W> {
+public abstract class RDASpinnerAdapter<W> extends RDABaseAdapter<W> {
 
 
     protected Integer spinnerViewLayoutId;
     protected Integer dropdownViewLayoutId;
 
-    public GeneralSpinnerAdapter(Activity activity, List<W> list, Integer spinnerViewLayoutId, Integer dropdownViewLayoutId) {
+    public RDASpinnerAdapter(Activity activity, List<W> list, Integer spinnerViewLayoutId, Integer dropdownViewLayoutId) {
         super(activity, list);
         this.spinnerViewLayoutId = spinnerViewLayoutId;
         this.dropdownViewLayoutId = dropdownViewLayoutId;

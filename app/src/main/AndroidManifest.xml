@@ -21,7 +21,9 @@
         </activity>
 
         <activity android:name=".ui.activities.RecyclerActivity" />
+        <activity android:name=".ui.activities.NotificationActivity" />
 
+        <service android:name=".services.BackgroundService" />
     </application>
 
 </manifest>
