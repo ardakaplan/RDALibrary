@@ -4,7 +4,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -43,11 +42,12 @@ public final class RDANotificationHelper {
                                         Integer notificationId,
                                         String channelName,
                                         String channelID,
-                                        Importance importance) {
+                                        Importance importance,
+                                        boolean showBadge) {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
-        registerLocationAndNotifyChannel(context, channelID, channelName, setSound, importance);
+        registerLocationAndNotifyChannel(context, channelID, channelName, setSound, showBadge, importance);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID);
 
@@ -106,7 +106,11 @@ public final class RDANotificationHelper {
         }
     }
 
-    private static void registerLocationAndNotifyChannel(Context context, String notificationChannelID, String notificationChannelName, boolean setSound,
+    private static void registerLocationAndNotifyChannel(Context context,
+                                                         String notificationChannelID,
+                                                         String notificationChannelName,
+                                                         boolean setSound,
+                                                         boolean showBadge,
                                                          Importance importance) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -120,11 +124,11 @@ public final class RDANotificationHelper {
                 if (!setSound) {
 
                     notificationChannel.setSound(null, null);
-
-                    notificationChannel.setShowBadge(false);
-
-                    notificationChannel.setImportance(importance.getValue());
                 }
+
+                notificationChannel.setShowBadge(showBadge);
+
+                notificationChannel.setImportance(importance.getValue());
 
                 notificationManager.createNotificationChannel(notificationChannel);
             }

@@ -26,7 +26,7 @@ public class NotificationActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_notification);
 
-       final  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         RDANotificationHelper.showNotification(getApplicationContext(),
                 intent,
@@ -39,7 +39,7 @@ public class NotificationActivity extends BaseActivity {
                 false,
                 1,
                 "CHJANNEL",
-                "CAHNNEL ID", RDANotificationHelper.Importance.IMPORTANCE_MAX);
+                "CAHNNEL ID", RDANotificationHelper.Importance.IMPORTANCE_MAX, true);
 
         for (int i = 0; i < RDANotificationHelper.Importance.values().length; i++) {
 
@@ -58,7 +58,6 @@ public class NotificationActivity extends BaseActivity {
                 public void onClick(View v) {
 
 
-
                     RDANotificationHelper.showNotification(getApplicationContext(),
                             intent,
                             "TITLE",
@@ -70,7 +69,7 @@ public class NotificationActivity extends BaseActivity {
                             false,
                             1,
                             "CHJANNEL",
-                            "CAHNNEL ID", RDANotificationHelper.Importance.values()[finalI]);
+                            "CAHNNEL ID", RDANotificationHelper.Importance.values()[finalI], false);
                 }
             });
 

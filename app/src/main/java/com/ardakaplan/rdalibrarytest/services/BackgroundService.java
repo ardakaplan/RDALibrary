@@ -2,7 +2,9 @@ package com.ardakaplan.rdalibrarytest.services;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 
 import com.ardakaplan.rdalibrary.helpers.RDANotificationHelper;
 import com.ardakaplan.rdalibrarytest.R;
@@ -26,6 +28,7 @@ public class BackgroundService extends IntentService {
 
 
         new Timer().schedule(new TimerTask() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void run() {
 
@@ -47,7 +50,8 @@ public class BackgroundService extends IntentService {
                         false,
                         1,
                         "CHJANNEL",
-                        "CAHNNEL ID", RDANotificationHelper.Importance.IMPORTANCE_DEFAULT);
+                        "CAHNNEL ID", RDANotificationHelper.Importance.IMPORTANCE_DEFAULT,
+                        false);
 
             }
         }, 1000, 1000);
