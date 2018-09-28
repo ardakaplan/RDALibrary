@@ -1,5 +1,9 @@
 **CHANGE LOG**
 
+`v1.0.2`
+
+- sdk 28
+
 `v1.0.0`
 
 - updated RDARecyclerViewAdapter
