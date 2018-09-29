@@ -13,6 +13,7 @@
 - added RDALogger as a gradle link
 
 **PROGUARDG**
+`
 -dontwarn java.awt.**
 -dontwarn java.beans.Beans
 -dontwarn javax.security.**
@@ -29,5 +30,6 @@
 -keep class myjava.awt.datatransfer.** {*;}
 -keep class org.apache.harmony.awt.** {*;}
 -keep class org.apache.harmony.misc.** {*;}
+`
 
 [![](https://jitpack.io/v/ardakaplan/RDALibrary.svg)](https://jitpack.io/#ardakaplan/RDALibrary)
