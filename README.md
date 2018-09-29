@@ -15,9 +15,13 @@
 **PROGUARDG**
 `
 -dontwarn java.awt.**
+
 -dontwarn java.beans.Beans
+
 -dontwarn javax.security.**
+
 -dontwarn okhttp3.internal.platform.*
+
 -keep class javamail.** {*;}
 -keep class javax.mail.** {*;}
 -keep class javax.activation.** {*;}
