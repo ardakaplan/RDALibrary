@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.ardakaplan.rdalogger.RDALogger;
-import com.ardakaplan.rdalibrary.ui.views.fontables.edittexts.OneLineRDAEdittext;
+import com.ardakaplan.rdalibrary.ui.views.fontables.edittexts.OneLineRDAEditText;
 
 /**
  * Created by Arda Kaplan on 04.12.2016 - 06:49
@@ -36,7 +36,7 @@ public class RDADialog extends Dialog {
     //views
     private TextView titleTextView;
     private TextView bodyTextView;
-    private OneLineRDAEdittext inputEdittext;
+    private OneLineRDAEditText inputEdittext;
     private Button positiveButton;
     private Button neutralButton;
     private Button negativeButton;
