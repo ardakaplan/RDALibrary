@@ -1,7 +1,7 @@
 package com.ardakaplan.rdalibrarytest;
 
 import com.ardakaplan.rdalogger.RDALogger;
-import com.ardakaplan.rdalibrary.objects.RDAApplication;
+import com.ardakaplan.rdalibrary.objects.base.RDAApplication;
 
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44

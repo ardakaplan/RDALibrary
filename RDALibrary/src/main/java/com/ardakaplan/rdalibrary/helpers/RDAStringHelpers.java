@@ -5,13 +5,9 @@ import android.app.Activity;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
-import com.ardakaplan.rdalogger.RDALogger;
 import com.google.gson.Gson;
 
 import java.net.URLDecoder;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 
 @SuppressWarnings("unused")
@@ -73,20 +69,4 @@ public final class RDAStringHelpers {
 
         return text == null || text.trim().equals("");
     }
-
-    public static boolean isValidEMailAddress(String eMail) {
-        boolean isValid = false;
-
-        InternetAddress internetAddress;
-        try {
-            internetAddress = new InternetAddress(eMail);
-            internetAddress.validate();
-            isValid = true;
-        } catch (AddressException e) {
-            RDALogger.warn("Invalid e-mail");
-        }
-        return isValid;
-    }
-
-
 }

@@ -83,7 +83,7 @@ public final class RDAIntentHelpers {
         }
     }
 
-    public static void openBrowser(Activity activity, String URL) {
+    public static void openBrowser(Activity activity, String URL) throws ActivityNotFoundException {
 
         final String HTTP = "http://";
 
@@ -93,16 +93,16 @@ public final class RDAIntentHelpers {
             URL = HTTP + URL;
         }
 
-        try {
+//        try {
 
             Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
 
             activity.startActivity(myIntent);
 
-        } catch (ActivityNotFoundException e) {
-
-            Toast.makeText(activity, R.string.no_web_browser, Toast.LENGTH_LONG).show();
-        }
+//        } catch (ActivityNotFoundException e) {
+//
+//            Toast.makeText(activity, R.string.no_web_browser, Toast.LENGTH_LONG).show();
+//        }
     }
 
     public static void sendEmail(Activity activity, String chooserText, String noAppText, String[] recepients, String subject, String body) {
