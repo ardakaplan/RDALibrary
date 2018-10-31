@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.objects;
+package com.ardakaplan.rdalibrary.objects.base;
 
 import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
 

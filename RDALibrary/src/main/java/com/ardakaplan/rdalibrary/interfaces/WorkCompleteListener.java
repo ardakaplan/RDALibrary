@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary;
+package com.ardakaplan.rdalibrary.interfaces;
 
 public interface WorkCompleteListener<Generic> {
 
