@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ProgressBar;
 
 import com.ardakaplan.rdalibrary.R;
 
@@ -11,26 +12,38 @@ import com.ardakaplan.rdalibrary.R;
 @SuppressWarnings({"WeakerAccess", "unused", "DeprecatedIsStillUsed"})
 public class RDAProgressDialog extends Dialog {
 
+    protected ProgressBar progressBar;
+
     public RDAProgressDialog(Context context) {
 
-        this(context, R.layout.popup_progress);
+        this(context, R.layout.dialog_rda_progress);
     }
 
     public RDAProgressDialog(Context context, int layoutID) {
 
         super(context);
 
-        this.setCancelable(false);
+        setCancelable(false);
 
-        this.setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(false);
 
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        this.setContentView(layoutID);
+        setContentView(layoutID);
+
+        progressBar = findViewById(R.id.dialogProgress_progressBar);
 
         //noinspection ConstantConditions
-        this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        this.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    }
+
+    protected void setProgressBarColor() {
+
+        if (progressBar != null) {
+
+//            progressBar.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        }
     }
 }
