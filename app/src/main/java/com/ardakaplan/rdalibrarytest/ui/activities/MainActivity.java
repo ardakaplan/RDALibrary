@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.ardakaplan.rdalibrary.ui.dialogs.RDAProgressDialog;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.services.BackgroundService;
 
@@ -17,7 +16,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_main);
 
-        testBackgroundService();
+//        testBackgroundService();
 
     }
 
