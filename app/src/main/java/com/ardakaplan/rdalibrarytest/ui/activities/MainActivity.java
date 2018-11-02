@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.services.BackgroundService;
+import com.ardakaplan.rdalibrarytest.ui.dialogs.TestProgressDialog;
 
 import butterknife.OnClick;
 
@@ -18,6 +19,7 @@ public class MainActivity extends BaseActivity {
 
 //        testBackgroundService();
 
+//        new TestProgressDialog(this).show();
     }
 
     private void testBackgroundService() {

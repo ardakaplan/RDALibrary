@@ -10,7 +10,7 @@ import com.ardakaplan.rdalibrary.R;
 
 
 @SuppressWarnings({"WeakerAccess", "unused", "DeprecatedIsStillUsed"})
-public class RDAProgressDialog extends Dialog {
+public abstract class RDAProgressDialog extends Dialog {
 
     protected ProgressBar progressBar;
 
@@ -37,13 +37,5 @@ public class RDAProgressDialog extends Dialog {
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-    }
-
-    protected void setProgressBarColor() {
-
-        if (progressBar != null) {
-
-//            progressBar.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
     }
 }
