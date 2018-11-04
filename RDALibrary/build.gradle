@@ -30,7 +30,7 @@ if (project.rootProject.file('local.properties').exists()) {
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 }
 
-devDir = properties != null ? properties.getProperty("dev.dir") : null
+devDir = properties != null ? properties.getProperty("aar.dir") : null
 //LOCAL DEBUG AAR DOSYA YARATILMASI --
 
 dependencies {
