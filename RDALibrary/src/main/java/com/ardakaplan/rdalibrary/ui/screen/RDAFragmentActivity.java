@@ -1,6 +1,8 @@
 package com.ardakaplan.rdalibrary.ui.screen;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.FragmentActivity;
 
 import com.ardakaplan.rdalogger.RDALogger;
@@ -36,6 +38,14 @@ public abstract class RDAFragmentActivity extends FragmentActivity {
         setContentView(layoutId);
 
         RDALogger.logLifeCycle(className);
+    }
+
+    protected void changeStatusBarColor(@ColorRes int colorId) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            getWindow().setStatusBarColor(getActivity().getResources().getColor(colorId));
+        }
     }
 
     protected RDAFragmentActivity getActivity() {

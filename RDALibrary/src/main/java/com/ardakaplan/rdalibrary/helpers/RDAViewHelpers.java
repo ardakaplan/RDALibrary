@@ -30,6 +30,7 @@ public final class RDAViewHelpers {
      * kullanımı biraz sıkıntılı dikkatli ol
      *
      */
+    @Deprecated
     public static void setListViewHeightBasedOnChildren(ListView listView) {
 
         ListAdapter listAdapter = listView.getAdapter();
