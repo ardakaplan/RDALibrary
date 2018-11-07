@@ -68,16 +68,16 @@ artifacts {
 if (devDir != null) {
 
     afterEvaluate {
-        assembleDebug.finalizedBy(copyAAR)
+        assembleDebug.doLast { sourceJar.execute() }.finalizedBy(copyAAR)
     }
 
     task copyAAR(type: Copy) {
 
         if (devDir != null) {
 
-            from 'build/outputs/aar'
+            from 'build/outputs/aar', 'build/libs'
             into devDir
-            include '**/*debug.aar'
+            include '**/*debug.aar', '**/*sources.jar'
 
         }
 
