@@ -2,5 +2,5 @@ package com.ardakaplan.rdalibrary.interfaces;
 
 public interface WorkCompleteListener<Generic> {
 
-    void onWorkCompleted(Generic object);
+    void onWorkCompleted(Generic generic);
 }

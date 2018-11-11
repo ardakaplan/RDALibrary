@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -40,10 +41,8 @@ public final class RDADeviceHelpers {
         return !(telephonyManager.getSimState() == TelephonyManager.SIM_STATE_ABSENT);
     }
 
-
     /**
      * returning network info
-     *
      */
     @SuppressLint("MissingPermission")
     public static NetworkInfo getNetworkInfo(Context context) {
@@ -53,7 +52,6 @@ public final class RDADeviceHelpers {
 
     /**
      * returnining network type name
-     *
      */
     public static String getNetworkType(Context context) {
         NetworkInfo networkInfo = getNetworkInfo(context);
@@ -284,7 +282,6 @@ public final class RDADeviceHelpers {
 
     /**
      * Cihazin hangi cozunurluge ait oldugunun bilgisini verir
-     *
      */
     public static String getDensityType(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
