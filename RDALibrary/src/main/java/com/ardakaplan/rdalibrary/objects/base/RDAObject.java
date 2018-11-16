@@ -12,6 +12,6 @@ public abstract class RDAObject implements Serializable {
     @Override
     public String toString() {
 
-        return RDAStringHelpers.getAsJson(this);
+        return RDAStringHelpers.getAsJsonWithFormat(this);
     }
 }

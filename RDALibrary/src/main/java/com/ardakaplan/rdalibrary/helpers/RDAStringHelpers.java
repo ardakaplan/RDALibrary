@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.net.URLDecoder;
 
@@ -19,6 +20,13 @@ public final class RDAStringHelpers {
     public static String getAsJson(Object object) {
 
         return new Gson().toJson(object);
+    }
+
+    public static String getAsJsonWithFormat(Object object) {
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        return gson.toJson(object);
     }
 
     /**
