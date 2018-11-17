@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class RDAEditText extends AppCompatEditText {
 
-    private ArrayList<Validator> validators;
+    protected ArrayList<Validator> validators;
 
     public RDAEditText(Context context) {
         super(context);
@@ -70,7 +70,7 @@ public class RDAEditText extends AppCompatEditText {
 
         private ArrayList<String> errors;
 
-        private ValidationResult() {
+        public ValidationResult() {
             this.errors = new ArrayList<>();
         }
 
