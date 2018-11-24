@@ -90,10 +90,9 @@ public final class RDANotificationHelper {
             builder.setContentIntent(pendingIntent);
         }
 
-        if (isOngoing) {
+        builder.setOngoing(isOngoing);
 
-            builder.setOngoing(true);
-        }
+        builder.setAutoCancel(!isOngoing);
 
         if (notificationId == null) {
 

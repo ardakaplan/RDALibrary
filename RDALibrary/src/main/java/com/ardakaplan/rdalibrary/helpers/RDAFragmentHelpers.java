@@ -44,7 +44,7 @@ public final class RDAFragmentHelpers {
 
         transaction.addToBackStack(fragmentToReplace.className);
 
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     @SuppressWarnings("WeakerAccess")
