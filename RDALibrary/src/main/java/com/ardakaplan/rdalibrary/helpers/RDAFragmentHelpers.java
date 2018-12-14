@@ -3,8 +3,8 @@ package com.ardakaplan.rdalibrary.helpers;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.ardakaplan.rdalibrary.ui.screen.RDAFragment;
-import com.ardakaplan.rdalibrary.ui.screen.RDAFragmentActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.RDAFragment;
+import com.ardakaplan.rdalibrary.base.ui.screen.RDAFragmentActivity;
 
 @SuppressWarnings("unused")
 public final class RDAFragmentHelpers {
