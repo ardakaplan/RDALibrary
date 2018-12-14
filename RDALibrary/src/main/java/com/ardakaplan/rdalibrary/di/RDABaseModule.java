@@ -1,6 +1,8 @@
 package com.ardakaplan.rdalibrary.di;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import java.util.HashMap;
@@ -25,6 +27,13 @@ public class RDABaseModule {
     @Singleton
     Map<String, AndroidInjector<Fragment>> provideFragmentInjectorMap() {
         return new HashMap<>();
+    }
+
+
+    @Provides
+    @Singleton
+    Context providesContext(Application application) {
+        return application.getApplicationContext();
     }
 
 }

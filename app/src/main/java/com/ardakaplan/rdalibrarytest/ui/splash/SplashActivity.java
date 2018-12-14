@@ -5,24 +5,24 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.domain.interaction.InteractionException;
+import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalibrary.ui.screen.RDAActivityWithDagger;
 import com.ardakaplan.rdalibrarytest.R;
-import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
 
 public class SplashActivity extends RDAActivityWithDagger implements SplashContract.SplashViewContract {
 
     @Inject
     SplashContract.SplashPresenterContract presenter;
 
+    @Inject
+    RDAApplicationHelpers rdaApplicationHelpers;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
 
@@ -50,10 +50,10 @@ public class SplashActivity extends RDAActivityWithDagger implements SplashContr
     @Override
     public void setList(ArrayList<String> list) {
 
-        for (String s : list) {
-
-            RDALogger.info(s);
-        }
+//        for (String s : list) {
+//
+//            RDALogger.info(s);
+//        }
     }
 
     @Override
