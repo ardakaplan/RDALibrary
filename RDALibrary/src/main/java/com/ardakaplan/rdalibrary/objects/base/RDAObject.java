@@ -1,5 +1,7 @@
 package com.ardakaplan.rdalibrary.objects.base;
 
+import android.support.annotation.NonNull;
+
 import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
 
 /**
@@ -7,6 +9,7 @@ import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
  */
 public abstract class RDAObject {
 
+    @NonNull
     @Override
     public String toString() {
 

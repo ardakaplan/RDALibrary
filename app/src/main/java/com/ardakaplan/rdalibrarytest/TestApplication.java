@@ -1,6 +1,7 @@
 package com.ardakaplan.rdalibrarytest;
 
-import com.ardakaplan.rdalibrary.objects.base.RDAApplicationWithDagger;
+import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
+import com.ardakaplan.rdalibrary.objects.base.RDAApplication;
 import com.ardakaplan.rdalibrarytest.di.AppComponent;
 import com.ardakaplan.rdalibrarytest.di.DaggerAppComponent;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -8,7 +9,7 @@ import com.ardakaplan.rdalogger.RDALogger;
 /**
  * Created by Arda Kaplan on 10.08.2018 - 17:44
  */
-public class TestApplication extends RDAApplicationWithDagger {
+public class TestApplication extends RDAApplication implements HasCustomActivityInjector {
 
     private static AppComponent appComponent;
 

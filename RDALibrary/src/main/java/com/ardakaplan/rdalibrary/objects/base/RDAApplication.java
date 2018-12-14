@@ -1,17 +1,36 @@
 package com.ardakaplan.rdalibrary.objects.base;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
+import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalogger.RDALogger;
 
+import javax.inject.Inject;
 
-public abstract class RDAApplication extends Application {
+
+public abstract class RDAApplication extends Application implements HasCustomActivityInjector {
+
+    @Inject
+    CustomDispatchingAndroidInjector<Activity> activityInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        initDagger();
+
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
+    }
+
+    protected abstract void initDagger();
+
+
+    @Override
+    public CustomDispatchingAndroidInjector<Activity> activityInjector() {
+        return activityInjector;
     }
 
     @Override

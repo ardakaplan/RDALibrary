@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrary.interfaces;
 
-public interface WorkCompleteListener<Generic> {
+public interface WorkCompleteListener<Lahana> {
 
-    void onWorkCompleted(Generic generic);
+    void onWorkCompleted(Lahana Lahana);
 }
