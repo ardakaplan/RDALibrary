@@ -1,11 +1,16 @@
 package com.ardakaplan.rdalibrary.ui.screen;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
+import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
+
+import javax.sql.RowSetMetaData;
 
 /**
  * Created by Arda Kaplan on
@@ -38,6 +43,22 @@ public abstract class RDAFragmentActivity extends FragmentActivity {
         setContentView(layoutId);
 
         RDALogger.logLifeCycle(className);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        RDAFragment currentFragment = RDAFragmentHelpers.getCurrentFragment(this);
+
+        //is there any fragment in backstack
+        if (currentFragment != null) {
+
+            currentFragment.onActivityResult(requestCode, resultCode, data);
+
+        } else {
+
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     protected void changeStatusBarColor(@ColorRes int colorId) {
