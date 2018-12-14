@@ -15,6 +15,10 @@ import java.util.Locale;
 @SuppressWarnings("unused")
 public final class RDANumberHelpers {
 
+    private RDANumberHelpers() {
+
+    }
+
     public static String limitDoubleValue(double doubleValue, int digitLimit) {
 
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());

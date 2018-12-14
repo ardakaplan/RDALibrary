@@ -6,8 +6,10 @@ import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.domain.interaction.InteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 import com.ardakaplan.rdalibrary.ui.screen.RDAActivityWithDagger;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,9 @@ public class SplashActivity extends RDAActivityWithDagger implements SplashContr
     @Inject
     RDAApplicationHelpers rdaApplicationHelpers;
 
+    @Inject
+    RDASharedHelpers rdaSharedHelpers;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -33,6 +38,10 @@ public class SplashActivity extends RDAActivityWithDagger implements SplashContr
         presenter.testPresenterContract();
 
         presenter.getList();
+
+        RDALogger.info("VERSION CODE : " + rdaApplicationHelpers.getAppVersionCode());
+
+        RDALogger.info("SHARED : " + rdaSharedHelpers.getBoolean("ARDA"));
     }
 
     @Override

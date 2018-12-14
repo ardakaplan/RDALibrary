@@ -1,6 +1,5 @@
 package com.ardakaplan.rdalibrary.helpers;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -27,7 +26,7 @@ public class RDAApplicationHelpers {
     private Context context;
 
     @Inject
-    public RDAApplicationHelpers(Context context) {
+    RDAApplicationHelpers(Context context) {
         this.context = context;
     }
 
@@ -52,8 +51,9 @@ public class RDAApplicationHelpers {
     public void writeHashKey() {
 
         try {
-            @SuppressLint("PackageManagerGetSignatures")
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            //PackageManager.GET_SIGNATURES gives error, use PackageManager.GET_SIGNING_CERTIFICATES
+            PackageInfo packageInfo = context.getPackageManager().
+                    getPackageInfo(getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
 
             for (Signature signature : packageInfo.signatures) {
 
