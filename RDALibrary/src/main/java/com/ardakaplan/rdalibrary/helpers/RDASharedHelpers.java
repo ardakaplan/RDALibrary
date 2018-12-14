@@ -30,9 +30,9 @@ public final class RDASharedHelpers {
         return context.getSharedPreferences(applicationName, MODE_PRIVATE);
     }
 
-    public String getString(String key) {
+    public String getString(String key, String defaultValue) {
 
-        return getSharedPreferences().getString(key, "");
+        return getSharedPreferences().getString(key, defaultValue);
     }
 
     public void putString(String key, String value) {
@@ -42,9 +42,9 @@ public final class RDASharedHelpers {
         editor.apply();
     }
 
-    public int getInt(String key) {
+    public int getInt(String key, int defaultValue) {
 
-        return getSharedPreferences().getInt(key, 0);
+        return getSharedPreferences().getInt(key, defaultValue);
     }
 
     public void putInt(String key, int value) {
@@ -54,9 +54,9 @@ public final class RDASharedHelpers {
         editor.apply();
     }
 
-    public boolean getBoolean(String key) {
+    public boolean getBoolean(String key, boolean defaultValue) {
 
-        return getSharedPreferences().getBoolean(key, false);
+        return getSharedPreferences().getBoolean(key, defaultValue);
     }
 
     public void putBoolean(String key, boolean value) {
