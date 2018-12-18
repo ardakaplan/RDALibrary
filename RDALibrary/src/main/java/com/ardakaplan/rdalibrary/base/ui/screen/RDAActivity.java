@@ -4,14 +4,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ardakaplan.rdalogger.RDALogger;
 
-import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
-public abstract class RDAActivity extends AppCompatActivity {
+public abstract class RDAActivity extends DaggerAppCompatActivity {
 
     protected String className;
 
@@ -25,16 +24,12 @@ public abstract class RDAActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
 
         RDALogger.logLifeCycle(className);
     }
 
     protected void onCreate(Bundle savedInstanceState, int layoutId) {
-
-        AndroidInjection.inject(this);
 
         super.onCreate(savedInstanceState);
 

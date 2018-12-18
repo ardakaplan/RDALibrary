@@ -10,8 +10,6 @@ import android.support.v4.app.FragmentActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
-import javax.sql.RowSetMetaData;
-
 /**
  * Created by Arda Kaplan on
  * <p>
@@ -21,6 +19,7 @@ import javax.sql.RowSetMetaData;
  */
 
 @SuppressWarnings("unused")
+@Deprecated
 public abstract class RDAFragmentActivity extends FragmentActivity {
 
     protected String className;
