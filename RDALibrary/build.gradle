@@ -49,6 +49,10 @@ dependencies {
     //RDALogger
     api 'com.github.ardakaplan:RDALogger:1.0.0'
 
+    //BUTTER KNIFE
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     //DAGGER
     implementation "com.google.dagger:dagger:2.16"
     implementation "com.google.dagger:dagger-android-support:2.16"

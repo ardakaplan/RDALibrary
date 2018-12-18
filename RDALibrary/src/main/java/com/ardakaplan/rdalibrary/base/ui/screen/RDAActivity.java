@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.ardakaplan.rdalogger.RDALogger;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
@@ -34,6 +35,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(layoutId);
+
+        ButterKnife.bind(this);
 
         RDALogger.logLifeCycle(className);
     }

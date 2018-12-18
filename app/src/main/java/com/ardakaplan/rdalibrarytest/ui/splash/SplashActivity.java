@@ -1,5 +1,6 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -8,13 +9,14 @@ import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.domain.interaction.InteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalibrarytest.R;
-import com.ardakaplan.rdalibrarytest.managers.storage.SharedManager;
 import com.ardakaplan.rdalibrarytest.managers.storage.StorageManager;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import butterknife.OnClick;
 
 public class SplashActivity extends RDAActivity implements SplashContract.SplashViewContract {
 
@@ -27,12 +29,11 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     StorageManager storageManager;
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_splash);
+        super.onCreate(savedInstanceState, R.layout.activity_splash);
 
         presenter.attach(this);
 
@@ -47,6 +48,12 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         storageManager.getSharedManager().saveUsername("HAAAAAAAAAAAAAA");
 
         RDALogger.info("SHARED : " + storageManager.getSharedManager().getUsername());
+    }
+
+    @OnClick(R.id.button_test)
+    void test() {
+
+        RDALogger.info("TEST");
     }
 
     @Override

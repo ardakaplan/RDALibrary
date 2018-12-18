@@ -3,6 +3,7 @@ package com.ardakaplan.rdalibrary.base.ui.screen;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -13,10 +14,14 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.Serializable;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 
 @SuppressWarnings("unused")
 public abstract class RDADaggerFragment extends DialogFragment {
+
+    private Unbinder unbinder;
 
     public String className;
 
@@ -50,7 +55,17 @@ public abstract class RDADaggerFragment extends DialogFragment {
 
         RDALogger.logLifeCycle(className);
 
-        return inflater.inflate(getLayout(), container, false);
+        View view = inflater.inflate(getViewLayout(), container, false);
+
+        unbinder = ButterKnife.bind(this, view);
+
+        initViews(view);
+
+        return view;
+    }
+
+    protected void initViews(View parentView) {
+
     }
 
     @Override
@@ -93,6 +108,8 @@ public abstract class RDADaggerFragment extends DialogFragment {
         super.onDestroy();
 
         RDALogger.logLifeCycle(className);
+
+        unbinder.unbind();
     }
 
     @Override
@@ -132,5 +149,6 @@ public abstract class RDADaggerFragment extends DialogFragment {
         return this.getArguments() != null && this.getArguments().containsKey(key);
     }
 
-    protected abstract int getLayout();
+    protected abstract @LayoutRes
+    int getViewLayout();
 }

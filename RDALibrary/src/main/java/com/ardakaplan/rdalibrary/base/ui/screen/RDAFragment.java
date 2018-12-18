@@ -14,6 +14,7 @@ import com.ardakaplan.rdalogger.RDALogger;
 import java.io.Serializable;
 
 @SuppressWarnings("unused")
+@Deprecated
 public abstract class RDAFragment extends Fragment {
 
     public String className;
