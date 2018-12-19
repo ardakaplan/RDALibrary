@@ -5,15 +5,15 @@ package com.ardakaplan.rdalibrary.domain.interaction;
  * <p>
  * arda.kaplan09@gmail.com
  */
-public abstract class Interaction<In, Out> {
+public abstract class RDAInteraction<In, Out> {
 
     private In in;
 
-    public Interaction(In in) {
+    public RDAInteraction(In in) {
         this.in = in;
     }
 
-    public Interaction() {
+    public RDAInteraction() {
         this.in = null;
     }
 
@@ -25,5 +25,5 @@ public abstract class Interaction<In, Out> {
         this.in = in;
     }
 
-    public abstract void execute(InteractionResultListener<Out> interactionResultListener);
+    public abstract void execute(RDAInteractionResultListener<Out> RDAInteractionResultListener);
 }

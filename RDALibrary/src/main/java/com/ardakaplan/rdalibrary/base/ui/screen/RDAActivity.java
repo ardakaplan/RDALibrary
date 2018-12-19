@@ -22,6 +22,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity {
         className = getClass().getSimpleName();
     }
 
+    protected abstract void adjustApplicationTheme();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -33,6 +35,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState, int layoutId) {
 
         super.onCreate(savedInstanceState);
+
+        adjustApplicationTheme();
 
         setContentView(layoutId);
 

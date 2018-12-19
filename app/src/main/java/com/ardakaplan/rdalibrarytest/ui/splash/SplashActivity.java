@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
-import com.ardakaplan.rdalibrary.domain.interaction.InteractionException;
+import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.managers.storage.StorageManager;
@@ -28,6 +28,11 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
     @Inject
     StorageManager storageManager;
+
+    @Override
+    protected void adjustApplicationTheme() {
+
+    }
 
     @SuppressLint("MissingSuperCall")
     @Override
@@ -78,7 +83,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     }
 
     @Override
-    public void onError(InteractionException e) {
+    public void onError(RDAInteractionException e) {
 
         e.printStackTrace();
 

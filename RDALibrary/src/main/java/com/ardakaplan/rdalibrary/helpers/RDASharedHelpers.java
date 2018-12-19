@@ -66,9 +66,9 @@ public final class RDASharedHelpers {
         editor.apply();
     }
 
-    public Long getLong(String key) {
+    public Long getLong(String key, long defaultValue) {
 
-        return getSharedPreferences().getLong(key, 0);
+        return getSharedPreferences().getLong(key, defaultValue);
     }
 
     public void putLong(String key, Long value) {

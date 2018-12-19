@@ -5,18 +5,18 @@ package com.ardakaplan.rdalibrary.domain.interaction;
  * <p>
  * arda.kaplan09@gmail.com
  */
-public class InteractionResult<Out> {
+public class RDAInteractionResult<Out> {
 
     private boolean success = false;
-    private InteractionException exception;
+    private RDAInteractionException exception;
     private Out out;
 
-    public InteractionResult(Out out){
+    public RDAInteractionResult(Out out){
         this.success = true;
         this.out = out;
     }
 
-    public InteractionResult(InteractionException exception){
+    public RDAInteractionResult(RDAInteractionException exception){
         this.success = false;
         this.exception = exception;
     }
@@ -29,7 +29,7 @@ public class InteractionResult<Out> {
         return success;
     }
 
-    public InteractionException getException(){
+    public RDAInteractionException getException(){
         return exception;
     }
 

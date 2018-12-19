@@ -5,8 +5,8 @@ package com.ardakaplan.rdalibrary.domain.interaction;
  * <p>
  * arda.kaplan09@gmail.com
  */
-public interface InteractionResultListener<Out> {
+public interface RDAInteractionResultListener<Out> {
 
-    void onResult(InteractionResult<Out> out);
+    void onResult(RDAInteractionResult<Out> out);
 
 }

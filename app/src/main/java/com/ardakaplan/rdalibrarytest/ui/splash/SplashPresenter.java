@@ -1,9 +1,9 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.domain.interaction.InteractionResult;
-import com.ardakaplan.rdalibrary.domain.interaction.InteractionResultListener;
+import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResult;
+import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResultListener;
 import com.ardakaplan.rdalibrary.base.objects.RDAPresenter;
-import com.ardakaplan.rdalibrarytest.domain.GetListInteraction;
+import com.ardakaplan.rdalibrarytest.domain.GetListRDAInteraction;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
@@ -12,10 +12,10 @@ import javax.inject.Inject;
 
 public class SplashPresenter extends RDAPresenter<SplashContract.SplashViewContract> implements SplashContract.SplashPresenterContract {
 
-    private GetListInteraction getListInteraction;
+    private GetListRDAInteraction getListInteraction;
 
     @Inject
-    public SplashPresenter(GetListInteraction getListInteraction) {
+    public SplashPresenter(GetListRDAInteraction getListInteraction) {
 
         this.getListInteraction = getListInteraction;
     }
@@ -41,10 +41,10 @@ public class SplashPresenter extends RDAPresenter<SplashContract.SplashViewContr
 
         getListInteraction.setIn("LAHANA");
 
-        getListInteraction.execute(new InteractionResultListener<ArrayList<String>>() {
+        getListInteraction.execute(new RDAInteractionResultListener<ArrayList<String>>() {
 
             @Override
-            public void onResult(InteractionResult<ArrayList<String>> out) {
+            public void onResult(RDAInteractionResult<ArrayList<String>> out) {
 
                 if (gettView() != null) {
 
