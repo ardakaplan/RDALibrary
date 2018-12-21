@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.objects;
+package com.ardakaplan.rdalibrary.base.ui.screen;
 
 public abstract class RDAPresenter<TView extends RDAViewContract> implements RDAPresenterContract<TView> {
 
