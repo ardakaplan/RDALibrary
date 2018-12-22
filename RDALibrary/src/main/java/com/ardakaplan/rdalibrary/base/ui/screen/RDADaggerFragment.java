@@ -107,14 +107,12 @@ public abstract class RDADaggerFragment extends DialogFragment {
     public void onDestroy() {
         super.onDestroy();
 
+        if (unbinder != null) {
+
+            unbinder.unbind();
+        }
+
         RDALogger.logLifeCycle(className);
-
-        unbinder.unbind();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -130,19 +128,6 @@ public abstract class RDADaggerFragment extends DialogFragment {
 
         RDALogger.logLifeCycle(className);
     }
-
-    public Serializable getFragmentData(String key) {
-
-        if (getArguments() != null && getArguments().containsKey(key)) {
-
-            return getArguments().getSerializable(key);
-
-        } else {
-
-            return null;
-        }
-    }
-
 
     public boolean checkFragmentData(String key) {
 
