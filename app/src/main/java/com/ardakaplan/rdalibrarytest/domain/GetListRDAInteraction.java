@@ -1,8 +1,8 @@
 package com.ardakaplan.rdalibrarytest.domain;
 
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteraction;
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResult;
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResultListener;
+import com.ardakaplan.rdalibrary.interactions.RDAInteraction;
+import com.ardakaplan.rdalibrary.interactions.RDAInteractionResult;
+import com.ardakaplan.rdalibrary.interactions.RDAInteractionResultListener;
 
 import java.util.ArrayList;
 

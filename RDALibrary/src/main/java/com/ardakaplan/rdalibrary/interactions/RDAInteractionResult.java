@@ -1,4 +1,6 @@
-package com.ardakaplan.rdalibrary.domain.interaction;
+package com.ardakaplan.rdalibrary.interactions;
+
+import com.ardakaplan.rdalibrary.interactions.exceptions.RDAInteractionException;
 
 /**
  * Created by Arda Kaplan at 12/13/2018

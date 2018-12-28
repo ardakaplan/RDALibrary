@@ -1,7 +1,7 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResult;
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionResultListener;
+import com.ardakaplan.rdalibrary.interactions.RDAInteractionResult;
+import com.ardakaplan.rdalibrary.interactions.RDAInteractionResultListener;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenter;
 import com.ardakaplan.rdalibrarytest.domain.GetListRDAInteraction;
 import com.ardakaplan.rdalogger.RDALogger;

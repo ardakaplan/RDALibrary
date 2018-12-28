@@ -1,0 +1,9 @@
+package com.ardakaplan.rdalibrary.interactions.exceptions;
+
+/**
+ * Created by Arda Kaplan on 28-Dec-18 - 14:34
+ * <p>
+ * using while converting json
+ */
+public class RDAParseingInteractionException extends RDAInteractionException {
+}

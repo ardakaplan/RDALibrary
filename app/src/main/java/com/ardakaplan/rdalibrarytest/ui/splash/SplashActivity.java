@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
-import com.ardakaplan.rdalibrary.domain.interaction.RDAInteractionException;
+import com.ardakaplan.rdalibrary.interactions.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.managers.storage.StorageManager;
