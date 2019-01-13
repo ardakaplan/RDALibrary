@@ -22,7 +22,9 @@ public abstract class RDAActivity extends DaggerAppCompatActivity {
         className = getClass().getSimpleName();
     }
 
-    protected abstract void adjustApplicationTheme();
+    protected void adjustApplicationTheme() {
+
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

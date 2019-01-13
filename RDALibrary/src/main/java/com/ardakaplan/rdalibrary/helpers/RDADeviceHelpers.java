@@ -10,7 +10,6 @@ import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -27,14 +26,20 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class RDADeviceHelpers {
 
-    private RDADeviceHelpers() {
+    private Context context;
 
+    @Inject
+    RDADeviceHelpers(Context context) {
+
+        this.context = context;
     }
 
-    public static boolean isSimCardAvailable(Context context) {
+    public boolean isSimCardAvailable() {
 
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -45,16 +50,16 @@ public final class RDADeviceHelpers {
      * returning network info
      */
     @SuppressLint("MissingPermission")
-    public static NetworkInfo getNetworkInfo(Context context) {
+    public NetworkInfo getNetworkInfo() {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo();
     }
 
     /**
-     * returnining network type name
+     * returning network type name
      */
-    public static String getNetworkType(Context context) {
-        NetworkInfo networkInfo = getNetworkInfo(context);
+    public String getNetworkType() {
+        NetworkInfo networkInfo = getNetworkInfo();
 
         if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
             return "WIFI";
@@ -64,21 +69,21 @@ public final class RDADeviceHelpers {
 
     }
 
-    public static String getNetworkOperatorName(Context context) {
+    public String getNetworkOperatorName() {
         return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getNetworkOperatorName();
     }
 
     @SuppressLint({"MissingPermission", "HardwareIds"})
-    public static String getPhoneNumber(Activity activity) {
-        return ((TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+    public String getPhoneNumber() {
+        return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
     }
 
 
-    public static int getApplicationVersionCode(Activity activity) {
+    public int getApplicationVersionCode() {
 
         try {
 
-            return activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionCode;
+            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
 
         } catch (NameNotFoundException e) {
 
@@ -88,14 +93,14 @@ public final class RDADeviceHelpers {
         }
     }
 
-    public static String getDeviceLanguage() {
+    public String getDeviceLanguage() {
 
         return Locale.getDefault().getLanguage().toUpperCase(Locale.ENGLISH);
     }
 
-    public static boolean isNetworkAvailable(Activity activity) {
+    public boolean isNetworkAvailable() {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         @SuppressWarnings("ConstantConditions") @SuppressLint("MissingPermission")
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -123,22 +128,22 @@ public final class RDADeviceHelpers {
         }
     }
 
-    public static boolean isAppInstalled(Context context, String packageName) {
+    public boolean isAppInstalled(String packageName) {
 
         Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
 
         return intent != null;
     }
 
-    public static void writeDeviceInfo(Activity activity) {
+    public void writeDeviceInfo(Activity activity) {
         // cihazin hangi values klasorunu kullandigini bulmak icin log
-        RDALogger.verbose("VALUES FOLDER : " + getDeviceResourcesFolder(activity));
+        RDALogger.verbose("VALUES FOLDER : " + getDeviceResourcesFolder());
         // cihazin ekran boyutlari
         RDALogger.verbose("Device screen height : " + getScreenHeight(activity));
 
         RDALogger.verbose("Device screen width : " + getScreenWidth(activity));
         // ekran cozunurlugu
-        RDALogger.verbose("Device Screen Density Type : " + getDensityType(activity));
+        RDALogger.verbose("Device Screen Density Type : " + getDensityType());
         // api level
         RDALogger.verbose("Device Api level : " + getDeviceApiLevel());
         // marka
@@ -148,19 +153,19 @@ public final class RDADeviceHelpers {
         // uretici
         RDALogger.verbose("Device Manufacturer :" + getDeviceManufacturer());
         // tablet mi
-        RDALogger.verbose("Is Device tablet : " + isTablet(activity));
+        RDALogger.verbose("Is Device tablet : " + isTablet());
     }
 
-    public static String getDeviceResourcesFolder(Context context) {
+    public String getDeviceResourcesFolder() {
         return context.getString(R.string.folder_name);
     }
 
 
-    public static int getDeviceApiLevel() {
+    public int getDeviceApiLevel() {
         return Build.VERSION.SDK_INT;
     }
 
-    public static String getAndroidVersionName() {
+    public String getAndroidVersionName() {
         String versionName = "";
         Field[] fields = Build.VERSION_CODES.class.getFields();
         for (Field field : fields) {
@@ -184,27 +189,25 @@ public final class RDADeviceHelpers {
         return versionName;
     }
 
-    public static String getDeviceVersion() {
+    public String getDeviceVersion() {
         return Build.VERSION.RELEASE;
     }
 
-    public static String getPhoneName() {
+    public String getPhoneName() {
         BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
         return myDevice.getName();
     }
 
-    public static String getTotalRAM() {
+    public String getTotalRAM() {
 
-        RandomAccessFile reader = null;
-        String load = null;
+        RandomAccessFile reader;
+        String load;
         DecimalFormat twoDecimalForm = new DecimalFormat("#.##");
-        double totRam = 0;
+        double totRam;
         String lastValue = "";
         try {
             reader = new RandomAccessFile("/proc/meminfo", "r");
-            load = reader.readLine();
-
-            // Get the Number value from the string
+            load = reader.readLine();// Get the Number value from the string
             Pattern p = Pattern.compile("(\\d+)");
             Matcher m = p.matcher(load);
             String value = "";
@@ -233,14 +236,12 @@ public final class RDADeviceHelpers {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            // Streams.close(reader);
         }
 
         return lastValue;
     }
 
-    public static boolean isTablet(Context context) {
+    public boolean isTablet() {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
@@ -283,12 +284,13 @@ public final class RDADeviceHelpers {
     /**
      * Cihazin hangi cozunurluge ait oldugunun bilgisini verir
      */
-    public static String getDensityType(Activity activity) {
+    public String getDensityType() {
+
         DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
         int density = metrics.densityDpi;
 
-        String screenType = "";
+        String screenType;
 
         switch (density) {
             case DisplayMetrics.DENSITY_HIGH:
@@ -317,12 +319,11 @@ public final class RDADeviceHelpers {
         return screenType;
     }
 
-    public static String getDrawableFolder(Activity activity) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int density = metrics.densityDpi;
+    public static String getDrawableFolder() {
 
-        String screenType = "";
+        int density = new DisplayMetrics().densityDpi;
+
+        String screenType;
 
         switch (density) {
 

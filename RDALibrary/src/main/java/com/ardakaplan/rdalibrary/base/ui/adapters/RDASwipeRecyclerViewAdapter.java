@@ -1,30 +1,51 @@
 package com.ardakaplan.rdalibrary.base.ui.adapters;
 
-import android.app.Activity;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**O
+/**
+ * O
  * Created by Arda Kaplan on 20.06.2018 - 11:56
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDASwipeRecyclerViewAdapter<W, VH extends RecyclerView.ViewHolder> extends RecyclerSwipeAdapter<VH> {
 
     protected List<W> dataList;
-    protected Activity activity;
-    protected int layoutId;
-    protected int swipelayoutId;
 
-    public RDASwipeRecyclerViewAdapter(Activity activity, List<W> dataList, int layoutId, int swipelayoutId) {
-
-        this.activity = activity;
+    public RDASwipeRecyclerViewAdapter(List<W> dataList) {
         this.dataList = dataList;
-        this.layoutId = layoutId;
-        this.swipelayoutId = swipelayoutId;
     }
+
+    public RDASwipeRecyclerViewAdapter() {
+        dataList = new ArrayList<>();
+    }
+
+    @NonNull
+    @Override
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return getViewHolderInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
+    }
+
+    /**
+     * @param view inflated view
+     * @return object that used in every row view
+     */
+    protected abstract VH getViewHolderInstance(View view);
+
+    /**
+     * @return item layout
+     */
+    protected abstract @LayoutRes
+    int getItemLayout();
 
     public void setData(List<W> dataList) {
 
@@ -40,10 +61,5 @@ public abstract class RDASwipeRecyclerViewAdapter<W, VH extends RecyclerView.Vie
     @Override
     public int getItemCount() {
         return dataList.size();
-    }
-
-    @Override
-    public int getSwipeLayoutResourceId(int position) {
-        return swipelayoutId;
     }
 }

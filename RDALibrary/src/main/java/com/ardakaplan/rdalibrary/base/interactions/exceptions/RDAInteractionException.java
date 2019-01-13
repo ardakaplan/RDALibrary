@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.interactions.exceptions;
+package com.ardakaplan.rdalibrary.base.interactions.exceptions;
 
 /**
  * Created by Arda Kaplan at 12/13/2018
