@@ -3,6 +3,7 @@ package com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -169,5 +170,59 @@ public class RDADialog extends Dialog {
         });
 
         return this;
+    }
+
+    public static void showDialog(Activity activity,
+                                        String title,
+                                        String message,
+                                        String positiveButtonText,
+                                        String negativeButtonText,
+                                        String neutralButtonText,
+                                        @StyleRes int styleId,
+                                        Boolean cancelable,
+                                        ButtonClickListener buttonClickListener) {
+
+        RDADialog rdaDialog = new RDADialog(activity);
+
+        rdaDialog.setButtonListener(buttonClickListener);
+
+        if (cancelable != null) {
+
+            rdaDialog.setCancelable(cancelable);
+
+            rdaDialog.setCanceledOnTouchOutside(cancelable);
+        }
+
+        if (title != null) {
+
+            rdaDialog.setTitle(title);
+        }
+
+        if (message != null) {
+
+            rdaDialog.setBody(message);
+        }
+
+        if (positiveButtonText != null) {
+
+            rdaDialog.setPositiveButton(positiveButtonText);
+        }
+
+        if (negativeButtonText != null) {
+
+            rdaDialog.setNegativeButton(negativeButtonText);
+        }
+
+        if (neutralButtonText != null) {
+
+            rdaDialog.setNeutralButton(neutralButtonText);
+        }
+
+        if (styleId != 0) {
+
+            rdaDialog.getWindow().getAttributes().windowAnimations = styleId;
+        }
+
+        rdaDialog.show();
     }
 }

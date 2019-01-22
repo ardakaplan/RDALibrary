@@ -8,10 +8,10 @@ import android.widget.Toast;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialogHelpers;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDADialogHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.managers.storage.StorageManager;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -93,7 +93,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
     private void showDialog() {
 
-        RDADialogHelpers.showButtonDialog(this, "DENEME", "DENEME BODY", "DENEME POSTIC", "NEEEEGAT", "NEUTRAA", 0, null, new ButtonClickListener() {
+        RDADialog.showDialog(this, "DENEME", "DENEME BODY", "DENEME POSTIC", "NEEEEGAT", "NEUTRAA", 0, null, new ButtonClickListener() {
 
             @Override
             public void onClick(RDADialog rdaDialog, ButtonType buttonType) {

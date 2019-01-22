@@ -7,19 +7,26 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 @SuppressWarnings("unused")
+@Singleton
 public final class RDANotificationHelper {
 
-    private RDANotificationHelper() {
+    private Context context;
 
+    @Inject
+    RDANotificationHelper(Context context) {
+
+        this.context = context;
     }
 
-    public static void cancelNotification(Context context, int notificationId) {
+    public void cancelNotification(int notificationId) {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
@@ -30,24 +37,22 @@ public final class RDANotificationHelper {
     }
 
 
-    public static void showNotification(Context context,
-                                        Intent intent,
-                                        String title,
-                                        String text,
-                                        int drawableId,
-                                        boolean isOngoing,
-                                        boolean setTicker,
-                                        boolean setSound,
-                                        boolean showTime,
-                                        Integer notificationId,
-                                        String channelName,
-                                        String channelID,
-                                        Importance importance,
-                                        boolean showBadge) {
+    public void showNotification(Intent intent,
+                                 String title,
+                                 String text,
+                                 int drawableId,
+                                 boolean isOngoing,
+                                 boolean setTicker,
+                                 boolean setSound,
+                                 boolean showTime,
+                                 Integer notificationId,
+                                 String channelName,
+                                 String channelID,
+                                 boolean showBadge) {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
-        registerLocationAndNotifyChannel(context, channelID, channelName, setSound, showBadge, importance);
+        registerLocationAndNotifyChannel(channelID, channelName, setSound, showBadge);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID);
 
@@ -105,12 +110,11 @@ public final class RDANotificationHelper {
         }
     }
 
-    private static void registerLocationAndNotifyChannel(Context context,
-                                                         String notificationChannelID,
-                                                         String notificationChannelName,
-                                                         boolean setSound,
-                                                         boolean showBadge,
-                                                         Importance importance) {
+    private void registerLocationAndNotifyChannel(
+            String notificationChannelID,
+            String notificationChannelName,
+            boolean setSound,
+            boolean showBadge) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
@@ -127,31 +131,8 @@ public final class RDANotificationHelper {
 
                 notificationChannel.setShowBadge(showBadge);
 
-                notificationChannel.setImportance(importance.getValue());
-
                 notificationManager.createNotificationChannel(notificationChannel);
             }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public enum Importance {
-
-        IMPORTANCE_NONE(NotificationManager.IMPORTANCE_NONE),
-        IMPORTANCE_MIN(NotificationManager.IMPORTANCE_MIN),
-        IMPORTANCE_LOW(NotificationManager.IMPORTANCE_LOW),
-        IMPORTANCE_DEFAULT(NotificationManager.IMPORTANCE_DEFAULT),
-        IMPORTANCE_HIGH(NotificationManager.IMPORTANCE_HIGH),
-        IMPORTANCE_MAX(NotificationManager.IMPORTANCE_MAX);
-
-        private int value;
-
-        Importance(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
         }
     }
 }
