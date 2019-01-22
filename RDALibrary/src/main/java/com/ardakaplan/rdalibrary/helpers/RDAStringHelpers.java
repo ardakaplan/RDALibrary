@@ -24,7 +24,7 @@ public final class RDAStringHelpers {
 
     public static String getAsJsonWithFormat(Object object) {
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
         return gson.toJson(object);
     }
