@@ -48,9 +48,6 @@ dependencies {
     //SWIPE LIST
     api "com.daimajia.swipelayout:library:$swipe_layout_version"
 
-    //GSON
-    api "com.google.code.gson:gson:$gson_version"
-
     //RDA-LOGGER
     api "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
