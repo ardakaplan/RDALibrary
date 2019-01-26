@@ -1,0 +1,35 @@
+//LOCAL DEBUG AAR YARATILMASI ++
+
+task sourceJar(type: Jar) {
+    from 'src/main/java', 'build/generated/source/apt/release'
+    classifier "sources"
+}
+
+configurations {
+    archives
+}
+
+artifacts {
+    archives sourceJar
+}
+
+if (devDir != null) {
+
+    afterEvaluate {
+        assembleDebug.doLast { sourceJar.execute() }.finalizedBy(copyAAR)
+    }
+
+    task copyAAR(type: Copy) {
+
+        if (devDir != null) {
+
+            from 'build/outputs/aar', 'build/libs'
+            into devDir
+            include '**/*debug.aar', '**/*sources.jar'
+
+        }
+
+        outputs.upToDateWhen { false }
+    }
+}
+//LOCAL DEBUG AAR YARATILMASI --

@@ -1,103 +1,72 @@
 apply plugin: 'com.android.library'
+apply from: '../deployment.gradle'
 
 android {
-    compileSdkVersion 28
+
+    compileSdkVersion androidCompileSdkVersion
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "2.0.0"
     }
 
     buildTypes {
+
         release {
+
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
-//LOCAL DEBUG AAR DOSYA YARATILMASI ++
-def devDir = null
+configurations.all {
 
-Properties properties = null
+    resolutionStrategy {
 
-if (project.rootProject.file('local.properties').exists()) {
-
-    properties = new Properties()
-
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        cacheChangingModulesFor 0, 'seconds'
+    }
 }
-
-devDir = properties != null ? properties.getProperty("aar.dir") : null
-//LOCAL DEBUG AAR DOSYA YARATILMASI --
 
 dependencies {
 
     //ANDROID SUPPORT
-    api 'com.android.support:appcompat-v7:28.0.0'
-    api "com.android.support:recyclerview-v7:28.0.0"
-    api 'com.android.support:cardview-v7:28.0.0'
+    api "com.android.support:appcompat-v7:$android_support_version"
+    api "com.android.support:recyclerview-v7:$android_support_version"
+    api "com.android.support:cardview-v7:$android_support_version"
 
     //SWIPE LIST
-    api 'com.daimajia.swipelayout:library:1.2.0@aar'
+    api "com.daimajia.swipelayout:library:$swipe_layout_version"
 
     //GSON
-    api 'com.google.code.gson:gson:2.8.5'
+    api "com.google.code.gson:gson:$gson_version"
 
-    //RDALogger
-    api 'com.github.ardakaplan:RDALogger:1.0.0'
+    //RDA-LOGGER
+    api "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
     //BUTTER KNIFE
-    api 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compileOnly "com.jakewharton:butterknife:$butter_knife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
-    api "com.google.dagger:dagger:2.16"
-    api "com.google.dagger:dagger-android-support:2.16"
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.16"
+    compileOnly "com.google.dagger:dagger:$dagger_version"
+    compileOnly "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
     //RETROFIT
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.retrofit2:converter-scalars:2.1.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+    api "com.squareup.retrofit2:converter-scalars:$retrofit_converter_scalars_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
 }
-
-//LOCAL DEBUG AAR YARATILMASI ++
-
-task sourceJar(type: Jar) {
-    from 'src/main/java', 'build/generated/source/apt/release'
-    classifier "sources"
-}
-
-configurations {
-    archives
-}
-
-artifacts {
-    archives sourceJar
-}
-
-if (devDir != null) {
-
-    afterEvaluate {
-        assembleDebug.doLast { sourceJar.execute() }.finalizedBy(copyAAR)
-    }
-
-    task copyAAR(type: Copy) {
-
-        if (devDir != null) {
-
-            from 'build/outputs/aar', 'build/libs'
-            into devDir
-            include '**/*debug.aar', '**/*sources.jar'
-
-        }
-
-        outputs.upToDateWhen { false }
-    }
-}
-//LOCAL DEBUG AAR YARATILMASI --
