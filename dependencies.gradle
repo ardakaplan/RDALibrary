@@ -25,12 +25,14 @@ ext {
     retrofit_converter_gson_version = "2.4.0"
     retrofit_converter_scalars_version = "2.4.0"
     okhttp3_logging_interceptor_version = "3.10.0"
+    gson_version = "2.8.5"
 
     //RDA LIBS NAME
     RDA_LIB_AAR_NAME = "/RDALibrary-debug.aar"
 
     //RDA LIBS VERSION
     rda_logger_version = "1.0.0"
+    rda_lib_version = "withDagger-SNAPSHOT"
 
     //FILE EXISTANCE
     rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
@@ -40,44 +42,3 @@ ext {
 
     use_rda_lib_local = use_local && rda_lib_exists
 }
-
-//task('clearDpendencyCache', type: Delete, group: 'MyGroup',
-//        description: "Deletes any cached artifacts with the domain of com.matriks.internal in the Gradle cache directory.") {
-//    doLast {
-//        if (devDir != null) {
-//
-//            def userHome = System.getProperty('user.home')
-//            def baseCashPath = "${userHome}/.gradle/caches/modules-2/files-2.1/"
-//
-//            def baseDir = new File(baseCashPath)
-//
-//            println('Find cached libs')
-//            def fileList = []
-//            baseDir.eachDir { file ->
-//                if (file.name.startsWith('com.matriks')) {
-//                    fileList.add(file)
-//                }
-//            }
-//
-//            println('Delete all cached libs')
-//            fileList.each {
-//                it.deleteDir()
-//            }
-//
-//
-//            println('Delete idea libraries')
-//            new File(".idea/libraries").eachFile(FileType.FILES) { file ->
-//                if (file.name.contains('com_matriks_internal')) {
-//                    file.delete()
-//                }
-//            }
-//        }
-//    }
-//
-//}
-
-//clean.dependsOn clearDpendencyCache
-
-
-
-

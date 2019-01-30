@@ -51,19 +51,16 @@ dependencies {
     //RDA-LOGGER
     api "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
+    //GSON
+    implementation "com.google.code.gson:gson:$gson_version"
+
     //BUTTER KNIFE
-    compileOnly "com.jakewharton:butterknife:$butter_knife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
+    api "com.jakewharton:butterknife:$butter_knife_version"
+//    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
-    compileOnly "com.google.dagger:dagger:$dagger_version"
-    compileOnly "com.google.dagger:dagger-android-support:$dagger_version"
+    api "com.google.dagger:dagger:$dagger_version"
+    api "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-
-    //RETROFIT
-    api "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
-    api "com.squareup.retrofit2:converter-scalars:$retrofit_converter_scalars_version"
-    api "com.squareup.okhttp3:logging-interceptor:$okhttp3_logging_interceptor_version"
 }

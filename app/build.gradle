@@ -34,13 +34,10 @@ dependencies {
 
     implementation project(':RDALibrary')
 
-    //butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //BUTTER KNIFE
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }

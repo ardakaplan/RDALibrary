@@ -3,6 +3,7 @@ package com.ardakaplan.rdalibrarytest.ui.splash;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
@@ -20,9 +21,14 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SplashActivity extends RDAActivity implements SplashContract.SplashViewContract {
+
+
+    @BindView(R.id.button_test)
+    Button testButton;
 
     @Inject
     SplashContract.SplashPresenterContract presenter;
@@ -57,6 +63,8 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         storageManager.getSharedManager().saveUsername("HAAAAAAAAAAAAAA");
 
         RDALogger.info("SHARED : " + storageManager.getSharedManager().getUsername());
+
+        testButton.setText("DENEME");
 
 
     }
