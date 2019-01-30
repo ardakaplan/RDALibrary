@@ -29,13 +29,16 @@ ext {
 
     //RDA LIBS NAME
     RDA_LIB_AAR_NAME = "/RDALibrary-debug.aar"
+    RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME = "/RDAGooglePlayAppsLib-debug.aar"
 
     //RDA LIBS VERSION
     rda_logger_version = "1.0.0"
     rda_lib_version = "withDagger-SNAPSHOT"
+    rda_google_play_apps_lib_version = "1.0.0"
 
     //FILE EXISTANCE
     rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
+    rda_google_play_apps_lib_exists = file(devDir + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
 
     //USE LOCAL ADJUSTMENT
     use_local = true
