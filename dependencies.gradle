@@ -34,12 +34,11 @@ ext {
 
     //RDA LIBS VERSION
     rda_logger_version = "1.0.0"
-
     rda_lib_version = "withDagger-SNAPSHOT"
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"
 
-    if (properties != null) {
+    if (devDir != null) {
 
         //    FILE EXISTANCE
         rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
