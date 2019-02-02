@@ -1,13 +1,20 @@
-File localProperties = file('aar.properties')
-Properties properties = null
-if (localProperties.exists()) {
-    properties = new Properties()
-    properties.load(file('aar.properties').newDataInputStream())
+File aarFile = file('aar.properties')
+Properties aarProperties = null
+if (aarFile.exists()) {
+    aarProperties = new Properties()
+    aarProperties.load(file('aar.properties').newDataInputStream())
+}
+
+File localFile = file('local.properties')
+Properties localProperties = null
+if (localFile.exists()) {
+    localProperties = new Properties()
+    localProperties.load(file('local.properties').newDataInputStream())
 }
 
 ext {
 
-    devDir = properties != null ? properties.getProperty("aar.dir") : null
+    devDir = aarProperties != null ? aarProperties.getProperty("aar.dir") : null
     println('AAR dir is: ' + devDir)
 
     //Android Base
@@ -38,7 +45,7 @@ ext {
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"
 
-    if (devDir != null) {
+    if (localProperties != null) {
 
         //    FILE EXISTANCE
         rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
