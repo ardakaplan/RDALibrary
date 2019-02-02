@@ -58,7 +58,7 @@ dependencies {
 
     //BUTTER KNIFE
     api "com.jakewharton:butterknife:$butter_knife_version"
-//    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
     api "com.google.dagger:dagger:$dagger_version"
