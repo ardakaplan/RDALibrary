@@ -39,9 +39,7 @@ ext {
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"
 
-    use = false
-
-    if (use) {
+    if (properties != null) {
 
         //    FILE EXISTANCE
         rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
