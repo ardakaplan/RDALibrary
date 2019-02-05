@@ -6,15 +6,14 @@ import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
-import com.ardakaplan.rdalibrary.helpers.RDADialogHelpers;
 import com.ardakaplan.rdalibrarytest.R;
-import com.ardakaplan.rdalibrarytest.managers.storage.StorageManager;
+import com.ardakaplan.rdalibrarytest.SharedPropertyTest;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
@@ -36,8 +35,9 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     RDAApplicationHelpers rdaApplicationHelpers;
 
+
     @Inject
-    StorageManager storageManager;
+    SharedPropertyTest sharedPropertyTest;
 
     @Override
     protected void adjustApplicationTheme() {
@@ -58,13 +58,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
         RDALogger.info("VERSION CODE : " + rdaApplicationHelpers.getAppVersionCode());
 
-        RDALogger.info("SHARED : " + storageManager.getSharedManager().getUsername());
-
-        storageManager.getSharedManager().saveUsername("HAAAAAAAAAAAAAA");
-
-        RDALogger.info("SHARED : " + storageManager.getSharedManager().getUsername());
-
-        testButton.setText("DENEME");
+        sharedPropertyTest.saveValue("LAHANA");
 
 
     }
@@ -72,7 +66,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @OnClick(R.id.button_test)
     void test() {
 
-        RDALogger.info("TEST");
+        RDALogger.info("TEST " + sharedPropertyTest.getValue());
     }
 
     @Override
