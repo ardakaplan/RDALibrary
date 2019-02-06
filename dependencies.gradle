@@ -1,10 +1,10 @@
-//AAR FILE
-File aarFile = file('aar.properties')
-Properties aarProperties = null
-if (aarFile.exists()) {
-    aarProperties = new Properties()
-    aarProperties.load(file('aar.properties').newDataInputStream())
-}
+////AAR FILE
+//File aarFile = file('aar.properties')
+//Properties aarProperties = null
+//if (aarFile.exists()) {
+//    aarProperties = new Properties()
+//    aarProperties.load(file('aar.properties').newDataInputStream())
+//}
 
 //LOCAL FILE
 File localFile = file('local.properties')
@@ -16,7 +16,7 @@ if (localFile.exists()) {
 
 ext {
 
-    devDir = aarProperties != null ? aarProperties.getProperty("aar.dir") : null
+    devDir = localProperties != null ? localProperties.getProperty("aar.dir") : null
     println('AAR dir is: ' + devDir)
 
     //Android Base
@@ -47,17 +47,18 @@ ext {
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"
 
-    //if project is not in local, dont run above
-    if (localProperties != null && Boolean.valueOf(localProperties.getProperty("in_local"))) {
 
-        //    FILE EXISTANCE
-        rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
-        rda_google_play_apps_lib_exists = file(devDir + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
-        rda_retrofit_lib_exists = file(devDir + RDA_RETROFIT_AAR_NAME).exists()
+    use_rda_lib_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_lib_from_local")) : false
+    use_rda_google_play_lib_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_google_play_lib_from_local")) : false
+    use_rda_retrofit_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_retrofit_from_local")) : false
 
-        //    USE LOCAL ADJUSTMENT
-        use_rda_lib_local = false && rda_lib_exists
-        use_rda_google_play_apps_lib_local = false && rda_google_play_apps_lib_exists
-        use_retrofit_lib_local = false && rda_retrofit_lib_exists
-    }
+    //    FILE EXISTANCE
+    rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
+    rda_google_play_apps_lib_exists = file(devDir + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
+    rda_retrofit_lib_exists = file(devDir + RDA_RETROFIT_AAR_NAME).exists()
+
+    //    USE LOCAL ADJUSTMENT
+    use_rda_lib_local = use_rda_lib_from_local && rda_lib_exists
+    use_rda_google_play_apps_lib_local = use_rda_google_play_lib_from_local && rda_google_play_apps_lib_exists
+    use_retrofit_lib_local = use_rda_retrofit_from_local && rda_retrofit_lib_exists
 }
