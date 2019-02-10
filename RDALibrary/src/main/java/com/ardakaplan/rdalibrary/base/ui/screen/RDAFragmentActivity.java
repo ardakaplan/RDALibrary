@@ -5,13 +5,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by Arda Kaplan on
@@ -22,7 +28,10 @@ import dagger.android.AndroidInjection;
  */
 
 @SuppressWarnings("unused")
-public abstract class RDAFragmentActivity extends FragmentActivity implements ApplicationThemeChanger {
+public abstract class RDAFragmentActivity extends FragmentActivity implements ApplicationThemeChanger, HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> supportFragmentInjector;
 
     protected String className;
 
@@ -51,6 +60,11 @@ public abstract class RDAFragmentActivity extends FragmentActivity implements Ap
         ButterKnife.bind(this);
 
         RDALogger.logLifeCycle(className);
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return supportFragmentInjector;
     }
 
     @Override

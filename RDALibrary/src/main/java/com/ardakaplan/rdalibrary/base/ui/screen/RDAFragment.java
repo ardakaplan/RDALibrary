@@ -2,6 +2,7 @@ package com.ardakaplan.rdalibrary.base.ui.screen;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -9,14 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
+
+import java.io.Serializable;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
-public abstract class RDAFragment extends DialogFragment {
+public abstract class RDAFragment extends DaggerFragment {
 
     private Unbinder unbinder;
 
@@ -135,6 +140,53 @@ public abstract class RDAFragment extends DialogFragment {
 
         return this.getArguments() != null && this.getArguments().containsKey(key);
     }
+
+    public void open(RDAFragmentActivity rdaActivity, String key, Serializable fragmentData, boolean clearBackStack) {
+
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable(key, fragmentData);
+
+        open(rdaActivity, bundle, clearBackStack);
+    }
+
+    public void open(RDAFragmentActivity rdaActivity, String key, Serializable fragmentData) {
+
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable(key, fragmentData);
+
+        open(rdaActivity, bundle, false);
+    }
+
+    public void open(RDAFragmentActivity rdaActivity, boolean clearBackStack) {
+
+        open(rdaActivity, null, clearBackStack);
+    }
+
+    public void open(RDAFragmentActivity rdaActivity) {
+
+        open(rdaActivity, false);
+    }
+
+
+    public void open(RDAFragmentActivity rdaActivity, Bundle fragmentDataBundle, boolean clearBackStack) {
+
+        if (fragmentDataBundle != null) {
+
+            this.setArguments(fragmentDataBundle);
+        }
+
+        RDAFragmentHelpers.addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
+    }
+
+    public void open(RDAFragmentActivity rdaActivity, Bundle fragmentDataBundle) {
+
+        open(rdaActivity, fragmentDataBundle, false);
+    }
+
+    public abstract @IdRes
+    int fragmentPartContainerId();
 
     protected abstract @LayoutRes
     int getViewLayout();
