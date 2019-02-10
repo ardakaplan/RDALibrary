@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
-public abstract class RDAActivity extends DaggerAppCompatActivity {
+public abstract class RDAActivity extends DaggerAppCompatActivity implements ApplicationThemeChanger {
 
     protected String className;
 
@@ -22,7 +22,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity {
         className = getClass().getSimpleName();
     }
 
-    protected void adjustApplicationTheme() {
+    public void adjustApplicationTheme() {
 
     }
 

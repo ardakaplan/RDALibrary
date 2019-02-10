@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
+import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
+
 /**
  * Created by Arda Kaplan on
  * <p>
@@ -19,8 +22,7 @@ import com.ardakaplan.rdalogger.RDALogger;
  */
 
 @SuppressWarnings("unused")
-@Deprecated
-public abstract class RDAFragmentActivity extends FragmentActivity {
+public abstract class RDAFragmentActivity extends FragmentActivity implements ApplicationThemeChanger {
 
     protected String className;
 
@@ -37,11 +39,23 @@ public abstract class RDAFragmentActivity extends FragmentActivity {
     }
 
     protected void onCreate(Bundle savedInstanceState, int layoutId) {
+
+        AndroidInjection.inject(this);
+
         super.onCreate(savedInstanceState);
+
+        adjustApplicationTheme();
 
         setContentView(layoutId);
 
+        ButterKnife.bind(this);
+
         RDALogger.logLifeCycle(className);
+    }
+
+    @Override
+    public void adjustApplicationTheme() {
+
     }
 
     @Override

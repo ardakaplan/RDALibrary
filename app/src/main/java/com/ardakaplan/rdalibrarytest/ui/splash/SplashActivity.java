@@ -39,10 +39,6 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     SharedPropertyTest sharedPropertyTest;
 
-    @Override
-    protected void adjustApplicationTheme() {
-
-    }
 
     @SuppressLint("MissingSuperCall")
     @Override
