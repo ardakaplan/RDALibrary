@@ -22,6 +22,7 @@ public final class RDAIntentHelpers {
     @Inject
     RDAIntentHelpers(Context context) {
 
+        this.context = context;
     }
 
     public void shareGeneral(String chooserText, String textToShare) {

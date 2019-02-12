@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * @author Arda Kaplan arda.kaplan09@gmail.com
@@ -27,7 +26,7 @@ public final class RDASharedHelpers {
 
         String applicationName = context.getApplicationInfo().loadLabel(context.getPackageManager()).toString();
 
-        return context.getSharedPreferences(applicationName, MODE_PRIVATE);
+        return context.getSharedPreferences(applicationName, Context.MODE_PRIVATE);
     }
 
     public String getString(String key, String defaultValue) {
