@@ -13,7 +13,7 @@ import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
 import com.ardakaplan.rdalibrarytest.R;
-import com.ardakaplan.rdalibrarytest.SharedPropertyTest;
+import com.ardakaplan.rdalibrarytest.sharedtest.SharedPropertyTest;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.ArrayList;
@@ -39,7 +39,6 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     SharedPropertyTest sharedPropertyTest;
 
-
     @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,13 +55,13 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
         sharedPropertyTest.saveValue("LAHANA");
 
-
     }
 
     @OnClick(R.id.button_test)
     void test() {
 
         RDALogger.info("TEST " + sharedPropertyTest.getValue());
+
     }
 
     @Override

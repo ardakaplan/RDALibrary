@@ -1,6 +1,6 @@
-package com.ardakaplan.rdalibrarytest;
+package com.ardakaplan.rdalibrarytest.sharedtest;
 
-import com.ardakaplan.rdalibrary.RDASharedProperty;
+import com.ardakaplan.rdalibrary.base.RDASharedProperty;
 import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 
 import javax.inject.Inject;
@@ -13,12 +13,17 @@ import javax.inject.Singleton;
 public class SharedPropertyTest extends RDASharedProperty<String> {
 
     @Inject
-    public SharedPropertyTest(RDASharedHelpers rdaSharedHelpers) {
+    SharedPropertyTest(RDASharedHelpers rdaSharedHelpers) {
         super(rdaSharedHelpers);
     }
 
     @Override
     public String getDefault() {
         return "DEFAULT";
+    }
+
+    @Override
+    public String getValue() {
+        return getStringValue();
     }
 }
