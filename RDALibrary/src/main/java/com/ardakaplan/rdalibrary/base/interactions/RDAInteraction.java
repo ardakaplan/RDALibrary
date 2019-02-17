@@ -7,7 +7,7 @@ import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANoNetworkIntera
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANotFoundInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANullResponseInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAServerInteractionException;
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAUnknownInteractionException;
+import com.ardakaplan.rdalibrary.base.interactions.exceptions.HoustonWeHaveAProblemHere;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.ServerMessageInteractionException;
 
 /**
@@ -67,7 +67,7 @@ public abstract class RDAInteraction<In, Out> {
 
             default:
 
-                return new RDAUnknownInteractionException();
+                return new HoustonWeHaveAProblemHere();
         }
     }
 }
