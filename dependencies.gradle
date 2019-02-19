@@ -34,6 +34,7 @@ ext {
     retrofit_converter_gson_version = "2.4.0"
     retrofit_converter_scalars_version = "2.4.0"
     okhttp3_logging_interceptor_version = "3.10.0"
+    gson_version="2.8.5"
 
     //RDA LIBS NAME
     RDA_LIB_AAR_NAME = "/RDALibrary-debug.aar"
@@ -43,7 +44,7 @@ ext {
     //RDA LIBS VERSION
     rda_common_lib_version = "1.0.1"
     rda_logger_version = "1.0.0"
-    rda_lib_version = "c3df48b04b"
+    rda_lib_version = "1.0.13"
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"
 
