@@ -1,26 +1,31 @@
 package com.ardakaplan.rdalibrary.helpers;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.widget.Toast;
-
-import com.ardakaplan.rdalibrary.R;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+
 @SuppressWarnings({"SameParameterValue", "unused"})
+@Singleton
 public final class RDAIntentHelpers {
 
-    private RDAIntentHelpers() {
+    private Context context;
 
+    @Inject
+    RDAIntentHelpers(Context context) {
+
+        this.context = context;
     }
 
-    public static void shareGeneral(Activity activity, String chooserText, String textToShare) {
+    public void shareGeneral(String chooserText, String textToShare) {
 
         Intent shareIntent = new Intent();
 
@@ -30,10 +35,10 @@ public final class RDAIntentHelpers {
 
         shareIntent.setType("text/plain");
 
-        activity.startActivity(Intent.createChooser(shareIntent, chooserText));
+        context.startActivity(Intent.createChooser(shareIntent, chooserText));
     }
 
-    public static void sendMessage(Activity activity, String phoneNo, String message) {
+    public void sendMessage(String phoneNo, String message) {
 
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 
@@ -41,24 +46,23 @@ public final class RDAIntentHelpers {
 
         sendIntent.putExtra("sms_body", message);
 
-        activity.startActivity(sendIntent);
+        context.startActivity(sendIntent);
     }
 
+    public void dial(String phoneNo) {
 
-    public static void dial(Activity activity, String phoneNo) {
-
-        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        Intent callIntent = new Intent(Intent.ACTION_VIEW);
 
         callIntent.setData(Uri.parse("tel: " + phoneNo));
 
-        activity.startActivity(callIntent);
+        context.startActivity(callIntent);
     }
 
-    public static void openLinkedinPage(Activity activity, String linkedinSpecialLink) {
+    public void openLinkedinPage(String linkedinSpecialLink) {
 
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("linkedin://" + linkedinSpecialLink));
 
-        final PackageManager packageManager = activity.getPackageManager();
+        final PackageManager packageManager = context.getPackageManager();
 
         final List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
@@ -67,12 +71,13 @@ public final class RDAIntentHelpers {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/" + linkedinSpecialLink));
 
         }
-        activity.startActivity(intent);
+        context.startActivity(intent);
     }
 
-    public static Intent getFacebookPageIntent(Context context, String pageID) {
+    public Intent getFacebookPageIntent(String pageID) {
 
         try {
+
             context.getPackageManager().getPackageInfo("com.facebook.katana", 0);
 
             return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + pageID));
@@ -83,7 +88,7 @@ public final class RDAIntentHelpers {
         }
     }
 
-    public static void openBrowser(Activity activity, String URL) throws ActivityNotFoundException {
+    public void openBrowser(String URL) throws ActivityNotFoundException {
 
         final String HTTP = "http://";
 
@@ -93,63 +98,49 @@ public final class RDAIntentHelpers {
             URL = HTTP + URL;
         }
 
-//        try {
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
 
-            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
-
-            activity.startActivity(myIntent);
-
-//        } catch (ActivityNotFoundException e) {
-//
-//            Toast.makeText(activity, R.string.no_web_browser, Toast.LENGTH_LONG).show();
-//        }
+        context.startActivity(myIntent);
     }
 
-    public static void sendEmail(Activity activity, String chooserText, String noAppText, String[] recepients, String subject, String body) {
+    public void sendEmail(String chooserText, String[] recipients, String subject, String body) throws ActivityNotFoundException {
 
         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
         emailIntent.setType("plain/text");
 
-        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recepients);
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recipients);
 
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
 
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
 
-        try {
-
-            activity.startActivity(Intent.createChooser(emailIntent, chooserText));
-
-        } catch (ActivityNotFoundException ex) {
-
-            Toast.makeText(activity, noAppText, Toast.LENGTH_SHORT).show();
-        }
+        context.startActivity(Intent.createChooser(emailIntent, chooserText));
     }
 
-    public static Intent getClearCacheIntent(Context packageContext, Class<?> cls) {
+    public Intent getClearCacheIntent(Class<?> cls) {
 
-        Intent intent = new Intent(packageContext, cls);
+        Intent intent = new Intent(context, cls);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         return intent;
     }
 
-    public static void openMarket(Activity activity) {
+    public void openMarket() {
 
         try {
 
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity.getApplication().getPackageName())));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
 
         } catch (android.content.ActivityNotFoundException anfe) {
 
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + activity.getApplication().getPackageName())));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
         }
     }
 
-    public static void openApplication(Activity activity, String applicationPackage) {
+    public void openApplication(String applicationPackage) {
 
-        activity.startActivity(activity.getPackageManager().getLaunchIntentForPackage(applicationPackage));
+        context.startActivity(context.getPackageManager().getLaunchIntentForPackage(applicationPackage));
     }
 }

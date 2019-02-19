@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_20dp"
+        tools:ignore="UselessParent">
+
+        <com.ardakaplan.rdalibrary.base.ui.views.fontables.RDATextView
+            android:id="@+id/rdaDialog_textview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TITLE"
+            android:textSize="@dimen/_20sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.ardakaplan.rdalibrary.base.ui.views.fontables.RDATextView
+            android:id="@+id/rdaDialog_textview_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:maxLines="15"
+            android:scrollbars="vertical"
+            android:text="message"
+            android:textSize="@dimen/_17sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/rdaDialog_linearlayout_buttons_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30dp"
+            android:orientation="horizontal">
+
+            <com.ardakaplan.rdalibrary.base.ui.views.fontables.RDATextView
+                android:id="@+id/rdaDialog_textview_negative"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NEGATIVE"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.ardakaplan.rdalibrary.base.ui.views.fontables.RDATextView
+                android:id="@+id/rdaDialog_textview_neutral"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NEUTRAL"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.ardakaplan.rdalibrary.base.ui.views.fontables.RDATextView
+                android:id="@+id/rdaDialog_textview_positive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="POSITIVE"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

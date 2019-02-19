@@ -3,81 +3,87 @@ package com.ardakaplan.rdalibrary.helpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import static android.content.Context.MODE_PRIVATE;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 
 /**
  * @author Arda Kaplan arda.kaplan09@gmail.com
  */
 @SuppressWarnings({"unused", "SameParameterValue"})
+@Singleton
 public final class RDASharedHelpers {
 
+    private Context context;
 
-    private RDASharedHelpers() {
+    @Inject
+    RDASharedHelpers(Context context) {
 
+        this.context = context;
     }
 
-    private static SharedPreferences getSharedPreferences(Context context) {
+    private SharedPreferences getSharedPreferences() {
 
         String applicationName = context.getApplicationInfo().loadLabel(context.getPackageManager()).toString();
 
-        return context.getSharedPreferences(applicationName, MODE_PRIVATE);
+        return context.getSharedPreferences(applicationName, Context.MODE_PRIVATE);
     }
 
-    public static String getString(Context context, String key) {
+    public String getString(String key, String defaultValue) {
 
-        return getSharedPreferences(context).getString(key, "");
+        return getSharedPreferences().getString(key, defaultValue);
     }
 
-    public static void putString(Context context, String key, String value) {
+    public void putString(String key, String value) {
 
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit().putString(key, value);
+        SharedPreferences.Editor editor = getSharedPreferences().edit().putString(key, value);
 
         editor.apply();
     }
 
-    public static int getInt(Context context, String key) {
+    public int getInt(String key, int defaultValue) {
 
-        return getSharedPreferences(context).getInt(key, 0);
+        return getSharedPreferences().getInt(key, defaultValue);
     }
 
-    public static void putInt(Context context, String key, int value) {
+    public void putInt(String key, int value) {
 
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit().putInt(key, value);
+        SharedPreferences.Editor editor = getSharedPreferences().edit().putInt(key, value);
 
         editor.apply();
     }
 
-    public static boolean getBoolean(Context context, String key) {
+    public boolean getBoolean(String key, boolean defaultValue) {
 
-        return getSharedPreferences(context).getBoolean(key, false);
+        return getSharedPreferences().getBoolean(key, defaultValue);
     }
 
-    public static void putBoolean(Context context, String key, boolean value) {
+    public void putBoolean(String key, boolean value) {
 
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit().putBoolean(key, value);
+        SharedPreferences.Editor editor = getSharedPreferences().edit().putBoolean(key, value);
 
         editor.apply();
     }
 
-    public static Long getLong(Context context, String key) {
+    public Long getLong(String key, long defaultValue) {
 
-        return getSharedPreferences(context).getLong(key, 0);
+        return getSharedPreferences().getLong(key, defaultValue);
     }
 
-    public static void putLong(Context context, String key, Long value) {
+    public void putLong(String key, Long value) {
 
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit().putLong(key, value);
+        SharedPreferences.Editor editor = getSharedPreferences().edit().putLong(key, value);
 
         editor.apply();
     }
 
-    public static void delete(Context context, String key) {
+    public void delete(String key) {
 
-        getSharedPreferences(context).edit().remove(key).apply();
+        getSharedPreferences().edit().remove(key).apply();
     }
 
-    public static void deleteAll(Context context) {
+    public void deleteAll() {
 
-        getSharedPreferences(context).edit().clear().apply();
+        getSharedPreferences().edit().clear().apply();
     }
 }

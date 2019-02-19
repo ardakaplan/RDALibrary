@@ -1,7 +1,5 @@
 package com.ardakaplan.rdalibrary.helpers;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,17 +13,24 @@ import com.ardakaplan.rdalogger.RDALogger;
 import java.security.MessageDigest;
 import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by ardakaplan on 12/10/15.
  */
 @SuppressWarnings("unused")
+@Singleton
 public class RDAApplicationHelpers {
 
-    private RDAApplicationHelpers() {
+    private Context context;
 
+    @Inject
+    RDAApplicationHelpers(Context context) {
+        this.context = context;
     }
 
-    public static int getAppVersionCode(Context context) {
+    public int getAppVersionCode() {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return packageInfo.versionCode;
@@ -34,7 +39,7 @@ public class RDAApplicationHelpers {
         }
     }
 
-    public static String getAppVersionName(Context context) {
+    public String getAppVersionName() {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
             return packageInfo.versionName;
@@ -43,11 +48,12 @@ public class RDAApplicationHelpers {
         }
     }
 
-    public static void writeHashKey(Activity activity) {
+    public void writeHashKey() {
 
         try {
-            @SuppressLint("PackageManagerGetSignatures")
-            PackageInfo packageInfo = activity.getPackageManager().getPackageInfo(RDAApplicationHelpers.getPackageName(activity), PackageManager.GET_SIGNATURES);
+            //PackageManager.GET_SIGNATURES gives error, use PackageManager.GET_SIGNING_CERTIFICATES
+            PackageInfo packageInfo = context.getPackageManager().
+                    getPackageInfo(getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
 
             for (Signature signature : packageInfo.signatures) {
 
@@ -64,13 +70,13 @@ public class RDAApplicationHelpers {
         }
     }
 
-    public static void changeLanguage(Activity activity, String localeShortName) {
+    public void changeLanguage(String localeShortName) {
 
         Locale locale = new Locale(localeShortName);
 
         Locale.setDefault(locale);
 
-        Resources resources = activity.getResources();
+        Resources resources = context.getResources();
 
         Configuration configuration = new Configuration(resources.getConfiguration());
 
@@ -80,7 +86,7 @@ public class RDAApplicationHelpers {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static String getPackageName(Context context) {
+    public String getPackageName() {
         return context.getPackageName();
     }
 }
