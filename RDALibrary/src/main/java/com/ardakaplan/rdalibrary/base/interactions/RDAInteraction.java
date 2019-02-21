@@ -35,7 +35,7 @@ public abstract class RDAInteraction<In, Out> {
         this.in = in;
     }
 
-    public abstract void execute(RDAInteractionResultListener<Out> RDAInteractionResultListener);
+    public abstract void execute(RDAInteractionResultListener<Out> rdaInteractionResultListener);
 
     protected RDAInteractionException handleHttpError(RDARequestException rdaRequestException) {
 
