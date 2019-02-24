@@ -66,5 +66,5 @@ public abstract class RDASharedProperty<W> {
 
     public abstract W getValue();
 
-    public abstract String getKey();
+    protected abstract String getKey();
 }
