@@ -1,13 +1,13 @@
 package com.ardakaplan.rdalibrary.base.interactions;
 
-import com.ardakaplan.rdacommonmethodslib.http.RDARequestException;
+import com.ardakaplan.rdalibrary.RDARequestException;
+import com.ardakaplan.rdalibrary.base.interactions.exceptions.HoustonWeHaveAProblemHere;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAAuthorizationErrorInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANoNetworkInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANotFoundInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDANullResponseInteractionException;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAServerInteractionException;
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.HoustonWeHaveAProblemHere;
 import com.ardakaplan.rdalibrary.base.interactions.exceptions.ServerMessageInteractionException;
 
 /**
