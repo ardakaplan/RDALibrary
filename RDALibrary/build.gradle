@@ -59,7 +59,7 @@ dependencies {
     api "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
     //GSON
-    api "com.google.code.gson:gson:$gson_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
 
     //BUTTER KNIFE
     api "com.jakewharton:butterknife:$butter_knife_version"
