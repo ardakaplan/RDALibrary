@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base;
+package com.ardakaplan.rdalibrary.base.exceptions;
 
 /**
  * Created by Arda Kaplan on 27-Feb-19 - 16:27
