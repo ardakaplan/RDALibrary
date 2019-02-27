@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
+import com.ardakaplan.rdalibrary.base.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
