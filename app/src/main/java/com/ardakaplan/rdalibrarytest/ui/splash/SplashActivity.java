@@ -12,6 +12,7 @@ import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAApplicationHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAIntentHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.sharedtest.SharedPropertyTest;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -35,6 +36,8 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     RDAApplicationHelpers rdaApplicationHelpers;
 
+    @Inject
+    RDAIntentHelpers rdaIntentHelpers;
 
     @Inject
     SharedPropertyTest sharedPropertyTest;
@@ -60,7 +63,9 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @OnClick(R.id.button_test)
     void test() {
 
-        RDALogger.info("TEST " + sharedPropertyTest.getValue());
+//        rdaIntentHelpers.sendEmail("HEYO", new String[]{"ardakaplan101@gmail.com"}, getString(R.string.app_name), "");
+
+        rdaIntentHelpers.openMarket();
 
     }
 
