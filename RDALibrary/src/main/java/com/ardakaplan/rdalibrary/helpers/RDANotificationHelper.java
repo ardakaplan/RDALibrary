@@ -70,7 +70,7 @@ public final class RDANotificationHelper {
 
         builder.setContentText(text);
 
-        builder.setPriority(Notification.PRIORITY_MAX);
+//        builder.setPriority(Notification.PRIORITY_MAX);
 
         builder.setSmallIcon(drawableId);
 
@@ -122,7 +122,7 @@ public final class RDANotificationHelper {
 
             if (notificationManager != null && notificationManager.getNotificationChannel(notificationChannelID) == null) {
 
-                NotificationChannel notificationChannel = new NotificationChannel(notificationChannelID, notificationChannelName, NotificationManager.IMPORTANCE_HIGH);
+                NotificationChannel notificationChannel = new NotificationChannel(notificationChannelID, notificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
 
                 if (!setSound) {
 
