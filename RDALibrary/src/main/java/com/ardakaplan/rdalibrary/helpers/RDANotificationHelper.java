@@ -56,14 +56,6 @@ public final class RDANotificationHelper {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID);
 
-        if (RDAStringHelpers.isEmpty(title)) {
-            title = "";
-        }
-
-        if (RDAStringHelpers.isEmpty(text)) {
-            text = "";
-        }
-
         builder.setContentTitle(title);
 
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(text));
