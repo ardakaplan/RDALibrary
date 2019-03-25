@@ -1,25 +1,25 @@
 package com.ardakaplan.rdalibrary.base.ui.screen;
 
-public abstract class RDAPresenter<TView extends RDAViewContract> implements RDAPresenterContract<TView> {
+public abstract class RDAPresenter<RView extends RDAViewContract> implements RDAPresenterContract<RView> {
 
-    private TView tView;
+    private RView rView;
 
     public RDAPresenter() {
 
     }
 
-    protected TView gettView() {
-        return tView;
+    protected RView getView() {
+        return rView;
     }
 
-    public final void attach(TView tView) {
-        this.tView = tView;
+    public final void attach(RView rView) {
+        this.rView = rView;
 
         onAttached();
     }
 
     public final void detach() {
-        tView = null;
+        rView = null;
 
         onDetached();
     }

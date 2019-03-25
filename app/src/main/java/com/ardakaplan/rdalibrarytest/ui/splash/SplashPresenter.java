@@ -46,15 +46,15 @@ public class SplashPresenter extends RDAPresenter<SplashContract.SplashViewContr
             @Override
             public void onResult(RDAInteractionResult<ArrayList<String>> out) {
 
-                if (gettView() != null) {
+                if (getView() != null) {
 
                     if (out.isSuccess()) {
 
-                        gettView().setList(out.getOut());
+                        getView().setList(out.getOut());
 
                     } else {
 
-                        gettView().onError(out.getException());
+                        getView().onError(out.getException());
                     }
                 }
             }
