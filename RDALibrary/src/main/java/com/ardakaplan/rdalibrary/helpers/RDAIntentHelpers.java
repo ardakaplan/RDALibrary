@@ -133,11 +133,16 @@ public final class RDAIntentHelpers {
         return intent;
     }
 
-    public void openMarket() {
+    public void openGooglePlayPage() {
+
+        openGooglePlayPage(context.getPackageName());
+    }
+
+    public void openGooglePlayPage(String packageName) {
 
         try {
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName()));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -145,7 +150,7 @@ public final class RDAIntentHelpers {
 
         } catch (ActivityNotFoundException anfe) {
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName()));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
