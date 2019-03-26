@@ -30,6 +30,23 @@ public class RDAApplicationHelpers {
         this.context = context;
     }
 
+
+    public boolean isApplicationInstalled(String packageName) {
+
+        boolean found = true;
+
+        try {
+
+            context.getPackageManager().getPackageInfo(packageName, 0);
+
+        } catch (PackageManager.NameNotFoundException e) {
+
+            found = false;
+        }
+
+        return found;
+    }
+
     public int getAppVersionCode() {
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);

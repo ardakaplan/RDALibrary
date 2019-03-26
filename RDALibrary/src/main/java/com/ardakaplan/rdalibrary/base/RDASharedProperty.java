@@ -13,60 +13,58 @@ public abstract class RDASharedProperty<W> {
 
     private RDASharedHelpers rdaSharedHelpers;
 
-    protected String key;
-
     public RDASharedProperty(RDASharedHelpers rdaSharedHelpers) {
         this.rdaSharedHelpers = rdaSharedHelpers;
-
-        key = getClass().getCanonicalName();
     }
 
     public void saveValue(W w) {
 
         if (w instanceof Integer) {
 
-            rdaSharedHelpers.putInt(key, (Integer) w);
+            rdaSharedHelpers.putInt(getKey(), (Integer) w);
 
         } else if (w instanceof String) {
 
-            rdaSharedHelpers.putString(key, (String) w);
+            rdaSharedHelpers.putString(getKey(), (String) w);
 
         } else if (w instanceof Boolean) {
 
-            rdaSharedHelpers.putBoolean(key, (Boolean) w);
+            rdaSharedHelpers.putBoolean(getKey(), (Boolean) w);
 
         } else if (w instanceof Long) {
 
-            rdaSharedHelpers.putLong(key, (Long) w);
+            rdaSharedHelpers.putLong(getKey(), (Long) w);
         }
     }
 
     protected Integer getIntegerValue() {
 
-        return rdaSharedHelpers.getInt(key, (Integer) getDefault());
+        return rdaSharedHelpers.getInt(getKey(), (Integer) getDefault());
     }
 
     protected String getStringValue() {
 
-        return rdaSharedHelpers.getString(key, (String) getDefault());
+        return rdaSharedHelpers.getString(getKey(), (String) getDefault());
     }
 
     protected Boolean getBooleanValue() {
 
-        return rdaSharedHelpers.getBoolean(key, (Boolean) getDefault());
+        return rdaSharedHelpers.getBoolean(getKey(), (Boolean) getDefault());
     }
 
     protected Long getLongValue() {
 
-        return rdaSharedHelpers.getLong(key, (Long) getDefault());
+        return rdaSharedHelpers.getLong(getKey(), (Long) getDefault());
     }
 
     public void delete() {
 
-        rdaSharedHelpers.delete(key);
+        rdaSharedHelpers.delete(getKey());
     }
 
     public abstract W getDefault();
 
     public abstract W getValue();
+
+    protected abstract String getKey();
 }

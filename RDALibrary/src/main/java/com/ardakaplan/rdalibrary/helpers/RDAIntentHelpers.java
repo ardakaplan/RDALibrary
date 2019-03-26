@@ -98,9 +98,11 @@ public final class RDAIntentHelpers {
             URL = HTTP + URL;
         }
 
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
 
-        context.startActivity(myIntent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(intent);
     }
 
     public void sendEmail(String chooserText, String[] recipients, String subject, String body) throws ActivityNotFoundException {
@@ -115,7 +117,11 @@ public final class RDAIntentHelpers {
 
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
 
-        context.startActivity(Intent.createChooser(emailIntent, chooserText));
+        Intent intent = Intent.createChooser(emailIntent, chooserText);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(intent);
     }
 
     public Intent getClearCacheIntent(Class<?> cls) {
@@ -127,20 +133,37 @@ public final class RDAIntentHelpers {
         return intent;
     }
 
-    public void openMarket() {
+    public void openGooglePlayPage() {
+
+        openGooglePlayPage(context.getPackageName());
+    }
+
+    public void openGooglePlayPage(String packageName) {
 
         try {
 
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
 
-        } catch (android.content.ActivityNotFoundException anfe) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + context.getPackageName())));
+            context.startActivity(intent);
+
+        } catch (ActivityNotFoundException anfe) {
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            context.startActivity(intent);
         }
     }
 
     public void openApplication(String applicationPackage) {
 
-        context.startActivity(context.getPackageManager().getLaunchIntentForPackage(applicationPackage));
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(applicationPackage);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(intent);
     }
 }

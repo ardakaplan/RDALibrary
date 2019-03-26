@@ -1,6 +1,5 @@
 package com.ardakaplan.rdalibrary.base.ui.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -20,16 +19,16 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDAPagerAdapter<W> extends PagerAdapter {
 
-    protected Activity activity;
+    protected Context context;
     protected LayoutInflater inflater;
     protected List<W> arrayList;
     protected Integer layoutID;
 
-    public RDAPagerAdapter(Activity activity, List<W> arrayList, Integer layoutID) {
-        this.activity = activity;
+    public RDAPagerAdapter(Context context, List<W> arrayList, Integer layoutID) {
+        this.context = context;
         this.arrayList = arrayList;
         this.layoutID = layoutID;
-        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     protected W getItem(int position) {

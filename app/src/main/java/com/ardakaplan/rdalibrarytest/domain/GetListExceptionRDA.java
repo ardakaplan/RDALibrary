@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrarytest.domain;
 
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
+import com.ardakaplan.rdalibrary.base.exceptions.RDAInteractionException;
 
 /**
  * Created by Arda Kaplan at 12/13/2018

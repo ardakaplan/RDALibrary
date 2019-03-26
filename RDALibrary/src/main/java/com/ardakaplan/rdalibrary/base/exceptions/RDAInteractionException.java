@@ -1,11 +1,11 @@
-package com.ardakaplan.rdalibrary.base.interactions.exceptions;
+package com.ardakaplan.rdalibrary.base.exceptions;
 
 /**
  * Created by Arda Kaplan at 12/13/2018
  * <p>
  * arda.kaplan09@gmail.com
  */
-public abstract class RDAInteractionException extends Exception{
+public abstract class RDAInteractionException extends Exception {
 
     public RDAInteractionException() {
         super();

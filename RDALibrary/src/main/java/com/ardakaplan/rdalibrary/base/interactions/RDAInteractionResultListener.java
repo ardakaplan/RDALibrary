@@ -7,6 +7,6 @@ package com.ardakaplan.rdalibrary.base.interactions;
  */
 public interface RDAInteractionResultListener<Out> {
 
-    void onResult(RDAInteractionResult<Out> out);
+    void onResult(RDAInteractionResult<Out> rdaInteractionResult);
 
 }

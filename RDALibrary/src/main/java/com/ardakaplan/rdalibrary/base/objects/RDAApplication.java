@@ -2,6 +2,8 @@ package com.ardakaplan.rdalibrary.base.objects;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 
@@ -13,16 +15,23 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasBroadcastReceiverInjector;
+import dagger.android.HasServiceInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-
-public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector {
+public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
 
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentInjector;
+
+    @Inject
+    DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector;
+
+    @Inject
+    DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
@@ -44,6 +53,16 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return mFragmentInjector;
+    }
+
+    @Override
+    public AndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
+        return broadcastReceiverInjector;
+    }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return serviceDispatchingAndroidInjector;
     }
 
     @Override

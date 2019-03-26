@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.base.interactions.exceptions.RDAInteractionException;
+import com.ardakaplan.rdalibrary.base.exceptions.RDAInteractionException;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAViewContract;
 

@@ -56,21 +56,13 @@ public final class RDANotificationHelper {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelID);
 
-        if (RDAStringHelpers.isEmpty(title)) {
-            title = "";
-        }
-
-        if (RDAStringHelpers.isEmpty(text)) {
-            text = "";
-        }
-
         builder.setContentTitle(title);
 
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(text));
 
         builder.setContentText(text);
 
-        builder.setPriority(Notification.PRIORITY_MAX);
+//        builder.setPriority(Notification.PRIORITY_MAX);
 
         builder.setSmallIcon(drawableId);
 
@@ -122,7 +114,7 @@ public final class RDANotificationHelper {
 
             if (notificationManager != null && notificationManager.getNotificationChannel(notificationChannelID) == null) {
 
-                NotificationChannel notificationChannel = new NotificationChannel(notificationChannelID, notificationChannelName, NotificationManager.IMPORTANCE_HIGH);
+                NotificationChannel notificationChannel = new NotificationChannel(notificationChannelID, notificationChannelName, NotificationManager.IMPORTANCE_DEFAULT);
 
                 if (!setSound) {
 

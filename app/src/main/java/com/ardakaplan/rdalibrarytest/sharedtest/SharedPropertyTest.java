@@ -26,4 +26,9 @@ public class SharedPropertyTest extends RDASharedProperty<String> {
     public String getValue() {
         return getStringValue();
     }
+
+    @Override
+    public String getKey() {
+        return "SharedPropertyTest";
+    }
 }

@@ -77,4 +77,9 @@ public final class RDAStringHelpers {
 
         return text == null || text.trim().equals("");
     }
+
+    public static boolean isFilled(String text) {
+
+        return !isEmpty(text);
+    }
 }
