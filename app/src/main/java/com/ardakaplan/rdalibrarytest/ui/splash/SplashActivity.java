@@ -65,7 +65,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
 
 //        rdaIntentHelpers.sendEmail("HEYO", new String[]{"ardakaplan101@gmail.com"}, getString(R.string.app_name), "");
 
-        rdaIntentHelpers.openMarket();
+        rdaIntentHelpers.openGooglePlayPage();
 
     }
 
