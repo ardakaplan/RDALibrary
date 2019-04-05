@@ -33,16 +33,9 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements Act
     }
 
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected void attachBaseContext(Context context) {
 
-        if (getApplication() != null) {
-
-            super.attachBaseContext(changeLanguage(newBase, new Locale(((RDAApplication) getApplication()).getSelectedLanguage().getCode())));
-
-        } else {
-
-            super.attachBaseContext(newBase);
-        }
+        super.attachBaseContext(ScreenHelpers.attachBaseContext(context, getApplication()));
     }
 
     @Override

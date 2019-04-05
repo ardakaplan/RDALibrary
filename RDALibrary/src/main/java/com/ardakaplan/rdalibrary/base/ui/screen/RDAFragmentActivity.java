@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
-import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
@@ -65,11 +64,10 @@ public abstract class RDAFragmentActivity extends FragmentActivity implements Ha
     }
 
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected void attachBaseContext(Context context) {
 
-        super.attachBaseContext(changeLanguage(newBase, new Locale(((RDAApplication) getApplication()).getSelectedLanguage().getCode())));
+        super.attachBaseContext(ScreenHelpers.attachBaseContext(context, getApplication()));
     }
-
 
     @Override
     public Context changeLanguage(Context context, Locale locale) {

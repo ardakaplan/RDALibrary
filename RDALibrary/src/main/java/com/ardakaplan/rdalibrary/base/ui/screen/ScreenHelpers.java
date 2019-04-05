@@ -1,9 +1,12 @@
 package com.ardakaplan.rdalibrary.base.ui.screen;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.LocaleList;
+
+import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 
 import java.util.Locale;
 
@@ -18,7 +21,20 @@ final class ScreenHelpers {
 
     }
 
-    protected static Context changeLanguage(Context context, Locale newLocale) {
+
+    static Context attachBaseContext(Context context, Application application) {
+
+        if (application != null) {
+
+            return changeLanguage(context, new Locale(((RDAApplication) application).getSelectedLanguage().getCode()));
+
+        } else {
+
+            return context;
+        }
+    }
+
+    static Context changeLanguage(Context context, Locale newLocale) {
 
         Configuration configuration = context.getResources().getConfiguration();
 
