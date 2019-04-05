@@ -21,7 +21,7 @@ public final class RDAViewHelpers {
     private Context context;
 
     @Inject
-    private RDAViewHelpers(Context context) {
+    RDAViewHelpers(Context context) {
 
         this.context = context;
     }
