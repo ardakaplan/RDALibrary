@@ -2,10 +2,8 @@ package com.ardakaplan.rdalibrary.helpers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -58,7 +56,8 @@ public final class RDADeviceHelpers {
     /**
      * returning network type name
      */
-    public String getNetworkType() {
+    public String getNetworkType() throws NullPointerException {
+
         NetworkInfo networkInfo = getNetworkInfo();
 
         if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -76,21 +75,6 @@ public final class RDADeviceHelpers {
     @SuppressLint({"MissingPermission", "HardwareIds"})
     public String getPhoneNumber() {
         return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-    }
-
-
-    public int getApplicationVersionCode() {
-
-        try {
-
-            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-
-        } catch (NameNotFoundException e) {
-
-            e.printStackTrace();
-
-            return 1;
-        }
     }
 
     public String getDeviceLanguage() {
@@ -191,11 +175,6 @@ public final class RDADeviceHelpers {
 
     public String getDeviceVersion() {
         return Build.VERSION.RELEASE;
-    }
-
-    public String getPhoneName() {
-        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
-        return myDevice.getName();
     }
 
     public String getTotalRAM() {
