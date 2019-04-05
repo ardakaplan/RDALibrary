@@ -1,7 +1,4 @@
-package com.ardakaplan.rdalibrarytest.di.modules;
-
-import com.ardakaplan.rdalibrarytest.ui.splash.SplashContract;
-import com.ardakaplan.rdalibrarytest.ui.splash.SplashPresenter;
+package com.ardakaplan.rdalibrarytest.ui.splash;
 
 import dagger.Binds;
 import dagger.Module;

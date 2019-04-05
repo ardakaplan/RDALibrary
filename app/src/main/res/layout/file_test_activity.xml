@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/splash_activity_button_fileTest"
+        android:id="@+id/fileTestActivity_button_createRootFolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="File Test" />
+        android:text="Create Root Folder" />
 
 </LinearLayout>

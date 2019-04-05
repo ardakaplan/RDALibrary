@@ -1,23 +1,14 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.base.interactions.RDAInteractionResult;
-import com.ardakaplan.rdalibrary.base.interactions.RDAInteractionResultListener;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenter;
-import com.ardakaplan.rdalibrarytest.domain.GetListRDAInteraction;
-import com.ardakaplan.rdalogger.RDALogger;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 public class SplashPresenter extends RDAPresenter<SplashContract.SplashViewContract> implements SplashContract.SplashPresenterContract {
 
-    private GetListRDAInteraction getListInteraction;
-
     @Inject
-    public SplashPresenter(GetListRDAInteraction getListInteraction) {
+    public SplashPresenter() {
 
-        this.getListInteraction = getListInteraction;
     }
 
     @Override
@@ -28,36 +19,5 @@ public class SplashPresenter extends RDAPresenter<SplashContract.SplashViewContr
     @Override
     protected void onDetached() {
 
-    }
-
-    @Override
-    public void testPresenterContract() {
-
-        RDALogger.info("SPLASH PRESENTER ÇALIŞTI");
-    }
-
-    @Override
-    public void getList() {
-
-        getListInteraction.setIn("LAHANA");
-
-        getListInteraction.execute(new RDAInteractionResultListener<ArrayList<String>>() {
-
-            @Override
-            public void onResult(RDAInteractionResult<ArrayList<String>> out) {
-
-                if (getView() != null) {
-
-                    if (out.isSuccess()) {
-
-                        getView().setList(out.getOut());
-
-                    } else {
-
-                        getView().onError(out.getException());
-                    }
-                }
-            }
-        });
     }
 }
