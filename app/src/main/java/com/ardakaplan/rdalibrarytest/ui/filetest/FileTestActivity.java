@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
-import com.ardakaplan.rdalibrary.base.files.RDAFile;
+import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.ui.filetest.data.ApplicationFolder;
+import com.ardakaplan.rdalibrarytest.ui.filetest.data.InnerFolder;
+import com.ardakaplan.rdalibrarytest.ui.filetest.data.TestTextProperty;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.inject.Inject;
 
@@ -23,6 +27,12 @@ public class FileTestActivity extends RDAActivity {
 
     @Inject
     ApplicationFolder applicationFolder;
+
+    @Inject
+    InnerFolder innerFolder;
+
+    @Inject
+    TestTextProperty testTextProperty;
 
     @SuppressLint("MissingSuperCall")
     @Override
@@ -49,11 +59,30 @@ public class FileTestActivity extends RDAActivity {
 
         try {
 
-            File file = applicationFolder.getFile();
+            File rootFolder = applicationFolder.getFile();
 
-            RDALogger.info("APP FOLDER " + file.getAbsolutePath());
+            RDALogger.info("APP FOLDER " + rootFolder.getAbsolutePath());
 
-        } catch (RDAFile.FileNotCreatedInteractionException e) {
+            File innerFile = innerFolder.getFile();
+
+            RDALogger.info("INNER FOLDER " + innerFile.getAbsolutePath());
+
+
+            testTextProperty.setText("ARDA KAPLAN");
+
+            try {
+
+                File txtFile = testTextProperty.createFile();
+
+                RDALogger.info("TEXT FILE -> " + txtFile.getAbsolutePath());
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+
+        } catch (RDAFileProperty.FileNotCreatedInteractionException e) {
 
             e.printStackTrace();
         }
