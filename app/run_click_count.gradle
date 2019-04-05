@@ -1,0 +1,50 @@
+def fileName = "run_click_count.properties"
+
+def valueName = "clickCount"
+
+def versionPropsFile = file(fileName)
+
+def versionBuild
+
+/*Setting default value for versionBuild which is the last incremented value stored in the file */
+if (versionPropsFile.canRead()) {
+
+    Properties versionProps = new Properties()
+
+    versionProps.load(new FileInputStream(versionPropsFile))
+
+    versionBuild = versionProps[valueName].toInteger()
+
+} else {
+
+    throw new FileNotFoundException("Could not read " + fileName + "!")
+}
+
+/*Wrapping inside a method avoids auto incrementing on every gradle task run. Now it runs only when we build apk*/
+ext.autoIncrementBuildNumber = {
+
+    if (versionPropsFile.canRead()) {
+
+        Properties versionProps = new Properties()
+
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        versionBuild = versionProps[valueName].toInteger() + 1
+
+        versionProps[valueName] = versionBuild.toString()
+
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+    } else {
+
+        throw new FileNotFoundException("Could not read " + fileName + "!")
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+
+    if (taskGraph.hasTask(assembleDebug) || taskGraph.hasTask(assembleRelease)) {
+
+        autoIncrementBuildNumber()
+    }
+}

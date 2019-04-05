@@ -1,5 +1,6 @@
 package com.ardakaplan.rdalibrary.base.ui.screen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,8 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -28,7 +32,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 
 @SuppressWarnings("unused")
-public abstract class RDAFragmentActivity extends FragmentActivity implements ApplicationThemeChanger, HasSupportFragmentInjector {
+public abstract class RDAFragmentActivity extends FragmentActivity implements HasSupportFragmentInjector, ActivityContract {
 
     @Inject
     DispatchingAndroidInjector<Fragment> supportFragmentInjector;
@@ -53,8 +57,6 @@ public abstract class RDAFragmentActivity extends FragmentActivity implements Ap
 
         super.onCreate(savedInstanceState);
 
-        adjustApplicationTheme();
-
         setContentView(layoutId);
 
         ButterKnife.bind(this);
@@ -63,13 +65,21 @@ public abstract class RDAFragmentActivity extends FragmentActivity implements Ap
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return supportFragmentInjector;
+    protected void attachBaseContext(Context newBase) {
+
+        super.attachBaseContext(changeLanguage(newBase, new Locale(((RDAApplication) getApplication()).getSelectedLanguage().getCode())));
+    }
+
+
+    @Override
+    public Context changeLanguage(Context context, Locale locale) {
+
+        return ScreenHelpers.changeLanguage(context, locale);
     }
 
     @Override
-    public void adjustApplicationTheme() {
-
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return supportFragmentInjector;
     }
 
     @Override

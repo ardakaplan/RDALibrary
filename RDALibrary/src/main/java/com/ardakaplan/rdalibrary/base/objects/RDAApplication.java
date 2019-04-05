@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
+import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import javax.inject.Inject;
@@ -20,6 +21,9 @@ import dagger.android.HasServiceInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
 public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
+
+    @Inject
+    LanguageManager languageManager;
 
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
@@ -44,26 +48,10 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
     protected abstract void initDagger();
 
-
-    @Override
-    public CustomDispatchingAndroidInjector<Activity> activityInjector() {
-        return activityInjector;
+    public LanguageManager.Language getSelectedLanguage() {
+        return languageManager.getSelectedLanguage();
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return mFragmentInjector;
-    }
-
-    @Override
-    public AndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
-        return broadcastReceiverInjector;
-    }
-
-    @Override
-    public AndroidInjector<Service> serviceInjector() {
-        return serviceDispatchingAndroidInjector;
-    }
 
     @Override
     public void onTrimMemory(int level) {
@@ -95,5 +83,29 @@ public abstract class RDAApplication extends Application implements HasCustomAct
         super.onConfigurationChanged(newConfig);
 
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
+    }
+
+    @Override
+    public CustomDispatchingAndroidInjector<Activity> activityInjector() {
+
+        return activityInjector;
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+
+        return mFragmentInjector;
+    }
+
+    @Override
+    public AndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
+
+        return broadcastReceiverInjector;
+    }
+
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+
+        return serviceDispatchingAndroidInjector;
     }
 }
