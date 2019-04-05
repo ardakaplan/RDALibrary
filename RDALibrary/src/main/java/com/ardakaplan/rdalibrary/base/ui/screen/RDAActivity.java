@@ -1,17 +1,21 @@
 package com.ardakaplan.rdalibrary.base.ui.screen;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 
+import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalogger.RDALogger;
+
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
-public abstract class RDAActivity extends DaggerAppCompatActivity implements ApplicationThemeChanger {
+public abstract class RDAActivity extends DaggerAppCompatActivity implements ActivityContract {
 
     protected String className;
 
@@ -22,8 +26,23 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements App
         className = getClass().getSimpleName();
     }
 
-    public void adjustApplicationTheme() {
+    @Override
+    public Context changeLanguage(Context context, Locale locale) {
 
+        return ScreenHelpers.changeLanguage(context, locale);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+
+        if (getApplication() != null) {
+
+            super.attachBaseContext(changeLanguage(newBase, new Locale(((RDAApplication) getApplication()).getSelectedLanguage().getCode())));
+
+        } else {
+
+            super.attachBaseContext(newBase);
+        }
     }
 
     @Override
@@ -37,8 +56,6 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements App
     protected void onCreate(Bundle savedInstanceState, int layoutId) {
 
         super.onCreate(savedInstanceState);
-
-        adjustApplicationTheme();
 
         setContentView(layoutId);
 

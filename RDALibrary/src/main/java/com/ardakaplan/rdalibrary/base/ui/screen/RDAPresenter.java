@@ -4,10 +4,6 @@ public abstract class RDAPresenter<RView extends RDAViewContract> implements RDA
 
     private RView rView;
 
-    public RDAPresenter() {
-
-    }
-
     protected RView getView() {
         return rView;
     }

@@ -14,16 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".ui.filetest.FileTestActivity" />
+
+        <activity
+            android:name=".ui.filetest.FileTestActivity"
+            android:label="File Test Screen" />
+
+        <activity
+            android:name=".ui.language.LanguageTestActivity"
+            android:label="Language Test Screen" />
 
     </application>
 

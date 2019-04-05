@@ -5,15 +5,15 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/splash_activity_button_fileTest"
+        android:id="@+id/language_test_activity_button_changeLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="File Test" />
+        android:text="Change Random Language" />
 
     <Button
-        android:id="@+id/splash_activity_button_languageTest"
+        android:id="@+id/language_test_activity_button_getSelectedLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Language Test" />
+        android:text="Get Selected Language" />
 
 </LinearLayout>

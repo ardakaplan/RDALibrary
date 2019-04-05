@@ -1,5 +1,6 @@
 package com.ardakaplan.rdalibrarytest.di;
 
+import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.splash.SplashModule;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.splash.SplashActivity;
@@ -15,4 +16,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract FileTestActivity bindFileTestActivity();
+
+    @ContributesAndroidInjector
+    abstract LanguageTestActivity bindLanguageTestActivity();
 }
