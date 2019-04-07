@@ -55,6 +55,8 @@ public final class RDAIntentHelpers {
 
         callIntent.setData(Uri.parse("tel: " + phoneNo));
 
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(callIntent);
     }
 

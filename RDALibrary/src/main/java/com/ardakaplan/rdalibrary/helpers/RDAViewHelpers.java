@@ -14,7 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "JavaDoc"})
 @Singleton
 public final class RDAViewHelpers {
 
@@ -26,6 +26,12 @@ public final class RDAViewHelpers {
         this.context = context;
     }
 
+    /**
+     * does not work, be carefull before use
+     *
+     * @param attribute
+     * @return
+     */
     public @ColorInt
     int getColorFromAttribute(@AttrRes int attribute) {
 
