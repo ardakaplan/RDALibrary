@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
+import com.ardakaplan.rdalogger.RDALogger;
+
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 
 import javax.inject.Inject;
 
@@ -26,6 +31,48 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         super.onCreate(savedInstanceState, R.layout.activity_splash);
 
         presenter.attach(this);
+
+        encryptTest();
+    }
+
+    private void encryptTest() {
+
+        String source = "Arda KaplanĞÜŞİÖÇğüşiöç";
+
+        try {
+            String encrypt = RDAAESCryptionHelper.encrypt("112312321312", source);
+
+            RDALogger.info(encrypt);
+
+            decryptTest(encrypt);
+
+        } catch (GeneralSecurityException e) {
+
+            e.printStackTrace();
+
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+
+        }
+    }
+
+    private void decryptTest(String encryptedText) {
+
+        try {
+
+            String decrypt = RDAAESCryptionHelper.decrypt("112312321312", encryptedText);
+
+            RDALogger.info(decrypt);
+
+        } catch (GeneralSecurityException e) {
+
+            e.printStackTrace();
+
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.splash_activity_button_fileTest)
