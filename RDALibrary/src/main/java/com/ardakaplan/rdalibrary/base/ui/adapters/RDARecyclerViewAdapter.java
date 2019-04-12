@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ardakaplan.rdalibrary.interfaces.RDAItemClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,8 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
+    protected RDAItemClickListener<ItemObject> rdaItemClickListener;
+
     protected List<ItemObject> dataList = new ArrayList<>();
 
     public RDARecyclerViewAdapter() {
@@ -31,6 +35,10 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
 
     public RDARecyclerViewAdapter(List<ItemObject> dataList) {
         this.dataList = dataList;
+    }
+
+    public void setRdaItemClickListener(RDAItemClickListener<ItemObject> rdaItemClickListener) {
+        this.rdaItemClickListener = rdaItemClickListener;
     }
 
     @NonNull

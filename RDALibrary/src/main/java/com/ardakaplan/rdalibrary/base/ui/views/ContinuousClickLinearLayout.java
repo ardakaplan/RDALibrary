@@ -61,7 +61,7 @@ public class ContinuousClickLinearLayout extends LinearLayout {
 
                 return true;
             }
-            
+
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
 
             if (repeatedClick) {
