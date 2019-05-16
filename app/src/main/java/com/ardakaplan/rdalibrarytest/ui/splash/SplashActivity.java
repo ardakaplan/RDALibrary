@@ -87,6 +87,13 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         startActivity(new Intent(this, LanguageTestActivity.class));
     }
 
+    @OnClick(R.id.continious)
+    void continous() {
+
+        RDALogger.info("BURDA");
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

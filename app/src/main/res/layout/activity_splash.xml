@@ -16,4 +16,10 @@
         android:layout_height="wrap_content"
         android:text="Language Test" />
 
+    <com.ardakaplan.rdalibrary.base.ui.views.ContinuousClickLinearLayout
+        android:id="@+id/continious"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20dp"
+        android:background="#FF0000" />
+
 </LinearLayout>
