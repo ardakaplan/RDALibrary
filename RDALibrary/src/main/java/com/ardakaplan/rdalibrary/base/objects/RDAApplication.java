@@ -41,12 +41,22 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public void onCreate() {
         super.onCreate();
 
+        RDALogger.start(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
+
         initDagger();
+
+        initRDADialog();
 
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
     }
 
+    protected abstract String getRDALoggerTag();
+
+    protected abstract boolean doesRDALoggerWork();
+
     protected abstract void initDagger();
+
+    protected abstract void initRDADialog();
 
     public LanguageManager.Language getSelectedLanguage() {
         return languageManager.getSelectedLanguage();
