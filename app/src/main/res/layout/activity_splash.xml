@@ -16,6 +16,12 @@
         android:layout_height="wrap_content"
         android:text="Language Test" />
 
+    <Button
+        android:id="@+id/splash_activity_button_dialogTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialog Test" />
+
     <com.ardakaplan.rdalibrary.base.ui.views.ContinuousClickLinearLayout
         android:id="@+id/continious"
         android:layout_width="match_parent"

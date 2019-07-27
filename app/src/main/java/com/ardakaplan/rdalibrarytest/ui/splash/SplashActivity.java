@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
+import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
+import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrarytest.R;
@@ -85,6 +88,49 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     void clickedLanguageTest() {
 
         startActivity(new Intent(this, LanguageTestActivity.class));
+    }
+
+    @OnClick(R.id.splash_activity_button_dialogTest)
+    void clickedDialogTest() {
+
+        RDADialog.showDialog(this, "TITLE",
+                "MESSAGE",
+                "POSITIVE",
+                "NEGATIVE",
+                "NEUTRAL",
+                0,
+                false,
+                new ButtonClickListener() {
+                    @Override
+                    public void onClick(RDADialog rdaDialog, ButtonType buttonType) {
+
+                        rdaDialog.dismiss();
+
+                        switch (buttonType) {
+
+                            case POSITIVE:
+
+                                RDALogger.info("POSITIVE CLICKED");
+
+                                break;
+
+                            case NEGATIVE:
+
+                                RDALogger.info("NEGATIVE CLICKED");
+
+                                break;
+
+                            case NEUTRAL:
+
+                                RDALogger.info("NEUTRAL CLICKED");
+
+                                break;
+
+                        }
+
+                    }
+                }
+        );
     }
 
     @OnClick(R.id.continious)

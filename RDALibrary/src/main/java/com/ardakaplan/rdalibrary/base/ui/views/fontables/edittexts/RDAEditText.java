@@ -45,6 +45,11 @@ public class RDAEditText extends AppCompatEditText {
         validators = new ArrayList<>();
     }
 
+    public void clear() {
+
+        setText("");
+    }
+
 
     public void addValidator(Validator validator) {
         this.validators.add(validator);
