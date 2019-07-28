@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.net.URLDecoder;
+import java.util.regex.Pattern;
 
 
 @SuppressWarnings("unused")
@@ -81,5 +82,10 @@ public final class RDAStringHelpers {
     public static boolean isFilled(String text) {
 
         return !isEmpty(text);
+    }
+
+    public static boolean isValidMail(String mail) {
+
+        return Pattern.compile(".+@.+\\.[a-z]+").matcher(mail).matches();
     }
 }

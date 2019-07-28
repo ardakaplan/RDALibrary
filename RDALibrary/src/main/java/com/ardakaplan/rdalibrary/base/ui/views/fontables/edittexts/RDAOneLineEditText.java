@@ -12,7 +12,7 @@ import android.util.AttributeSet;
  * <p/>
  * arda.kaplan09@gmail.com
  */
-public class OneLineRDAEditText extends RDAEditText {
+public class RDAOneLineEditText extends RDAEditText {
 
     TextWatcher onlyOneLineTextWatcher = new TextWatcher() {
         @Override
@@ -32,7 +32,7 @@ public class OneLineRDAEditText extends RDAEditText {
         }
     };
 
-    public OneLineRDAEditText(Context context) {
+    public RDAOneLineEditText(Context context) {
         super(context);
 
         setMaxLines(1);
@@ -40,7 +40,7 @@ public class OneLineRDAEditText extends RDAEditText {
         this.addTextChangedListener(onlyOneLineTextWatcher);
     }
 
-    public OneLineRDAEditText(Context context, AttributeSet attrs) {
+    public RDAOneLineEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         setMaxLines(1);
@@ -48,7 +48,7 @@ public class OneLineRDAEditText extends RDAEditText {
         this.addTextChangedListener(onlyOneLineTextWatcher);
     }
 
-    public OneLineRDAEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RDAOneLineEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         setMaxLines(1);

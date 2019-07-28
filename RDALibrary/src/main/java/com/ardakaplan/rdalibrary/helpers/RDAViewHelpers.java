@@ -1,6 +1,8 @@
 package com.ardakaplan.rdalibrary.helpers;
 
-import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,30 +10,53 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-@SuppressWarnings("unused")
+
+@SuppressWarnings({"unused", "JavaDoc"})
+@Singleton
 public final class RDAViewHelpers {
 
-    private RDAViewHelpers() {
+    private Context context;
 
+    @Inject
+    RDAViewHelpers(Context context) {
+
+        this.context = context;
     }
 
-    public static int getNumberInDp(Activity activity, int size) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, activity.getResources().getDisplayMetrics());
+    /**
+     * does not work, be carefull before use
+     *
+     * @param attribute
+     * @return
+     */
+    public @ColorInt
+    int getColorFromAttribute(@AttrRes int attribute) {
+
+        TypedValue typedValue = new TypedValue();
+
+        context.getTheme().resolveAttribute(attribute, typedValue, true);
+
+        return typedValue.data;
     }
 
-    public static void setTextSizeInSp(TextView textView, float size) {
+    public int getNumberInDp(int size) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, context.getResources().getDisplayMetrics());
+    }
+
+    public void setTextSizeInSp(TextView textView, float size) {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
     }
 
     /**
      * Cocuk sayisina gore listview uzunlugunu set eder,
-     *
+     * <p>
      * kullanımı biraz sıkıntılı dikkatli ol
-     *
      */
     @Deprecated
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
+    public void setListViewHeightBasedOnChildren(ListView listView) {
 
         ListAdapter listAdapter = listView.getAdapter();
 

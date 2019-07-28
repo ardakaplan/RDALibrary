@@ -35,6 +35,8 @@ public final class RDAIntentHelpers {
 
         shareIntent.setType("text/plain");
 
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(Intent.createChooser(shareIntent, chooserText));
     }
 
@@ -46,6 +48,8 @@ public final class RDAIntentHelpers {
 
         sendIntent.putExtra("sms_body", message);
 
+        sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(sendIntent);
     }
 
@@ -54,6 +58,8 @@ public final class RDAIntentHelpers {
         Intent callIntent = new Intent(Intent.ACTION_VIEW);
 
         callIntent.setData(Uri.parse("tel: " + phoneNo));
+
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         context.startActivity(callIntent);
     }
@@ -71,6 +77,9 @@ public final class RDAIntentHelpers {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/" + linkedinSpecialLink));
 
         }
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         context.startActivity(intent);
     }
 
