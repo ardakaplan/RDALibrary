@@ -25,7 +25,19 @@
     <com.ardakaplan.rdalibrary.base.ui.views.ContinuousClickLinearLayout
         android:id="@+id/continious"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_20dp"
-        android:background="#FF0000" />
+        android:layout_height="wrap_content"
+        android:background="#FF0000">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="CONTINUOUS CLICK"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_15sp" />
+
+    </com.ardakaplan.rdalibrary.base.ui.views.ContinuousClickLinearLayout>
 
 </LinearLayout>

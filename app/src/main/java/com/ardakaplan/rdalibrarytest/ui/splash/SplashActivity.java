@@ -93,7 +93,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @OnClick(R.id.splash_activity_button_dialogTest)
     void clickedDialogTest() {
 
-        RDADialog.showDialog(this, "TITLE",
+        RDADialog.showDialog(this, R.style.Theme_Dialog, "TITLE",
                 "MESSAGE",
                 "POSITIVE",
                 "NEGATIVE",

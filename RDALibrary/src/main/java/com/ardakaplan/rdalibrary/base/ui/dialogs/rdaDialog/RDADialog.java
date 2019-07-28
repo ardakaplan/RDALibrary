@@ -8,7 +8,6 @@ import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -44,7 +43,7 @@ public class RDADialog extends Dialog {
     protected static @IdRes
     int dialogNeutralTextViewId;
 
-    public static void init(int dialogLayoutIdd, int dialogTitleTextViewIdd, int dialogMessageTextViewIdd, int dialogPositiveButtonTextViewIdd, int dialogNegativeButtonTextViewIdd, int dialogNeutralTextViewIdd) {
+    public static void registerIds(int dialogLayoutIdd, int dialogTitleTextViewIdd, int dialogMessageTextViewIdd, int dialogPositiveButtonTextViewIdd, int dialogNegativeButtonTextViewIdd, int dialogNeutralTextViewIdd) {
         dialogLayoutId = dialogLayoutIdd;
         dialogTitleTextViewId = dialogTitleTextViewIdd;
         dialogMessageTextViewId = dialogMessageTextViewIdd;
@@ -53,8 +52,21 @@ public class RDADialog extends Dialog {
         dialogNeutralTextViewId = dialogNeutralTextViewIdd;
     }
 
+    public RDADialog(Activity activity, @StyleRes int dialogTheme) {
+
+        super(activity, dialogTheme);
+
+        init(activity);
+    }
+
     public RDADialog(Activity activity) {
+
         super(activity);
+
+        init(activity);
+    }
+
+    private void init(Activity activity) {
 
         this.activity = activity;
 
@@ -64,8 +76,6 @@ public class RDADialog extends Dialog {
 
         //noinspection ConstantConditions
         this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        this.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -192,6 +202,7 @@ public class RDADialog extends Dialog {
     }
 
     public static void showDialog(Activity activity,
+                                  @StyleRes int dialogTheme,
                                   String title,
                                   String message,
                                   String positiveButtonText,
@@ -201,7 +212,16 @@ public class RDADialog extends Dialog {
                                   Boolean cancelable,
                                   ButtonClickListener buttonClickListener) {
 
-        RDADialog rdaDialog = new RDADialog(activity);
+        RDADialog rdaDialog;
+
+        if (dialogTheme == 0) {
+
+            rdaDialog = new RDADialog(activity);
+
+        } else {
+
+            rdaDialog = new RDADialog(activity, dialogTheme);
+        }
 
         rdaDialog.setButtonListener(buttonClickListener);
 
