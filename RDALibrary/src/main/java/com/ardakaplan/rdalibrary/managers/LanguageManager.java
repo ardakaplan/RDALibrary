@@ -7,6 +7,7 @@ import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -72,7 +73,7 @@ public class LanguageManager {
         private String code;
         private String screenName;
 
-         Language(String code, String screenName) {
+        Language(String code, String screenName) {
             this.code = code;
             this.screenName = screenName;
         }
@@ -83,6 +84,18 @@ public class LanguageManager {
 
         public String getScreenName() {
             return screenName;
+        }
+
+        public Locale getLocale() {
+
+            if (this != DEFAULT) {
+
+                return new Locale(code);
+
+            } else {
+
+                return Locale.getDefault();
+            }
         }
     }
 
