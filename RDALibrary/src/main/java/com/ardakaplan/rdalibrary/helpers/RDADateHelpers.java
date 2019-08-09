@@ -50,7 +50,7 @@ public class RDADateHelpers {
      */
     public static String formatDate(long milliSeconds, String formatString, Locale locale) {
 
-        return formatDate(new Date(milliSeconds), formatString, locale);
+        return formatDate(new Date(milliSeconds), formatString, checkLocale(locale));
     }
 
     /**
@@ -59,15 +59,25 @@ public class RDADateHelpers {
      */
     public static String formatDate(Date date, String formatString, Locale locale) {
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, locale);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, checkLocale(locale));
 
         return simpleDateFormat.format(date);
     }
 
     public static String formatDate(Calendar calendar, String format, Locale locale) {
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, locale);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, checkLocale(locale));
 
         return simpleDateFormat.format(calendar.getTime());
+    }
+
+    private static Locale checkLocale(Locale locale) {
+
+        if (locale == null) {
+
+            locale = Locale.getDefault();
+        }
+
+        return locale;
     }
 }
