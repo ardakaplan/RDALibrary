@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrarytest.R;
@@ -30,8 +31,6 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        presenter.attach(this);
 
         encryptTest();
     }
@@ -135,18 +134,15 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     void continous() {
 
         RDALogger.info("BURDA");
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        presenter.detach();
     }
 
     @Override
     public int getLayout() {
         return R.layout.activity_splash;
+    }
+
+    @Override
+    public RDAPresenterContract getPresenterContract() {
+        return presenter;
     }
 }

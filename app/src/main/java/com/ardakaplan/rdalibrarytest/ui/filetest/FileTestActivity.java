@@ -3,9 +3,11 @@ package com.ardakaplan.rdalibrarytest.ui.filetest;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
 import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.ApplicationFolder;
@@ -101,7 +103,7 @@ public class FileTestActivity extends RDAActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             RDALogger.info("Permission: " + permissions[0] + "was " + grantResults[0]);
@@ -113,5 +115,10 @@ public class FileTestActivity extends RDAActivity {
     @Override
     public int getLayout() {
         return R.layout.file_test_activity;
+    }
+
+    @Override
+    public RDAPresenterContract getPresenterContract() {
+        return null;
     }
 }

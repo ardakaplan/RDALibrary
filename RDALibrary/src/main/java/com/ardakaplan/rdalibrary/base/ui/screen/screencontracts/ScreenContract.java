@@ -2,6 +2,8 @@ package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
 import android.support.annotation.LayoutRes;
 
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
+
 /**
  * Created by Arda Kaplan at 21-Aug-19
  * <p>
@@ -16,4 +18,9 @@ public interface ScreenContract {
      */
     @LayoutRes
     int getLayout();
+
+    /**
+     * @return view presenter
+     */
+    RDAPresenterContract getPresenterContract();
 }

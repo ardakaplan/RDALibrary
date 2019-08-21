@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
-public abstract class RDAActivity extends DaggerAppCompatActivity implements ActivityContract {
+public abstract class RDAActivity extends DaggerAppCompatActivity implements RDAViewContract, ActivityContract {
 
     protected String className;
 
@@ -42,6 +42,11 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements Act
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        if (getPresenterContract() != null) {
+
+            getPresenterContract().attach(this);
+        }
 
         RDALogger.logLifeCycle(className);
 
@@ -104,6 +109,12 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements Act
 
     @Override
     protected void onDestroy() {
+
+        if (getPresenterContract() != null) {
+
+            getPresenterContract().detach();
+        }
+
         super.onDestroy();
 
         onScreen = false;
@@ -135,6 +146,4 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements Act
 
         RDALogger.logLifeCycle(className);
     }
-
-
 }

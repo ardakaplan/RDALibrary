@@ -20,7 +20,7 @@ import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
-public abstract class RDAFragment extends DaggerFragment implements ScreenContract {
+public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract {
 
     private Unbinder unbinder;
 
@@ -78,6 +78,11 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (getPresenterContract() != null) {
+
+            getPresenterContract().attach(this);
+        }
+
         RDALogger.logLifeCycle(className);
     }
 
@@ -112,6 +117,11 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if (getPresenterContract() != null) {
+
+            getPresenterContract().detach();
+        }
 
         if (unbinder != null) {
 
