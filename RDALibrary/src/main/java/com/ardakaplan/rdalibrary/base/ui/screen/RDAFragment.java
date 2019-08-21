@@ -3,7 +3,6 @@ package com.ardakaplan.rdalibrary.base.ui.screen;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,7 @@ import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
-public abstract class RDAFragment extends DaggerFragment {
+public abstract class RDAFragment extends DaggerFragment implements ScreenContract {
 
     private Unbinder unbinder;
 
@@ -61,7 +60,7 @@ public abstract class RDAFragment extends DaggerFragment {
 
         RDALogger.logLifeCycle(className);
 
-        View view = inflater.inflate(getViewLayout(), container, false);
+        View view = inflater.inflate(getLayout(), container, false);
 
         unbinder = ButterKnife.bind(this, view);
 
@@ -186,7 +185,4 @@ public abstract class RDAFragment extends DaggerFragment {
 
     public abstract @IdRes
     int fragmentPartContainerId();
-
-    protected abstract @LayoutRes
-    int getViewLayout();
 }

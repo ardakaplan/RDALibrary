@@ -1,6 +1,5 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,11 +26,10 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     SplashContract.SplashPresenterContract presenter;
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.layout.activity_splash);
+        super.onCreate(savedInstanceState);
 
         presenter.attach(this);
 
@@ -145,5 +143,10 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         super.onDestroy();
 
         presenter.detach();
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_splash;
     }
 }
