@@ -1,4 +1,6 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.presenters;
+
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAViewContract;
 
 public abstract class RDAPresenter<RView extends RDAViewContract> implements RDAPresenterContract<RView> {
 

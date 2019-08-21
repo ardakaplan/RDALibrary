@@ -1,6 +1,5 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
@@ -27,11 +26,10 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     SplashContract.SplashPresenterContract presenter;
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.layout.activity_splash);
+        super.onCreate(savedInstanceState);
 
         presenter.attach(this);
 
@@ -145,5 +143,10 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
         super.onDestroy();
 
         presenter.detach();
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_splash;
     }
 }

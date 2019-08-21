@@ -32,7 +32,7 @@ public final class RDANumberHelpers {
         return decimalFormat.format(doubleValue);
     }
 
-//    public static DecimalFormat createBridgeDecimalFormatWithNotGrouping(int decimal) {
+//    public static DecimalFormat createDecimalFormatWithNotGrouping(int decimal) {
 //
 //        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
 //
@@ -53,7 +53,7 @@ public final class RDANumberHelpers {
 //        return new DecimalFormat(format.toString(), decimalFormatSymbols);
 //    }
 //
-//    public static DecimalFormat createBridgeDecimalFormatWithGrouping(int decimal) {
+//    public static DecimalFormat createDecimalFormatWithGrouping(int decimal) {
 //
 //        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
 //

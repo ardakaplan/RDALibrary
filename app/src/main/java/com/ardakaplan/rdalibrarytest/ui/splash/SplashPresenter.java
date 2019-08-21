@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenter;
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenter;
 
 import javax.inject.Inject;
 

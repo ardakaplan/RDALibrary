@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
 import android.content.Context;
 
@@ -9,7 +9,7 @@ import java.util.Locale;
  * <p>
  * arda.kaplan09@gmail.com
  */
-public interface ActivityContract {
+public interface ActivityContract extends ScreenContract {
 
     Context changeLanguage(Context context, Locale locale);
 }

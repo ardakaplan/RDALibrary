@@ -1,15 +1,12 @@
 package com.ardakaplan.rdalibrarytest.ui.filetest;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
 import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.ApplicationFolder;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.InnerFolder;
@@ -33,13 +30,6 @@ public class FileTestActivity extends RDAActivity {
 
     @Inject
     TestTextProperty testTextProperty;
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState, R.layout.file_test_activity);
-    }
 
     @OnClick(R.id.fileTestActivity_button_createRootFolder)
     void test() {
@@ -118,5 +108,10 @@ public class FileTestActivity extends RDAActivity {
 
             createFolder();
         }
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.file_test_activity;
     }
 }

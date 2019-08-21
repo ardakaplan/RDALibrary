@@ -3,8 +3,8 @@ package com.ardakaplan.rdalibrary.helpers;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAFragment;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAFragmentActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
 
 @SuppressWarnings("unused")
 public final class RDAFragmentHelpers {
@@ -18,7 +18,7 @@ public final class RDAFragmentHelpers {
         return !(fragment1 == null || fragment2 == null) && fragment1.className.equals(fragment2.className);
     }
 
-    public static void addFragmentToBackStack(RDAFragmentActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
+    public static void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
 
         if (isEqual(getCurrentFragment(activity), fragmentToReplace)) {
 
@@ -48,7 +48,7 @@ public final class RDAFragmentHelpers {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static RDAFragment getCurrentFragment(RDAFragmentActivity activity) {
+    public static RDAFragment getCurrentFragment(RDAActivity activity) {
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
 
@@ -62,7 +62,7 @@ public final class RDAFragmentHelpers {
         }
     }
 
-    public static int getActiveFragmentCount(RDAFragmentActivity activity) {
+    public static int getActiveFragmentCount(RDAActivity activity) {
 
         return activity.getSupportFragmentManager().getBackStackEntryCount();
     }

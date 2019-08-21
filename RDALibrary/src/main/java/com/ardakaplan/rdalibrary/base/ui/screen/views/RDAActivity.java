@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
 import android.content.Context;
 import android.os.Build;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
+import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -44,18 +44,23 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements Act
         super.onCreate(savedInstanceState);
 
         RDALogger.logLifeCycle(className);
-    }
 
-    protected void onCreate(Bundle savedInstanceState, int layoutId) {
-
-        super.onCreate(savedInstanceState);
-
-        setContentView(layoutId);
+        setContentView(getLayout());
 
         ButterKnife.bind(this);
 
-        RDALogger.logLifeCycle(className);
     }
+
+//    protected void onCreate(Bundle savedInstanceState, int layoutId) {
+//
+//        super.onCreate(savedInstanceState);
+//
+//        setContentView(layoutId);
+//
+//        ButterKnife.bind(this);
+//
+//        RDALogger.logLifeCycle(className);
+//    }
 
     protected void changeStatusBarColor(@ColorRes int colorId) {
 

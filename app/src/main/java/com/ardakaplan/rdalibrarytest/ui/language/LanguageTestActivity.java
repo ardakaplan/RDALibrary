@@ -1,11 +1,8 @@
 package com.ardakaplan.rdalibrarytest.ui.language;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -25,13 +22,6 @@ public class LanguageTestActivity extends RDAActivity {
 
     @Inject
     LanguageManager languageManager;
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState, R.layout.activity_language_test);
-    }
 
     @OnClick(R.id.language_test_activity_button_changeLanguage)
     void clickedChangeLanguage() {
@@ -53,5 +43,10 @@ public class LanguageTestActivity extends RDAActivity {
         Toast.makeText(this, languageManager.getSelectedLanguage().name(), Toast.LENGTH_SHORT).show();
 
         RDALogger.info("SELECTED LANGUAGE -> " + languageManager.getSelectedLanguage());
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_language_test;
     }
 }
