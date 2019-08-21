@@ -24,7 +24,7 @@ public class LanguageManager {
     private SelectedLanguageProperty selectedLanguageProperty;
 
     @Inject
-    public LanguageManager(SelectedLanguageProperty selectedLanguageProperty) {
+    LanguageManager(SelectedLanguageProperty selectedLanguageProperty) {
         this.selectedLanguageProperty = selectedLanguageProperty;
     }
 

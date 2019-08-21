@@ -2,7 +2,7 @@ package com.ardakaplan.rdalibrarytest.ui.language;
 
 import android.widget.Toast;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalogger.RDALogger;

@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ScreenContract;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 

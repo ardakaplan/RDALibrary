@@ -1,7 +1,7 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAPresenterContract;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAViewContract;
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAViewContract;
 
 class SplashContract {
 

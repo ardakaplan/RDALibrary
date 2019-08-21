@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrary.interfaces;
 
-public interface RDAWorkCompleteListener<Lahana> {
+public interface RDAWorkCompleteListener<W> {
 
-    void onWorkCompleted(Lahana Lahana);
+    void onWorkCompleted(W w);
 }

@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
 import android.content.Context;
 

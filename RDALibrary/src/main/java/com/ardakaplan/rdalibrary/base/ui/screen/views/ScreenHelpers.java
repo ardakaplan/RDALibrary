@@ -1,4 +1,4 @@
-package com.ardakaplan.rdalibrary.base.ui.screen;
+package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
 import android.app.Application;
 import android.content.Context;

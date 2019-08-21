@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;

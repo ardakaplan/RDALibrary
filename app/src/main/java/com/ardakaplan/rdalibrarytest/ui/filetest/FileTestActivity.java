@@ -6,7 +6,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 
 import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
-import com.ardakaplan.rdalibrary.base.ui.screen.RDAActivity;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.ApplicationFolder;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.InnerFolder;
