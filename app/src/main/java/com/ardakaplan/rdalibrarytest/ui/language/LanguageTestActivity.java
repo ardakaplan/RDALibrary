@@ -2,6 +2,7 @@ package com.ardakaplan.rdalibrarytest.ui.language;
 
 import android.widget.Toast;
 
+import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
@@ -48,5 +49,10 @@ public class LanguageTestActivity extends RDAActivity {
     @Override
     public int getLayout() {
         return R.layout.activity_language_test;
+    }
+
+    @Override
+    public RDAPresenterContract getPresenterContract() {
+        return null;
     }
 }
