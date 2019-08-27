@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -119,13 +120,13 @@ public final class RDADeviceHelpers {
         return intent != null;
     }
 
-    public void writeDeviceInfo(Activity activity) {
+    public void writeDeviceInfo() {
         // cihazin hangi values klasorunu kullandigini bulmak icin log
         RDALogger.verbose("VALUES FOLDER : " + getDeviceResourcesFolder());
         // cihazin ekran boyutlari
-        RDALogger.verbose("Device screen height : " + getScreenHeight(activity));
+        RDALogger.verbose("Device screen height : " + getScreenHeight());
 
-        RDALogger.verbose("Device screen width : " + getScreenWidth(activity));
+        RDALogger.verbose("Device screen width : " + getScreenWidth());
         // ekran cozunurlugu
         RDALogger.verbose("Device Screen Density Type : " + getDensityType());
         // api level
@@ -224,40 +225,14 @@ public final class RDADeviceHelpers {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
-    public static int getScreenWidth(Activity activity) {
+    public static int getScreenWidth() {
 
-        try {
-
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-
-            activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-
-            return displaymetrics.widthPixels;
-
-        } catch (NullPointerException e) {
-
-            e.printStackTrace();
-
-            return 0;
-        }
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
 
-    public static int getScreenHeight(Activity activity) {
+    public static int getScreenHeight() {
 
-        try {
-
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-
-            activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-
-            return displaymetrics.heightPixels;
-
-        } catch (NullPointerException e) {
-
-            e.printStackTrace();
-
-            return 0;
-        }
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
     /**

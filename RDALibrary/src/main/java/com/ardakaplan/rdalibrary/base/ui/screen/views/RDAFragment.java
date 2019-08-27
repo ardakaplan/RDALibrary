@@ -2,6 +2,7 @@ package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -72,6 +73,24 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     protected void initViews(View parentView) {
 
+    }
+
+    public boolean getOnBackPressControl() {
+
+        return false;
+    }
+
+    public void onBackPressed() {
+
+    }
+
+    @Override
+    public void changeStatusBarColor(@ColorRes int colorId) {
+
+        if (getActivity() != null) {
+
+            ((RDAActivity) getActivity()).changeStatusBarColor(colorId);
+        }
     }
 
     @Override

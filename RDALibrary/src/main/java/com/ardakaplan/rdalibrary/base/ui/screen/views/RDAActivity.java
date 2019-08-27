@@ -7,6 +7,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
+import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -67,7 +68,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 //        RDALogger.logLifeCycle(className);
 //    }
 
-    protected void changeStatusBarColor(@ColorRes int colorId) {
+    @Override
+    public void changeStatusBarColor(@ColorRes int colorId) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
@@ -145,5 +147,24 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         onScreen = false;
 
         RDALogger.logLifeCycle(className);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        RDAFragment currentFragment = RDAFragmentHelpers.getCurrentFragment(this);
+
+        if (currentFragment != null && currentFragment.getOnBackPressControl()) {
+
+            currentFragment.onBackPressed();
+
+        } else {
+
+            super.onBackPressed();
+        }
+    }
+
+    public void directOnBackPressed() {
+        super.onBackPressed();
     }
 }
