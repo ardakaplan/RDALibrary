@@ -25,19 +25,19 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected RDAItemClickListener<? extends  ItemObject> rdaItemClickListener;
+    protected RDAItemClickListener<ItemObject> rdaItemClickListener;
 
-    protected List<? extends  ItemObject> dataList = new ArrayList<>();
+    protected List<ItemObject> dataList = new ArrayList<>();
 
     public RDARecyclerViewAdapter() {
 
     }
 
-    public RDARecyclerViewAdapter(List<? extends  ItemObject> dataList) {
+    public RDARecyclerViewAdapter(List<ItemObject> dataList) {
         this.dataList = dataList;
     }
 
-    public void setRdaItemClickListener(RDAItemClickListener<? extends  ItemObject> rdaItemClickListener) {
+    public void setRdaItemClickListener(RDAItemClickListener<ItemObject> rdaItemClickListener) {
         this.rdaItemClickListener = rdaItemClickListener;
     }
 
@@ -65,12 +65,12 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         return dataList.get(position);
     }
 
-//    public void addItem(int position, ItemObject item) {
-//
-//        dataList.add(position, item);
-//
-//        notifyItemInserted(position);
-//    }
+    public void addItem(int position, ItemObject item) {
+
+        dataList.add(position, item);
+
+        notifyItemInserted(position);
+    }
 
     public void removeItem(int position) {
 
@@ -79,22 +79,12 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         notifyItemRemoved(position);
     }
 
-    public void setData(List<? extends  ItemObject> dataList) {
+    public void setData(List<ItemObject> dataList) {
 
         this.dataList = dataList;
 
         notifyDataSetChanged();
     }
-
-//    @Override
-//    public  VH onCreateViewHolder(ViewGroup parent, int viewType) {
-//
-//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//        View v = inflater.inflate(R.layout.row_layout, parent, false);
-//
-//        return new MyAdapter.ViewHolder(v);
-//    }
-
 
     @Override
     public int getItemCount() {

@@ -44,17 +44,16 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         super.onCreate(savedInstanceState);
 
-        if (getPresenterContract() != null) {
-
-            getPresenterContract().attach(this);
-        }
-
         RDALogger.logLifeCycle(className);
 
         setContentView(getLayout());
 
         ButterKnife.bind(this);
 
+        if (getPresenterContract() != null) {
+
+            getPresenterContract().attach(this);
+        }
     }
 
 //    protected void onCreate(Bundle savedInstanceState, int layoutId) {
