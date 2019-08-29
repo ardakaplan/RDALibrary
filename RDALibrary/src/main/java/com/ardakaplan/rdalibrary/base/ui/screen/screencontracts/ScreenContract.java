@@ -1,5 +1,6 @@
 package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
+import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
@@ -23,4 +24,6 @@ public interface ScreenContract {
      * @return view presenter
      */
     RDAPresenterContract getPresenterContract();
+
+    void changeStatusBarColor(@ColorRes int colorId);
 }

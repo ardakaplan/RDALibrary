@@ -25,19 +25,19 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected RDAItemClickListener<ItemObject> rdaItemClickListener;
+    protected RDAItemClickListener<? extends  ItemObject> rdaItemClickListener;
 
-    protected List<ItemObject> dataList = new ArrayList<>();
+    protected List<? extends  ItemObject> dataList = new ArrayList<>();
 
     public RDARecyclerViewAdapter() {
 
     }
 
-    public RDARecyclerViewAdapter(List<ItemObject> dataList) {
+    public RDARecyclerViewAdapter(List<? extends  ItemObject> dataList) {
         this.dataList = dataList;
     }
 
-    public void setRdaItemClickListener(RDAItemClickListener<ItemObject> rdaItemClickListener) {
+    public void setRdaItemClickListener(RDAItemClickListener<? extends  ItemObject> rdaItemClickListener) {
         this.rdaItemClickListener = rdaItemClickListener;
     }
 
@@ -65,12 +65,12 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         return dataList.get(position);
     }
 
-    public void addItem(int position, ItemObject item) {
-
-        dataList.add(position, item);
-
-        notifyItemInserted(position);
-    }
+//    public void addItem(int position, ItemObject item) {
+//
+//        dataList.add(position, item);
+//
+//        notifyItemInserted(position);
+//    }
 
     public void removeItem(int position) {
 
@@ -79,7 +79,7 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         notifyItemRemoved(position);
     }
 
-    public void setData(List<ItemObject> dataList) {
+    public void setData(List<? extends  ItemObject> dataList) {
 
         this.dataList = dataList;
 
