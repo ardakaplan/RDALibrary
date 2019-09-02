@@ -84,6 +84,11 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     }
 
+    public RDAActivity getContainerActivity() {
+
+        return ((RDAActivity) getActivity());
+    }
+
     @Override
     public void changeStatusBarColor(@ColorRes int colorId) {
 

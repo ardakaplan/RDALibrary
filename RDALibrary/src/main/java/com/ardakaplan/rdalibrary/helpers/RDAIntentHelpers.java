@@ -37,7 +37,11 @@ public final class RDAIntentHelpers {
 
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        context.startActivity(Intent.createChooser(shareIntent, chooserText));
+        Intent chooserIntent = Intent.createChooser(shareIntent, chooserText);
+
+        chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(chooserIntent);
     }
 
     public void sendMessage(String phoneNo, String message) {
@@ -130,7 +134,6 @@ public final class RDAIntentHelpers {
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        context.startActivity(intent);
     }
 
     public Intent getClearCacheIntent(Class<?> cls) {
