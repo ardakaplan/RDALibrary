@@ -134,6 +134,7 @@ public final class RDAIntentHelpers {
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+        context.startActivity(intent);
     }
 
     public Intent getClearCacheIntent(Class<?> cls) {
