@@ -40,6 +40,6 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
     protected void initRDADialog() {
 
         RDADialog.registerIds(R.layout.af_dialog, R.id.afDialog_textView_title, R.id.afDialog_textView_message, R.id.afDialog_textView_button_positive,
-                R.id.afDialog_textView_button_negative, R.id.afDialog_textView_button_neutral);
+                R.id.afDialog_textView_button_negative, R.id.afDialog_textView_button_neutral, R.id.afDialog_imageView_icon);
     }
 }

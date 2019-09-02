@@ -2,13 +2,17 @@ package com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.StyleRes;
+import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -42,14 +46,24 @@ public class RDADialog extends Dialog {
     int dialogNegativeButtonTextViewId;
     protected static @IdRes
     int dialogNeutralTextViewId;
+    protected static @IdRes
+    int dialogImageViewId;
 
-    public static void registerIds(int dialogLayoutIdd, int dialogTitleTextViewIdd, int dialogMessageTextViewIdd, int dialogPositiveButtonTextViewIdd, int dialogNegativeButtonTextViewIdd, int dialogNeutralTextViewIdd) {
+    public ImageView iconImageView;
+    public TextView titleTextView;
+    public TextView messageTextView;
+    public TextView positiveTextView;
+    public TextView negativeTextView;
+    public TextView neutralTextView;
+
+    public static void registerIds(@LayoutRes int dialogLayoutIdd, @IdRes int dialogTitleTextViewIdd, @IdRes int dialogMessageTextViewIdd, @IdRes int dialogPositiveButtonTextViewIdd, @IdRes int dialogNegativeButtonTextViewIdd, @IdRes int dialogNeutralTextViewIdd, @IdRes int dialogImageViewIdd) {
         dialogLayoutId = dialogLayoutIdd;
         dialogTitleTextViewId = dialogTitleTextViewIdd;
         dialogMessageTextViewId = dialogMessageTextViewIdd;
         dialogPositiveButtonTextViewId = dialogPositiveButtonTextViewIdd;
         dialogNegativeButtonTextViewId = dialogNegativeButtonTextViewIdd;
         dialogNeutralTextViewId = dialogNeutralTextViewIdd;
+        dialogImageViewId = dialogImageViewIdd;
     }
 
     public RDADialog(Activity activity, @StyleRes int dialogTheme) {
@@ -76,6 +90,23 @@ public class RDADialog extends Dialog {
 
         //noinspection ConstantConditions
         this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        initViews();
+    }
+
+    private void initViews() {
+
+        titleTextView = findViewById(dialogTitleTextViewId);
+
+        messageTextView = findViewById(dialogMessageTextViewId);
+
+        iconImageView = findViewById(dialogImageViewId);
+
+        positiveTextView = findViewById(dialogPositiveButtonTextViewId);
+
+        negativeTextView = findViewById(dialogNegativeButtonTextViewId);
+
+        neutralTextView = findViewById(dialogNeutralTextViewId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -95,8 +126,6 @@ public class RDADialog extends Dialog {
     @Override
     public void setTitle(CharSequence titleText) {
 
-        TextView titleTextView = findViewById(dialogTitleTextViewId);
-
         titleTextView.setVisibility(View.VISIBLE);
 
         titleTextView.setText(titleText);
@@ -115,15 +144,18 @@ public class RDADialog extends Dialog {
 
     public RDADialog setBody(String bodyText) {
 
-        TextView bodyRdaTextView = findViewById(dialogMessageTextViewId);
+        messageTextView.setText(bodyText);
 
-        bodyRdaTextView.setText(bodyText);
+        messageTextView.setVisibility(View.VISIBLE);
 
-        bodyRdaTextView.setVisibility(View.VISIBLE);
-
-        bodyRdaTextView.setMovementMethod(new ScrollingMovementMethod());
+        messageTextView.setMovementMethod(new ScrollingMovementMethod());
 
         return this;
+    }
+
+    public void setImageView(@DrawableRes int drawableId) {
+
+        iconImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), drawableId));
     }
 
     public RDADialog setPositiveButton(@StringRes int positiveButtonTextID) {
@@ -132,8 +164,6 @@ public class RDADialog extends Dialog {
     }
 
     public RDADialog setPositiveButton(String positiveButtonText) {
-
-        TextView positiveTextView = findViewById(dialogPositiveButtonTextViewId);
 
         positiveTextView.setText(positiveButtonText);
 
@@ -158,8 +188,6 @@ public class RDADialog extends Dialog {
 
     public RDADialog setNegativeButton(String negativeButtonText) {
 
-        TextView negativeTextView = findViewById(dialogNegativeButtonTextViewId);
-
         negativeTextView.setVisibility(View.VISIBLE);
 
         negativeTextView.setText(negativeButtonText);
@@ -182,8 +210,6 @@ public class RDADialog extends Dialog {
     }
 
     public RDADialog setNeutralButton(String neutralButtonText) {
-
-        TextView neutralTextView = findViewById(dialogNeutralTextViewId);
 
         neutralTextView.setVisibility(View.VISIBLE);
 
