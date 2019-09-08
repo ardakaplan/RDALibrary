@@ -16,4 +16,16 @@
         android:layout_height="wrap_content"
         android:text="Get Selected Language" />
 
+    <Button
+        android:id="@+id/language_test_activity_button_turkish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MAKE TURKISH" />
+
+    <Button
+        android:id="@+id/language_test_activity_button_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MAKE ENGLISH" />
+
 </LinearLayout>

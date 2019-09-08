@@ -4,8 +4,10 @@ import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
+import com.ardakaplan.rdalibrary.helpers.RDAIntentHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.ui.splash.SplashActivity;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Random;
@@ -23,6 +25,9 @@ public class LanguageTestActivity extends RDAActivity {
 
     @Inject
     LanguageManager languageManager;
+
+    @Inject
+    RDAIntentHelpers rdaIntentHelpers;
 
     @OnClick(R.id.language_test_activity_button_changeLanguage)
     void clickedChangeLanguage() {
@@ -44,6 +49,22 @@ public class LanguageTestActivity extends RDAActivity {
         Toast.makeText(this, languageManager.getSelectedLanguage().name(), Toast.LENGTH_SHORT).show();
 
         RDALogger.info("SELECTED LANGUAGE -> " + languageManager.getSelectedLanguage());
+    }
+
+    @OnClick(R.id.language_test_activity_button_turkish)
+    void clickedTurkish() {
+
+        languageManager.setSelectedLanguage(LanguageManager.Language.TURKISH);
+
+        startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
+    }
+
+    @OnClick(R.id.language_test_activity_button_english)
+    void clickedEnglish() {
+
+        languageManager.setSelectedLanguage(LanguageManager.Language.ENGLISH);
+
+        startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
     }
 
     @Override

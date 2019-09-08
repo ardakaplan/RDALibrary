@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_10dp"
+        android:text="@string/language_test"
+        android:textSize="@dimen/_15sp" />
+
     <Button
         android:id="@+id/splash_activity_button_fileTest"
         android:layout_width="match_parent"
