@@ -22,41 +22,4 @@ final class ScreenHelpers {
     }
 
 
-    static Context attachBaseContext(Context context, Application application) {
-
-        if (application != null) {
-
-            return changeLanguage(context, new Locale(((RDAApplication) application).getSelectedLanguage().getCode()));
-
-        } else {
-
-            return context;
-        }
-    }
-
-    static Context changeLanguage(Context context, Locale newLocale) {
-
-        Configuration configuration = context.getResources().getConfiguration();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
-            configuration.setLocale(newLocale);
-
-            LocaleList localeList = new LocaleList(newLocale);
-
-            LocaleList.setDefault(localeList);
-
-            configuration.setLocales(localeList);
-
-            context = context.createConfigurationContext(configuration);
-
-        } else {
-
-            configuration.setLocale(newLocale);
-
-            context = context.createConfigurationContext(configuration);
-        }
-
-        return context;
-    }
 }

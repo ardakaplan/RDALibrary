@@ -1,13 +1,15 @@
 package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
-import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 
+import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
+import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -27,22 +29,27 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         className = getClass().getSimpleName();
     }
 
-    @Override
-    public Context changeLanguage(Context context, Locale locale) {
+    private void checkLanguageAndChange() {
 
-        return ScreenHelpers.changeLanguage(context, locale);
-    }
+        LanguageManager.Language selectedLanguage = ((RDAApplication) getApplication()).getSelectedLanguage();
 
-    @Override
-    protected void attachBaseContext(Context context) {
+        Configuration configuration = getResources().getConfiguration();
 
-        super.attachBaseContext(ScreenHelpers.attachBaseContext(context, getApplication()));
+        Locale.setDefault(selectedLanguage.getLocale());
+
+        Configuration config = new Configuration();
+
+        config.locale = selectedLanguage.getLocale();
+
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        checkLanguageAndChange();
 
         RDALogger.logLifeCycle(className);
 
@@ -52,6 +59,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         if (getPresenterContract() != null) {
 
+            //noinspection unchecked
             getPresenterContract().attach(this);
         }
     }

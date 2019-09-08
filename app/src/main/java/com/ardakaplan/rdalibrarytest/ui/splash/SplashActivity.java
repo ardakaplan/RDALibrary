@@ -1,6 +1,7 @@
 package com.ardakaplan.rdalibrarytest.ui.splash;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -10,6 +11,7 @@ import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
+import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
@@ -17,6 +19,7 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -27,10 +30,17 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @Inject
     SplashContract.SplashPresenterContract presenter;
 
+    @Inject
+    LanguageManager languageManager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+
+
+
+
 
         encryptTest();
     }
