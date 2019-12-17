@@ -13,7 +13,7 @@ artifacts {
     archives sourceJar
 }
 
-if (devDir != null) {
+if (aarDirectory != null) {
 
     afterEvaluate {
         assembleDebug.doLast { sourceJar.execute() }.finalizedBy(copyAAR)
@@ -21,10 +21,10 @@ if (devDir != null) {
 
     task copyAAR(type: Copy) {
 
-        if (devDir != null) {
+        if (aarDirectory != null) {
 
             from 'build/outputs/aar', 'build/libs'
-            into devDir
+            into aarDirectory
             include '**/*debug.aar', '**/*sources.jar'
 
         }

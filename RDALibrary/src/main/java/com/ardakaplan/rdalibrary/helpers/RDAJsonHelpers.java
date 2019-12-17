@@ -9,6 +9,7 @@ import com.google.gson.stream.JsonReader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public final class RDAJsonHelpers {
@@ -17,7 +18,7 @@ public final class RDAJsonHelpers {
 
     }
 
-    public static String listToJson(ArrayList<?> list) {
+    public static String listToJson(List<?> list) {
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 

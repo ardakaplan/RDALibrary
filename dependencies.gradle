@@ -16,8 +16,8 @@ if (localFile.exists()) {
 
 ext {
 
-    devDir = localProperties != null ? localProperties.getProperty("aar.dir") : null
-    println('AAR dir is: ' + devDir)
+    aarDirectory = localProperties != null ? localProperties.getProperty("aar.dir") : null
+    println('AAR directory is: ' + aarDirectory)
 
     //Android Base
     androidBuildToolsVersion = "28.0.3"
@@ -52,9 +52,9 @@ ext {
     use_rda_retrofit_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_retrofit_from_local")) : false
 
     //    FILE EXISTANCE
-    rda_lib_exists = file(devDir + RDA_LIB_AAR_NAME).exists()
-    rda_google_play_apps_lib_exists = file(devDir + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
-    rda_retrofit_lib_exists = file(devDir + RDA_RETROFIT_AAR_NAME).exists()
+    rda_lib_exists = file(aarDirectory + RDA_LIB_AAR_NAME).exists()
+    rda_google_play_apps_lib_exists = file(aarDirectory + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
+    rda_retrofit_lib_exists = file(aarDirectory + RDA_RETROFIT_AAR_NAME).exists()
 
     //    USE LOCAL ADJUSTMENT
     use_rda_lib_local = use_rda_lib_from_local && rda_lib_exists

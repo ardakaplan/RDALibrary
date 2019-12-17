@@ -7,7 +7,7 @@ package com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog;
  * <p>
  * www.ardakaplan.com
  */
-public enum ButtonType {
+public enum RDADialogButtonType {
 
     POSITIVE,
     NEGATIVE,

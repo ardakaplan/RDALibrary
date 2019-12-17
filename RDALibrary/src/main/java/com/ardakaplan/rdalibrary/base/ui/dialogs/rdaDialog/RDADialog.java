@@ -12,10 +12,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.Objects;
 
 /**
  * Created by Arda Kaplan on 04.12.2016 - 06:49
@@ -25,10 +22,10 @@ import java.util.Objects;
  * www.ardakaplan.com
  */
 
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "JavaDoc"})
 public class RDADialog extends Dialog {
 
-    private ButtonClickListener buttonClickListener = null;
+    private RDAButtonClickListener RDAButtonClickListener = null;
     //
     private Activity activity;
     //
@@ -48,6 +45,8 @@ public class RDADialog extends Dialog {
     int dialogNeutralTextViewId;
     protected static @IdRes
     int dialogImageViewId;
+    protected static @StyleRes
+    int dialogStyleId;
 
     public ImageView iconImageView;
     public TextView titleTextView;
@@ -56,7 +55,28 @@ public class RDADialog extends Dialog {
     public TextView negativeTextView;
     public TextView neutralTextView;
 
-    public static void registerIds(@LayoutRes int dialogLayoutIdd, @IdRes int dialogTitleTextViewIdd, @IdRes int dialogMessageTextViewIdd, @IdRes int dialogPositiveButtonTextViewIdd, @IdRes int dialogNegativeButtonTextViewIdd, @IdRes int dialogNeutralTextViewIdd, @IdRes int dialogImageViewIdd) {
+    /**
+     * send 0(zero) for unused fields
+     *
+     * @param dialogStyleIdd
+     * @param dialogLayoutIdd
+     * @param dialogTitleTextViewIdd
+     * @param dialogMessageTextViewIdd
+     * @param dialogPositiveButtonTextViewIdd
+     * @param dialogNegativeButtonTextViewIdd
+     * @param dialogNeutralTextViewIdd
+     * @param dialogImageViewIdd
+     */
+    public static void registerIds(
+            @StyleRes int dialogStyleIdd,
+            @LayoutRes int dialogLayoutIdd,
+            @IdRes int dialogTitleTextViewIdd,
+            @IdRes int dialogMessageTextViewIdd,
+            @IdRes int dialogPositiveButtonTextViewIdd,
+            @IdRes int dialogNegativeButtonTextViewIdd,
+            @IdRes int dialogNeutralTextViewIdd,
+            @IdRes int dialogImageViewIdd) {
+        dialogStyleId = dialogStyleIdd;
         dialogLayoutId = dialogLayoutIdd;
         dialogTitleTextViewId = dialogTitleTextViewIdd;
         dialogMessageTextViewId = dialogMessageTextViewIdd;
@@ -91,6 +111,11 @@ public class RDADialog extends Dialog {
         //noinspection ConstantConditions
         this.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
+        if (dialogStyleId != 0) {
+
+            getWindow().getAttributes().windowAnimations = dialogStyleId;
+        }
+
         initViews();
     }
 
@@ -110,9 +135,9 @@ public class RDADialog extends Dialog {
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public RDADialog setButtonListener(ButtonClickListener buttonClickListener) {
+    public RDADialog setButtonListener(RDAButtonClickListener RDAButtonClickListener) {
 
-        this.buttonClickListener = buttonClickListener;
+        this.RDAButtonClickListener = RDAButtonClickListener;
 
         return this;
     }
@@ -174,7 +199,7 @@ public class RDADialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-                buttonClickListener.onClick(RDADialog.this, ButtonType.POSITIVE);
+                RDAButtonClickListener.onClick(RDADialog.this, RDADialogButtonType.POSITIVE);
             }
         });
 
@@ -197,7 +222,7 @@ public class RDADialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-                buttonClickListener.onClick(RDADialog.this, ButtonType.NEGATIVE);
+                RDAButtonClickListener.onClick(RDADialog.this, RDADialogButtonType.NEGATIVE);
             }
         });
 
@@ -220,7 +245,7 @@ public class RDADialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-                buttonClickListener.onClick(RDADialog.this, ButtonType.NEUTRAL);
+                RDAButtonClickListener.onClick(RDADialog.this, RDADialogButtonType.NEUTRAL);
             }
         });
 
@@ -228,28 +253,26 @@ public class RDADialog extends Dialog {
     }
 
     public static void showDialog(Activity activity,
-                                  @StyleRes int dialogTheme,
                                   String title,
                                   String message,
                                   String positiveButtonText,
                                   String negativeButtonText,
                                   String neutralButtonText,
-                                  @StyleRes int styleId,
                                   Boolean cancelable,
-                                  ButtonClickListener buttonClickListener) {
+                                  RDAButtonClickListener RDAButtonClickListener) {
 
         RDADialog rdaDialog;
 
-        if (dialogTheme == 0) {
+        if (dialogStyleId == 0) {
 
             rdaDialog = new RDADialog(activity);
 
         } else {
 
-            rdaDialog = new RDADialog(activity, dialogTheme);
+            rdaDialog = new RDADialog(activity, dialogStyleId);
         }
 
-        rdaDialog.setButtonListener(buttonClickListener);
+        rdaDialog.setButtonListener(RDAButtonClickListener);
 
         if (cancelable != null) {
 
@@ -281,11 +304,6 @@ public class RDADialog extends Dialog {
         if (neutralButtonText != null) {
 
             rdaDialog.setNeutralButton(neutralButtonText);
-        }
-
-        if (styleId != 0) {
-
-            Objects.requireNonNull(rdaDialog.getWindow()).getAttributes().windowAnimations = styleId;
         }
 
         rdaDialog.show();

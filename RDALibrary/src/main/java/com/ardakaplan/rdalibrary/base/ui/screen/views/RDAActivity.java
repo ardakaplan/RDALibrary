@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
-import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalogger.RDALogger;
 
@@ -154,21 +153,6 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         onScreen = false;
 
         RDALogger.logLifeCycle(className);
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        RDAFragment currentFragment = RDAFragmentHelpers.getCurrentFragment(this);
-
-        if (currentFragment != null && currentFragment.getOnBackPressControl()) {
-
-            currentFragment.onBackPressed();
-
-        } else {
-
-            super.onBackPressed();
-        }
     }
 
     public void directOnBackPressed() {

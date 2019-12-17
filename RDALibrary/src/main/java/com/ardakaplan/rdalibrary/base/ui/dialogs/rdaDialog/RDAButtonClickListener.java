@@ -8,7 +8,7 @@ package com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog;
  * www.ardakaplan.com
  */
 
-public interface ButtonClickListener {
+public interface RDAButtonClickListener {
 
-    void onClick(RDADialog rdaDialog, ButtonType buttonType);
+    void onClick(RDADialog rdaDialog, RDADialogButtonType RDADialogButtonType);
 }

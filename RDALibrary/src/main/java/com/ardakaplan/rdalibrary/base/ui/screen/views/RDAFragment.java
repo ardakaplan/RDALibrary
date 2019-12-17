@@ -75,11 +75,6 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     }
 
-    public boolean getOnBackPressControl() {
-
-        return false;
-    }
-
     public void onBackPressed() {
 
     }
