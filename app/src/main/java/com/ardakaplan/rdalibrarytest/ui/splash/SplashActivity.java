@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonClickListener;
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.ButtonType;
+import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDAButtonClickListener;
+import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialogButtonType;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
@@ -93,20 +93,19 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     @OnClick(R.id.splash_activity_button_dialogTest)
     void clickedDialogTest() {
 
-        RDADialog.showDialog(this, R.style.Theme_Dialog, "TITLE",
+        RDADialog.showDialog(this, "TITLE",
                 "MESSAGE",
                 "POSITIVE",
                 "NEGATIVE",
                 "NEUTRAL",
-                0,
                 false,
-                new ButtonClickListener() {
+                new RDAButtonClickListener() {
                     @Override
-                    public void onClick(RDADialog rdaDialog, ButtonType buttonType) {
+                    public void onClick(RDADialog rdaDialog, RDADialogButtonType RDADialogButtonType) {
 
                         rdaDialog.dismiss();
 
-                        switch (buttonType) {
+                        switch (RDADialogButtonType) {
 
                             case POSITIVE:
 
