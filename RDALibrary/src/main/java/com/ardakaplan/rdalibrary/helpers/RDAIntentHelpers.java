@@ -163,7 +163,7 @@ public final class RDAIntentHelpers {
 
         } catch (ActivityNotFoundException anfe) {
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.googrle.com/store/apps/details?id=" + packageName));
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
