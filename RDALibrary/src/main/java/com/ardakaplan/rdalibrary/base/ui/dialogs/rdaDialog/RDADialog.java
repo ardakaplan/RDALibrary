@@ -180,6 +180,8 @@ public class RDADialog extends Dialog {
 
     public void setImageView(@DrawableRes int drawableId) {
 
+        iconImageView.setVisibility(View.VISIBLE);
+
         iconImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), drawableId));
     }
 
@@ -258,6 +260,7 @@ public class RDADialog extends Dialog {
                                   String positiveButtonText,
                                   String negativeButtonText,
                                   String neutralButtonText,
+                                  @DrawableRes Integer imageViewDrawable,
                                   Boolean cancelable,
                                   RDAButtonClickListener RDAButtonClickListener) {
 
@@ -304,6 +307,11 @@ public class RDADialog extends Dialog {
         if (neutralButtonText != null) {
 
             rdaDialog.setNeutralButton(neutralButtonText);
+        }
+
+        if (imageViewDrawable != null) {
+
+            rdaDialog.setImageView(imageViewDrawable);
         }
 
         rdaDialog.show();

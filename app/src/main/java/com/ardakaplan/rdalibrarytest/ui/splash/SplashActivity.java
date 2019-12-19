@@ -98,6 +98,7 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
                 "POSITIVE",
                 "NEGATIVE",
                 "NEUTRAL",
+                null,
                 false,
                 new RDAButtonClickListener() {
                     @Override
