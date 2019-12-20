@@ -1,10 +1,11 @@
 package com.ardakaplan.rdalibrary.base.ui.views;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import java.util.Timer;
 import java.util.TimerTask;

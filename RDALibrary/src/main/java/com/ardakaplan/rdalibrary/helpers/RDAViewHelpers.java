@@ -1,14 +1,15 @@
 package com.ardakaplan.rdalibrary.helpers;
 
 import android.content.Context;
-import android.support.annotation.AttrRes;
-import android.support.annotation.ColorInt;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

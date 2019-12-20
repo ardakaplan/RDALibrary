@@ -13,10 +13,7 @@ import java.util.regex.Pattern;
 
 
 @SuppressWarnings("unused")
-public final class RDAStringHelpers {
-
-    private RDAStringHelpers() {
-    }
+public class RDAStringHelpers {
 
     public static String getAsJson(Object object) {
 

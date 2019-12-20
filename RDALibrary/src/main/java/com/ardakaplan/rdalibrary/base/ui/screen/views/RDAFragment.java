@@ -2,12 +2,13 @@ package com.ardakaplan.rdalibrary.base.ui.screen.views;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ScreenContract;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;

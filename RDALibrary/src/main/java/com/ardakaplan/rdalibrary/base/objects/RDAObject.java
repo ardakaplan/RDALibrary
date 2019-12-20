@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrary.base.objects;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
 

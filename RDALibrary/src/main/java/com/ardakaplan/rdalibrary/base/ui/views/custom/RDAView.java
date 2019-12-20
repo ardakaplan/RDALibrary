@@ -1,10 +1,11 @@
 package com.ardakaplan.rdalibrary.base.ui.views.custom;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.LayoutRes;
 
 /**
  * Created by Arda Kaplan on 18-Mar-19 - 10:07
