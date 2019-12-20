@@ -26,14 +26,14 @@ ext {
     androidCompileSdkVersion = 28
 
     //3th PARTY LIB VERSIONS
-    android_support_version = "28.0.0"
     swipe_layout_version = "1.2.0@aar"
-    butter_knife_version = "8.8.1"
+    butter_knife_version = "10.0.0"
     dagger_version = "2.16"
     retrofit_version = "2.4.0"
     retrofit_converter_gson_version = "2.4.0"
     retrofit_converter_scalars_version = "2.4.0"
     okhttp3_logging_interceptor_version = "3.10.0"
+    androidx_appcombat = "1.1.0"
 
     //RDA LIBS NAME
     RDA_LIB_AAR_NAME = "/RDALibrary-debug.aar"
@@ -51,12 +51,12 @@ ext {
     use_rda_google_play_lib_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_google_play_lib_from_local")) : false
     use_rda_retrofit_from_local = properties != null ? Boolean.valueOf(localProperties.getProperty("use_rda_retrofit_from_local")) : false
 
-    //    FILE EXISTANCE
+    //FILE EXISTANCE
     rda_lib_exists = file(aarDirectory + RDA_LIB_AAR_NAME).exists()
     rda_google_play_apps_lib_exists = file(aarDirectory + RDA_GOOGLE_PLAY_APPS_LIB_AAR_NAME).exists()
     rda_retrofit_lib_exists = file(aarDirectory + RDA_RETROFIT_AAR_NAME).exists()
 
-    //    USE LOCAL ADJUSTMENT
+    //USE LOCAL ADJUSTMENT
     use_rda_lib_local = use_rda_lib_from_local && rda_lib_exists
     use_rda_google_play_apps_lib_local = use_rda_google_play_lib_from_local && rda_google_play_apps_lib_exists
     use_retrofit_lib_local = use_rda_retrofit_from_local && rda_retrofit_lib_exists

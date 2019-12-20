@@ -3,8 +3,9 @@ package com.ardakaplan.rdalibrarytest.ui.filetest;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;

@@ -1,8 +1,9 @@
 package com.ardakaplan.rdalibrary.base.ui.views.fontables.edittexts;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatEditText;
 
 import com.ardakaplan.rdalibrary.base.ui.views.fontables.edittexts.validators.Validator;
 

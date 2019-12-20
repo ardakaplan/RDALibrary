@@ -3,7 +3,8 @@ package com.ardakaplan.rdalibrary.helpers;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Arda Kaplan at 1/13/2019

@@ -1,7 +1,7 @@
 package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 

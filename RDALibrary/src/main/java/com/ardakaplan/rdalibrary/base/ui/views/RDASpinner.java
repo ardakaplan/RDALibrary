@@ -1,8 +1,9 @@
 package com.ardakaplan.rdalibrary.base.ui.views;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatSpinner;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatSpinner;
 
 /**
  * Created by ardakaplan on 31/05/16.

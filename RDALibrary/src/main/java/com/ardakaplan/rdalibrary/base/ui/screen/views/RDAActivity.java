@@ -3,8 +3,9 @@ package com.ardakaplan.rdalibrary.base.ui.screen.views;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;

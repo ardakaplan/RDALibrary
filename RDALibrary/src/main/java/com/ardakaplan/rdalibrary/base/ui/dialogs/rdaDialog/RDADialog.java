@@ -2,17 +2,18 @@ package com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by Arda Kaplan on 04.12.2016 - 06:49

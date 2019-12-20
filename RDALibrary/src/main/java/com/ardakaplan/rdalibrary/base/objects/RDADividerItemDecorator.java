@@ -2,9 +2,10 @@ package com.ardakaplan.rdalibrary.base.objects;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Arda Kaplan at 29-Aug-19
