@@ -36,48 +36,48 @@ public class SplashActivity extends RDAActivity implements SplashContract.Splash
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        encryptTest();
+//        encryptTest();
     }
 
-    private void encryptTest() {
+//    private void encryptTest() {
+//
+//        String source = "Arda KaplanĞÜŞİÖÇğüşiöç";
+//
+//        try {
+//            String encrypt = RDAAESCryptionHelper.encrypt("112312321312", source);
+//
+//            RDALogger.info(encrypt);
+//
+//            decryptTest(encrypt);
+//
+//        } catch (GeneralSecurityException e) {
+//
+//            e.printStackTrace();
+//
+//        } catch (UnsupportedEncodingException e) {
+//
+//            e.printStackTrace();
+//
+//        }
+//    }
 
-        String source = "Arda KaplanĞÜŞİÖÇğüşiöç";
-
-        try {
-            String encrypt = RDAAESCryptionHelper.encrypt("112312321312", source);
-
-            RDALogger.info(encrypt);
-
-            decryptTest(encrypt);
-
-        } catch (GeneralSecurityException e) {
-
-            e.printStackTrace();
-
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-
-        }
-    }
-
-    private void decryptTest(String encryptedText) {
-
-        try {
-
-            String decrypt = RDAAESCryptionHelper.decrypt("112312321312", encryptedText);
-
-            RDALogger.info(decrypt);
-
-        } catch (GeneralSecurityException e) {
-
-            e.printStackTrace();
-
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-        }
-    }
+//    private void decryptTest(String encryptedText) {
+//
+//        try {
+//
+//            String decrypt = RDAAESCryptionHelper.decrypt("112312321312", encryptedText);
+//
+//            RDALogger.info(decrypt);
+//
+//        } catch (GeneralSecurityException e) {
+//
+//            e.printStackTrace();
+//
+//        } catch (UnsupportedEncodingException e) {
+//
+//            e.printStackTrace();
+//        }
+//    }
 
     @OnClick(R.id.splash_activity_button_fileTest)
     void clickedFileTest() {
