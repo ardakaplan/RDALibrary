@@ -47,25 +47,25 @@ configurations.all {
 
 dependencies {
 
-    api "androidx.appcompat:appcompat:$androidx_appcombat"
-    api "androidx.recyclerview:recyclerview:$androidx_appcombat"
+    compileOnly "androidx.appcompat:appcompat:$androidx_appcombat"
+    compileOnly "androidx.recyclerview:recyclerview:$androidx_appcombat"
 
     //SWIPE LIST
-    api "com.daimajia.swipelayout:library:$swipe_layout_version"
+    api "com.daimajia.swipelayout:library:1.2.0@aar"
 
     //RDA-LOGGER
-    api "com.github.ardakaplan:RDALogger:$rda_logger_version"
+    compileOnly "com.github.ardakaplan:RDALogger:$rda_logger_version"
 
     //GSON
-    api "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+    compileOnly "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
 
     //BUTTER KNIFE
-    api "com.jakewharton:butterknife:$butter_knife_version"
+    compileOnly "com.jakewharton:butterknife:$butter_knife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
-    api "com.google.dagger:dagger:$dagger_version"
-    api("com.google.dagger:dagger-android-support:$dagger_version") {
+    compileOnly "com.google.dagger:dagger:$dagger_version"
+    compileOnly("com.google.dagger:dagger-android-support:$dagger_version") {
         exclude group: 'com.android.support', module: 'support-fragment'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'appcompat-v7'

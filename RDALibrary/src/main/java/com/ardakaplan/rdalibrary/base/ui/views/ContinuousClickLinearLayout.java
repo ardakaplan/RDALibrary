@@ -13,6 +13,7 @@ import java.util.TimerTask;
 /**
  * Created by Arda Kaplan on 12-Apr-19 - 11:04
  */
+@SuppressWarnings("unused")
 public class ContinuousClickLinearLayout extends LinearLayout {
 
     private static final int CLICK_COUNT_THRESHOLD = 5;
@@ -29,6 +30,7 @@ public class ContinuousClickLinearLayout extends LinearLayout {
 
     private Timer timer = null;
 
+    private ButtonTouchListener buttonTouchListener;
 
     public ContinuousClickLinearLayout(Context context) {
         super(context);
@@ -47,12 +49,21 @@ public class ContinuousClickLinearLayout extends LinearLayout {
     }
 
 
+    public void setButtonTouchListener(ButtonTouchListener buttonTouchListener) {
+        this.buttonTouchListener = buttonTouchListener;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
             if ((isClickable() || hasOnClickListeners()) && repeatedClick) {
+
+                if (buttonTouchListener != null) {
+
+                    buttonTouchListener.onTouched();
+                }
 
                 autoClick = true;
 
@@ -66,6 +77,11 @@ public class ContinuousClickLinearLayout extends LinearLayout {
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
 
             if (repeatedClick) {
+
+                if (buttonTouchListener != null) {
+
+                    buttonTouchListener.onReleased();
+                }
 
                 resetClickValues();
 
@@ -132,5 +148,12 @@ public class ContinuousClickLinearLayout extends LinearLayout {
                 ContinuousClickLinearLayout.this.postDelayed(new Clicker(), clickPeriod);
             }
         }
+    }
+
+    public interface ButtonTouchListener {
+
+        void onTouched();
+
+        void onReleased();
     }
 }
