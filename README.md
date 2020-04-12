@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/ardakaplan/RDALibrary.svg)](https://jitpack.io/#ardakaplan/RDALibrary)
+
 **CHANGE LOG**
 
 `v1.0.2`
@@ -13,4 +15,3 @@
 - added RDALogger as a gradle link
 
 
-[![](https://jitpack.io/v/ardakaplan/RDALibrary.svg)](https://jitpack.io/#ardakaplan/RDALibrary)
