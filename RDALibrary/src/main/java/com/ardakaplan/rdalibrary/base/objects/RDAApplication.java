@@ -12,6 +12,7 @@ import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalogger.RDALogger;
+import com.ardakaplan.rdalogger.RDALoggerConfig;
 
 import javax.inject.Inject;
 
@@ -42,7 +43,7 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public void onCreate() {
         super.onCreate();
 
-        RDALogger.start(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
+        RDALoggerConfig.setup(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
 
         initDagger();
 

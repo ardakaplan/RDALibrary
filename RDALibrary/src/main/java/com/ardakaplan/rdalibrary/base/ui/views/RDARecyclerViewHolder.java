@@ -5,8 +5,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import butterknife.ButterKnife;
-
 /**
  * Created by Arda Kaplan at 23-Jul-19
  * <p>
@@ -16,7 +14,5 @@ public abstract class RDARecyclerViewHolder extends RecyclerView.ViewHolder {
 
     public RDARecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
-
-        ButterKnife.bind(this, itemView);
     }
 }

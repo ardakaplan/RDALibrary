@@ -9,22 +9,18 @@ import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDAButtonClickListene
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialogButtonType;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
-import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
-import com.ardakaplan.rdalibrary.helpers.RDAAESCryptionHelper;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
 import com.ardakaplan.rdalogger.RDALogger;
-
-import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 
 import javax.inject.Inject;
 
 import butterknife.OnClick;
 
-public class SplashActivity extends RDAActivity implements SplashContract.SplashViewContract {
+public class SplashActivity extends BaseActivity implements SplashContract.SplashViewContract {
 
     @Inject
     SplashContract.SplashPresenterContract presenter;

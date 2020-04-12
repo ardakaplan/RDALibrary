@@ -16,15 +16,12 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.Serializable;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
 public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract {
 
-    private Unbinder unbinder;
 
     public String className;
 
@@ -64,8 +61,6 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         RDALogger.logLifeCycle(className);
 
         View view = inflater.inflate(getLayout(), container, false);
-
-        unbinder = ButterKnife.bind(this, view);
 
         initViews(view);
 
@@ -141,11 +136,6 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         if (getPresenterContract() != null) {
 
             getPresenterContract().detach();
-        }
-
-        if (unbinder != null) {
-
-            unbinder.unbind();
         }
 
         RDALogger.logLifeCycle(className);

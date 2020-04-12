@@ -26,7 +26,6 @@ ext {
     androidCompileSdkVersion = 28
 
     //3th PARTY LIB VERSIONS
-    butter_knife_version = "10.0.0"
     dagger_version = "2.16"
     retrofit_version = "2.4.0"
     retrofit_converter_gson_version = "2.4.0"
@@ -40,7 +39,7 @@ ext {
     RDA_RETROFIT_AAR_NAME = "/RDARetrofitLib-debug.aar"
 
     //RDA LIBS VERSION
-    rda_logger_version = "1.0.2"
+    rda_logger_version = "2.0.0"
     rda_lib_version = "1.0.13"
     rda_google_play_apps_lib_version = "1.0.0"
     rda_retrofit_lib_version = "development-SNAPSHOT"

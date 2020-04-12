@@ -47,7 +47,7 @@ configurations.all {
 
 dependencies {
 
-    compileOnly "androidx.appcompat:appcompat:$androidx_appcombat"
+//    compileOnly "androidx.appcompat:appcompat:$androidx_appcombat"
     compileOnly "androidx.recyclerview:recyclerview:$androidx_appcombat"
 
     //SWIPE LIST
@@ -58,10 +58,6 @@ dependencies {
 
     //GSON
     compileOnly "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
-
-    //BUTTER KNIFE
-    compileOnly "com.jakewharton:butterknife:$butter_knife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife_version"
 
     //DAGGER
     compileOnly "com.google.dagger:dagger:$dagger_version"

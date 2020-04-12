@@ -9,8 +9,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.ardakaplan.rdalibrary.base.files.RDAFileProperty;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
-import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.ApplicationFolder;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.InnerFolder;
 import com.ardakaplan.rdalibrarytest.ui.filetest.data.TestTextProperty;
@@ -23,7 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.OnClick;
 
-public class FileTestActivity extends RDAActivity {
+public class FileTestActivity extends BaseActivity {
 
     @Inject
     ApplicationFolder applicationFolder;
