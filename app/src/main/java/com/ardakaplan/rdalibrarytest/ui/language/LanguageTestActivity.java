@@ -3,10 +3,10 @@ package com.ardakaplan.rdalibrarytest.ui.language;
 import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
-import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.helpers.RDAIntentHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
 import com.ardakaplan.rdalibrarytest.ui.splash.SplashActivity;
 import com.ardakaplan.rdalogger.RDALogger;
 
@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * <p>
  * arda.kaplan09@gmail.com
  */
-public class LanguageTestActivity extends RDAActivity {
+public class LanguageTestActivity extends BaseActivity {
 
     @Inject
     LanguageManager languageManager;
