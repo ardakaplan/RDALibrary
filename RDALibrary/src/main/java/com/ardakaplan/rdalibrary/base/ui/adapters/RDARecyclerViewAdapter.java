@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ardakaplan.rdalibrary.interfaces.RDAItemClickListener;
+import com.ardakaplan.rdalibrary.interfaces.RDAItemListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected RDAItemClickListener<ItemObject> rdaItemClickListener;
+    protected RDAItemListener<ItemObject> rdaItemListener;
 
     protected List<ItemObject> dataList = new ArrayList<>();
 
@@ -35,17 +35,44 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
     }
 
     public RDARecyclerViewAdapter(List<ItemObject> dataList) {
-        this.dataList = dataList;
+
+        this(dataList, null);
     }
 
-    public void setRdaItemClickListener(RDAItemClickListener<ItemObject> rdaItemClickListener) {
-        this.rdaItemClickListener = rdaItemClickListener;
+    public RDARecyclerViewAdapter(RDAItemListener<ItemObject> rdaItemListener) {
+
+        setRdaItemListener(rdaItemListener);
+    }
+
+    public RDARecyclerViewAdapter(List<ItemObject> dataList, RDAItemListener<ItemObject> rdaItemListener) {
+        this.dataList = dataList;
+
+        setRdaItemListener(rdaItemListener);
+    }
+
+    public void setRdaItemListener(RDAItemListener<ItemObject> rdaItemListener) {
+        this.rdaItemListener = rdaItemListener;
     }
 
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getViewHolderInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
+    }
+
+    protected void setItemClick(VH vh, ItemObject itemObject) {
+
+        if (rdaItemListener != null) {
+
+            vh.itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    rdaItemListener.onItemClick(itemObject);
+                }
+            });
+        }
     }
 
     /**

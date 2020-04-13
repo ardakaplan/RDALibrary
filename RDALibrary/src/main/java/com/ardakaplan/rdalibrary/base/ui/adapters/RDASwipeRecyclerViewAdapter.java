@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ardakaplan.rdalibrary.interfaces.RDAItemClickListener;
+import com.ardakaplan.rdalibrary.interfaces.RDAItemListener;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
 import java.util.ArrayList;
@@ -21,12 +21,12 @@ import java.util.List;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class RDASwipeRecyclerViewAdapter<W, VH extends RecyclerView.ViewHolder> extends RecyclerSwipeAdapter<VH> {
 
-    protected RDAItemClickListener<W> rdaItemClickListener;
+    protected RDAItemListener<W> rdaItemListener;
 
     protected List<W> dataList;
 
-    public void setRdaItemClickListener(RDAItemClickListener<W> rdaItemClickListener) {
-        this.rdaItemClickListener = rdaItemClickListener;
+    public void setRdaItemListener(RDAItemListener<W> rdaItemListener) {
+        this.rdaItemListener = rdaItemListener;
     }
 
     public RDASwipeRecyclerViewAdapter(List<W> dataList) {
