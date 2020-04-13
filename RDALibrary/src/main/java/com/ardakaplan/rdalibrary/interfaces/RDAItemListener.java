@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrary.interfaces;
 
-public interface RDAItemClickListener<W> {
+public interface RDAItemListener<W> {
 
     void onItemClick(W w);
 }
