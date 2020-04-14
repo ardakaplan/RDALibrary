@@ -15,8 +15,10 @@ artifacts {
 
 if (aarDirectory != null) {
 
+    println('RDALib.aar file is creating under ' + aarDirectory)
+
     afterEvaluate {
-        assembleDebug.doLast { sourceJar.execute() }.finalizedBy(copyAAR)
+        assembleDebug.finalizedBy(copyAAR)
     }
 
     task copyAAR(type: Copy) {
