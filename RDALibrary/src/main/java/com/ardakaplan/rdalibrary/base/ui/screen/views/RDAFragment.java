@@ -62,10 +62,17 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
         View view = inflater.inflate(getLayout(), container, false);
 
+        makeButterKnifeInitIfNeeded(view);
+
         initViews(view);
 
         return view;
     }
+
+    protected void makeButterKnifeInitIfNeeded(View view) {
+
+    }
+
 
     protected void initViews(View parentView) {
 
@@ -133,12 +140,18 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     public void onDestroy() {
         super.onDestroy();
 
+        makeButterKnifeUnBindIfNeeded();
+
         if (getPresenterContract() != null) {
 
             getPresenterContract().detach();
         }
 
         RDALogger.logLifeCycle(className);
+    }
+
+    protected void makeButterKnifeUnBindIfNeeded() {
+
     }
 
     @Override
