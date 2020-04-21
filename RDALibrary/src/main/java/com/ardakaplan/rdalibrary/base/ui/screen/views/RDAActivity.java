@@ -48,6 +48,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         super.onCreate(savedInstanceState);
 
+        doWorkAfterSystemOnCreate();
+
         checkLanguageAndChange();
 
         RDALogger.logLifeCycle(className);
@@ -59,6 +61,10 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
             //noinspection unchecked
             getPresenterContract().attach(this);
         }
+    }
+
+    protected void doWorkAfterSystemOnCreate() {
+
     }
 
 //    protected void onCreate(Bundle savedInstanceState, int layoutId) {
