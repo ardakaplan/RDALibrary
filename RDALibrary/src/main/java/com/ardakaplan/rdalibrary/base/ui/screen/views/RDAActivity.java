@@ -48,13 +48,13 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         super.onCreate(savedInstanceState);
 
-        doWorkAfterSystemOnCreate();
-
         checkLanguageAndChange();
 
         RDALogger.logLifeCycle(className);
 
         setContentView(getLayout());
+
+        makeButterKnifeInitIfNeeded();
 
         if (getPresenterContract() != null) {
 
@@ -63,7 +63,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
-    protected void doWorkAfterSystemOnCreate() {
+    protected void makeButterKnifeInitIfNeeded() {
 
     }
 
