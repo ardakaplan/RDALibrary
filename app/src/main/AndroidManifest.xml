@@ -35,6 +35,11 @@
             android:name=".ui.language.LanguageTestActivity"
             android:label="Language Test Screen" />
 
+        <activity
+            android:name=".ui.fragmentscenerio.FragmentTestActivity"
+            android:label="FRAGMENTS" />
+
+
     </application>
 
 </manifest>

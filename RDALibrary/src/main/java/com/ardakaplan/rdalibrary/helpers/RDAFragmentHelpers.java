@@ -35,12 +35,24 @@ public final class RDAFragmentHelpers {
         if (fragmentToReplace.getFragmentAnimationList().length == 4) {
 
             transaction.setCustomAnimations(fragmentToReplace.getFragmentAnimationList()[0],
-                                            fragmentToReplace.getFragmentAnimationList()[1],
-                                            fragmentToReplace.getFragmentAnimationList()[2],
-                                            fragmentToReplace.getFragmentAnimationList()[3]);
+                    fragmentToReplace.getFragmentAnimationList()[1],
+                    fragmentToReplace.getFragmentAnimationList()[2],
+                    fragmentToReplace.getFragmentAnimationList()[3]);
         }
 
-        transaction.replace(fragmentLayoutID, fragmentToReplace);
+
+        if (activity.getSupportFragmentManager().findFragmentById(fragmentLayoutID) == null) {
+
+            transaction.add(fragmentLayoutID, fragmentToReplace);
+
+        } else {
+
+            transaction.hide(activity.getSupportFragmentManager().findFragmentById(fragmentLayoutID));
+
+            transaction.add(fragmentLayoutID, fragmentToReplace);
+        }
+
+//        transaction.add(fragmentToReplace)
 
         transaction.addToBackStack(fragmentToReplace.className);
 
