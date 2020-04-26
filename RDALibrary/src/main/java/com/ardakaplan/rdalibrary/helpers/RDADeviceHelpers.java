@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -36,6 +37,18 @@ public final class RDADeviceHelpers {
     RDADeviceHelpers(Context context) {
 
         this.context = context;
+    }
+
+    public String getDeviceName() {
+
+        if (Build.VERSION.SDK_INT >= 25) {
+
+            return Settings.Global.getString(context.getContentResolver(), Settings.Global.DEVICE_NAME);
+
+        } else {
+
+            return Settings.Secure.getString(context.getContentResolver(), "bluetooth_name");
+        }
     }
 
     public boolean isSimCardAvailable() {

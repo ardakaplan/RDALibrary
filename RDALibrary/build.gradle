@@ -59,6 +59,9 @@ dependencies {
     //GSON
     compileOnly "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
 
+    //BUTTER KNIFE
+    compileOnly 'com.jakewharton:butterknife:10.2.0'
+
     //DAGGER
     compileOnly "com.google.dagger:dagger:$dagger_version"
     compileOnly("com.google.dagger:dagger-android-support:$dagger_version") {

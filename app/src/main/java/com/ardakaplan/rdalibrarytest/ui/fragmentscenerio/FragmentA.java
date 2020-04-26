@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrarytest.R;
-import com.ardakaplan.rdalogger.RDALogger;
 
 /**
  * Created by Arda Kaplan at 22-Apr-20 - 15:57
@@ -16,8 +15,6 @@ public class FragmentA extends BaseFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        RDALogger.info("ADDASSDD");
     }
 
     @Override

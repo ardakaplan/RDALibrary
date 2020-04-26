@@ -5,9 +5,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
+import com.ardakaplan.rdalogger.RDALogger;
+
+import java.util.Random;
 
 @SuppressWarnings("unused")
 public final class RDAFragmentHelpers {
+
+    //FragmentManager.OnBackStackChangedListener tetiklenince alınan fragment in id si
+    private static int callingFragmentId = -1;
 
     private RDAFragmentHelpers() {
 
@@ -20,10 +26,12 @@ public final class RDAFragmentHelpers {
 
     public static void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
 
-        if (isEqual(getCurrentFragment(activity), fragmentToReplace)) {
+        fragmentToReplace.ID = new Random().nextInt(Integer.MAX_VALUE);
 
-            return;
-        }
+//        if (isEqual(getCurrentFragment(activity), fragmentToReplace)) {
+////
+////            return;
+////        }
 
         if (clearBackStack) {
 
@@ -31,6 +39,27 @@ public final class RDAFragmentHelpers {
         }
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+
+        activity.getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+
+            @Override
+            public void onBackStackChanged() {
+
+                //bu method 2 kez çağrılıyor, bu yüzden id bazlı bir yönetim var, çağrılan id bir daha çağrılmıyor
+
+                if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                    if (callingFragmentId == -1 || getCurrentFragment(activity).ID != callingFragmentId) {
+
+                        callingFragmentId = getCurrentFragment(activity).ID;
+
+                        getCurrentFragment(activity).onScreen();
+
+                        RDALogger.info(getCurrentFragment(activity).className);
+                    }
+                }
+            }
+        });
 
         if (fragmentToReplace.getFragmentAnimationList().length == 4) {
 
@@ -64,7 +93,7 @@ public final class RDAFragmentHelpers {
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
 
-        if (fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0) {
+        if (fragmentManager.getFragments().size() > 0) {
 
             return (RDAFragment) fragmentManager.getFragments().get(fragmentManager.getFragments().size() - 1);
 

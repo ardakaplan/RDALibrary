@@ -16,14 +16,20 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.Serializable;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
 public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract {
 
+    //FragmentManager.OnBackStackChangedListener yönetimi için oluşturulan id, manager dışında kesinlikle kullanılmaması lazım
+    public int ID = 0;
 
     public String className;
+
+    private Unbinder unbinder;
 
     public RDAFragment() {
         className = getClass().getSimpleName();
@@ -34,6 +40,10 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         AndroidSupportInjection.inject(this);
 
         super.onAttach(context);
+    }
+
+    public void onScreen() {
+
     }
 
     public int[] getFragmentAnimationList() {
@@ -62,17 +72,12 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
         View view = inflater.inflate(getLayout(), container, false);
 
-        makeButterKnifeInitIfNeeded(view);
+        unbinder = ButterKnife.bind(this, view);
 
         initViews(view);
 
         return view;
     }
-
-    protected void makeButterKnifeInitIfNeeded(View view) {
-
-    }
-
 
     protected void initViews(View parentView) {
 
@@ -140,7 +145,7 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     public void onDestroy() {
         super.onDestroy();
 
-        makeButterKnifeUnBindIfNeeded();
+        unbinder.unbind();
 
         if (getPresenterContract() != null) {
 
@@ -148,10 +153,6 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         }
 
         RDALogger.logLifeCycle(className);
-    }
-
-    protected void makeButterKnifeUnBindIfNeeded() {
-
     }
 
     @Override
