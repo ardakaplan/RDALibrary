@@ -3,12 +3,14 @@ apply from: '../aar_deployment.gradle'
 
 android {
 
-    compileSdkVersion androidCompileSdkVersion
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
 
-        minSdkVersion androidMinSdkVersion
-        targetSdkVersion androidTargetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
+
         versionCode 1
         versionName "2.0.0"
     }
@@ -48,31 +50,31 @@ configurations.all {
 dependencies {
 
     //RECYCLER VIEW
-    compileOnly "androidx.recyclerview:recyclerview:$androidx_appcombat"
+    compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 
     //SWIPE LIST
     api "com.daimajia.swipelayout:library:1.2.0@aar"
 
     //RDA-LOGGER
-    compileOnly "com.github.ardakaplan:RDALogger:$rda_logger_version"
+    compileOnly "com.github.ardakaplan:RDALogger:2.0.0"
 
     //GSON
-    compileOnly "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+    compileOnly "com.squareup.retrofit2:converter-gson:2.6.2"
 
     //BUTTER KNIFE
     compileOnly 'com.jakewharton:butterknife:10.2.0'
 
     //DAGGER
-    compileOnly "com.google.dagger:dagger:$dagger_version"
-    compileOnly("com.google.dagger:dagger-android-support:$dagger_version") {
+    compileOnly "com.google.dagger:dagger:2.16"
+    compileOnly("com.google.dagger:dagger-android-support:2.16") {
         exclude group: 'com.android.support', module: 'support-fragment'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.16"
 
 
-    implementation "androidx.appcompat:appcompat:$androidx_appcombat"
-    implementation "androidx.recyclerview:recyclerview:$androidx_appcombat"
+    compileOnly "androidx.appcompat:appcompat:1.1.0"
+    compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 }

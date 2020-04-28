@@ -3,14 +3,16 @@ apply from: 'run_click_count.gradle'
 
 android {
 
-    compileSdkVersion androidCompileSdkVersion
-    buildToolsVersion androidBuildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
 
         applicationId "com.ardakaplan.rdalibrarytest"
-        minSdkVersion androidMinSdkVersion
-        targetSdkVersion androidTargetSdkVersion
+
+        minSdkVersion 21
+        targetSdkVersion 28
+
         versionCode 1
         versionName "1.0"
     }
@@ -43,26 +45,26 @@ dependencies {
 
     implementation project(':RDALibrary')
 
-    implementation "androidx.appcompat:appcompat:$androidx_appcombat"
-    implementation "androidx.recyclerview:recyclerview:$androidx_appcombat"
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //RDA-LOGGER
-    implementation "com.github.ardakaplan:RDALogger:$rda_logger_version"
+    implementation "com.github.ardakaplan:RDALogger:2.0.0"
 
     //GSON
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_converter_gson_version"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.2"
 
     //BUTTER KNIFE
     implementation "com.jakewharton:butterknife:10.2.0"
     annotationProcessor "com.jakewharton:butterknife-compiler:10.2.0"
 
     //DAGGER
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation("com.google.dagger:dagger-android-support:$dagger_version") {
+    implementation "com.google.dagger:dagger:2.16"
+    implementation("com.google.dagger:dagger-android-support:2.16") {
         exclude group: 'com.android.support', module: 'support-fragment'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.16"
 }
