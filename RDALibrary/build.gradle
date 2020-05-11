@@ -13,6 +13,8 @@ android {
 
         versionCode 1
         versionName "2.0.0"
+
+//        setProperty("archivesBaseName", "RDALibray_" + versionName)
     }
 
     buildTypes {

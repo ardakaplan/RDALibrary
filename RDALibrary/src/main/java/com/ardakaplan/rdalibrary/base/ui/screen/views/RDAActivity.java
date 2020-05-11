@@ -14,6 +14,7 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
@@ -54,17 +55,13 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         setContentView(getLayout());
 
-        makeButterKnifeInitIfNeeded();
+        ButterKnife.bind(this);
 
         if (getPresenterContract() != null) {
 
             //noinspection unchecked
             getPresenterContract().attach(this);
         }
-    }
-
-    protected void makeButterKnifeInitIfNeeded() {
-
     }
 
 //    protected void onCreate(Bundle savedInstanceState, int layoutId) {
