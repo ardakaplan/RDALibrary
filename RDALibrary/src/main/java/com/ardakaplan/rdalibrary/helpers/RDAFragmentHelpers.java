@@ -54,8 +54,6 @@ public final class RDAFragmentHelpers {
                         callingFragmentId = getCurrentFragment(activity).ID;
 
                         getCurrentFragment(activity).onScreen();
-
-                        RDALogger.info(getCurrentFragment(activity).className);
                     }
                 }
             }

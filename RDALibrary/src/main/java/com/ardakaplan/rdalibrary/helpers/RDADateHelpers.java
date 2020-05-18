@@ -38,6 +38,14 @@ public class RDADateHelpers {
         return dateFormat.parse(date);
     }
 
+    public static String formatDate(String dateToFormat, String inputFormat, String outputFormat, Locale locale) throws ParseException {
+
+        DateFormat dateFormat = new SimpleDateFormat(inputFormat, locale);
+
+        return RDADateHelpers.formatDate(dateFormat.parse(dateToFormat), outputFormat, locale);
+    }
+
+
     /**
      * @param milliSeconds date miliseconds to convert
      * @param formatString formatting type
@@ -70,6 +78,7 @@ public class RDADateHelpers {
 
         return simpleDateFormat.format(calendar.getTime());
     }
+
 
     private static Locale checkLocale(Locale locale) {
 
