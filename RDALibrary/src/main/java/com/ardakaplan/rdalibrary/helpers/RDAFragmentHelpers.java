@@ -5,26 +5,21 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
-import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Random;
 
 @SuppressWarnings("unused")
-public final class RDAFragmentHelpers {
+public class RDAFragmentHelpers {
 
     //FragmentManager.OnBackStackChangedListener tetiklenince alınan fragment in id si
-    private static int callingFragmentId = -1;
+    protected static int callingFragmentId = -1;
 
-    private RDAFragmentHelpers() {
-
-    }
-
-    private static boolean isEqual(RDAFragment fragment1, RDAFragment fragment2) {
+    protected boolean isEqual(RDAFragment fragment1, RDAFragment fragment2) {
 
         return !(fragment1 == null || fragment2 == null) && fragment1.className.equals(fragment2.className);
     }
 
-    public static void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
+    public void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
 
         fragmentToReplace.ID = new Random().nextInt(Integer.MAX_VALUE);
 
@@ -81,13 +76,13 @@ public final class RDAFragmentHelpers {
 
 //        transaction.add(fragmentToReplace)
 
-        transaction.addToBackStack(fragmentToReplace.className);
+        transaction.addToBackStack(fragmentToReplace.getRdaTag());
 
         transaction.commitAllowingStateLoss();
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static RDAFragment getCurrentFragment(RDAActivity activity) {
+    public RDAFragment getCurrentFragment(RDAActivity activity) {
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
 
@@ -101,7 +96,7 @@ public final class RDAFragmentHelpers {
         }
     }
 
-    public static int getActiveFragmentCount(RDAActivity activity) {
+    public int getActiveFragmentCount(RDAActivity activity) {
 
         return activity.getSupportFragmentManager().getBackStackEntryCount();
     }

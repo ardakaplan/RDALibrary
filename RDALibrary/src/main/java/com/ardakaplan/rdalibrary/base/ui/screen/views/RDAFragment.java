@@ -27,9 +27,15 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     //FragmentManager.OnBackStackChangedListener yönetimi için oluşturulan id, manager dışında kesinlikle kullanılmaması lazım
     public int ID = 0;
 
+    protected String rdaTag = this.getClass().getSimpleName();
+
     public String className;
 
     private Unbinder unbinder;
+
+    public String getRdaTag() {
+        return rdaTag;
+    }
 
     public RDAFragment() {
         className = getClass().getSimpleName();
@@ -210,13 +216,15 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
             this.setArguments(fragmentDataBundle);
         }
 
-        RDAFragmentHelpers.addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
+        getFragmentHelpers().addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
     }
 
     public void open(RDAActivity rdaActivity, Bundle fragmentDataBundle) {
 
         open(rdaActivity, fragmentDataBundle, false);
     }
+
+    public abstract RDAFragmentHelpers getFragmentHelpers();
 
     public abstract @IdRes
     int fragmentPartContainerId();

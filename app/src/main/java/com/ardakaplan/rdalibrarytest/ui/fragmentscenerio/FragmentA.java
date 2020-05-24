@@ -3,6 +3,7 @@ package com.ardakaplan.rdalibrarytest.ui.fragmentscenerio;
 import android.os.Bundle;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
+import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 
 /**
@@ -16,6 +17,8 @@ public class FragmentA extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+
 
     @Override
     public int getLayout() {
