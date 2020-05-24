@@ -16,14 +16,26 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.io.Serializable;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
 public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract {
 
+    //FragmentManager.OnBackStackChangedListener yönetimi için oluşturulan id, manager dışında kesinlikle kullanılmaması lazım
+    public int ID = 0;
+
+    protected String rdaTag = this.getClass().getSimpleName();
 
     public String className;
+
+    private Unbinder unbinder;
+
+    public String getRdaTag() {
+        return rdaTag;
+    }
 
     public RDAFragment() {
         className = getClass().getSimpleName();
@@ -34,6 +46,10 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         AndroidSupportInjection.inject(this);
 
         super.onAttach(context);
+    }
+
+    public void onScreen() {
+
     }
 
     public int[] getFragmentAnimationList() {
@@ -61,6 +77,8 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         RDALogger.logLifeCycle(className);
 
         View view = inflater.inflate(getLayout(), container, false);
+
+        unbinder = ButterKnife.bind(this, view);
 
         initViews(view);
 
@@ -133,6 +151,8 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     public void onDestroy() {
         super.onDestroy();
 
+        unbinder.unbind();
+
         if (getPresenterContract() != null) {
 
             getPresenterContract().detach();
@@ -196,13 +216,15 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
             this.setArguments(fragmentDataBundle);
         }
 
-        RDAFragmentHelpers.addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
+        getFragmentHelpers().addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
     }
 
     public void open(RDAActivity rdaActivity, Bundle fragmentDataBundle) {
 
         open(rdaActivity, fragmentDataBundle, false);
     }
+
+    public abstract RDAFragmentHelpers getFragmentHelpers();
 
     public abstract @IdRes
     int fragmentPartContainerId();

@@ -14,6 +14,7 @@ import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
 
+import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
 @SuppressWarnings("unused")
@@ -53,6 +54,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         RDALogger.logLifeCycle(className);
 
         setContentView(getLayout());
+
+        ButterKnife.bind(this);
 
         if (getPresenterContract() != null) {
 

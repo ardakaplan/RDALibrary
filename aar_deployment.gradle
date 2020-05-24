@@ -1,0 +1,20 @@
+task copyReleaseApk(type: Copy) {
+
+    Properties properties = new Properties()
+
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    if (properties.containsKey('aar.dir')) {
+
+        from 'build/outputs/aar', 'build/libs'
+
+        into properties.getProperty('aar.dir')
+
+        include '**/*debug.aar', '**/*sources.jar'
+    }
+}
+
+afterEvaluate {
+
+    assembleDebug.finalizedBy(copyReleaseApk)
+}

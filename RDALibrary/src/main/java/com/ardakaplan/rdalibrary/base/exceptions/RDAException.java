@@ -5,14 +5,21 @@ package com.ardakaplan.rdalibrary.base.exceptions;
  */
 public class RDAException extends Exception {
 
-    private int code;
-
-    public RDAException(int code, String message) {
-        super(message);
-        this.code = code;
+    public RDAException() {
+        super();
     }
 
-    public int getCode() {
-        return code;
+    public RDAException(String message) {
+        super(message);
+    }
+
+
+    public RDAException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+
+    public RDAException(Throwable cause) {
+        super(cause);
     }
 }

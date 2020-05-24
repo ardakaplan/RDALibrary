@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ardakaplan.rdalibrary.interfaces.RDAItemListener;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,22 +18,56 @@ import java.util.List;
  * Created by Arda Kaplan on 20.06.2018 - 11:56
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public abstract class RDASwipeRecyclerViewAdapter<W, VH extends RecyclerView.ViewHolder> extends RecyclerSwipeAdapter<VH> {
 
-    protected RDAItemListener<W> rdaItemListener;
+public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends RecyclerView.ViewHolder> extends RecyclerSwipeAdapter<VH> {
 
-    protected List<W> dataList;
+    protected RDAItemListener<ItemObject> rdaItemListener;
 
-    public void setRdaItemListener(RDAItemListener<W> rdaItemListener) {
+    protected List<ItemObject> dataList;
+
+    public RDASwipeRecyclerViewAdapter() {
+
+    }
+
+    public RDASwipeRecyclerViewAdapter(List<ItemObject> dataList) {
+
+        this(dataList, null);
+    }
+
+    public RDASwipeRecyclerViewAdapter(RDAItemListener<ItemObject> rdaItemListener) {
+
+        setRdaItemListener(rdaItemListener);
+    }
+
+    public RDASwipeRecyclerViewAdapter(List<ItemObject> dataList, RDAItemListener<ItemObject> rdaItemListener) {
+        this.dataList = dataList;
+
+        setRdaItemListener(rdaItemListener);
+    }
+
+    public void setRdaItemListener(RDAItemListener<ItemObject> rdaItemListener) {
         this.rdaItemListener = rdaItemListener;
     }
 
-    public RDASwipeRecyclerViewAdapter(List<W> dataList) {
-        this.dataList = dataList;
+    @Override
+    public void onBindViewHolder(@NonNull VH holder, int position) {
+
+        setItemClick(holder, getItem(position));
     }
 
-    public RDASwipeRecyclerViewAdapter() {
-        dataList = new ArrayList<>();
+    protected void setItemClick(VH vh, ItemObject itemObject) {
+
+        if (rdaItemListener != null) {
+
+            vh.itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    rdaItemListener.onItemClick(itemObject);
+                }
+            });
+        }
     }
 
     @NonNull
@@ -55,14 +88,14 @@ public abstract class RDASwipeRecyclerViewAdapter<W, VH extends RecyclerView.Vie
     protected abstract @LayoutRes
     int getItemLayout();
 
-    public void setData(List<W> dataList) {
+    public void setData(List<ItemObject> dataList) {
 
         this.dataList = dataList;
 
         notifyDataSetChanged();
     }
 
-    protected W getItem(int position) {
+    protected ItemObject getItem(int position) {
         return dataList.get(position);
     }
 

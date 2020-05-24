@@ -6,24 +6,27 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
 
+import java.util.Random;
+
 @SuppressWarnings("unused")
-public final class RDAFragmentHelpers {
+public class RDAFragmentHelpers {
 
-    private RDAFragmentHelpers() {
+    //FragmentManager.OnBackStackChangedListener tetiklenince alınan fragment in id si
+    protected static int callingFragmentId = -1;
 
-    }
-
-    private static boolean isEqual(RDAFragment fragment1, RDAFragment fragment2) {
+    protected boolean isEqual(RDAFragment fragment1, RDAFragment fragment2) {
 
         return !(fragment1 == null || fragment2 == null) && fragment1.className.equals(fragment2.className);
     }
 
-    public static void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
+    public void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
 
-        if (isEqual(getCurrentFragment(activity), fragmentToReplace)) {
+        fragmentToReplace.ID = new Random().nextInt(Integer.MAX_VALUE);
 
-            return;
-        }
+//        if (isEqual(getCurrentFragment(activity), fragmentToReplace)) {
+////
+////            return;
+////        }
 
         if (clearBackStack) {
 
@@ -32,27 +35,58 @@ public final class RDAFragmentHelpers {
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
+        activity.getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+
+            @Override
+            public void onBackStackChanged() {
+
+                //bu method 2 kez çağrılıyor, bu yüzden id bazlı bir yönetim var, çağrılan id bir daha çağrılmıyor
+
+                if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                    if (callingFragmentId == -1 || getCurrentFragment(activity).ID != callingFragmentId) {
+
+                        callingFragmentId = getCurrentFragment(activity).ID;
+
+                        getCurrentFragment(activity).onScreen();
+                    }
+                }
+            }
+        });
+
         if (fragmentToReplace.getFragmentAnimationList().length == 4) {
 
             transaction.setCustomAnimations(fragmentToReplace.getFragmentAnimationList()[0],
-                                            fragmentToReplace.getFragmentAnimationList()[1],
-                                            fragmentToReplace.getFragmentAnimationList()[2],
-                                            fragmentToReplace.getFragmentAnimationList()[3]);
+                    fragmentToReplace.getFragmentAnimationList()[1],
+                    fragmentToReplace.getFragmentAnimationList()[2],
+                    fragmentToReplace.getFragmentAnimationList()[3]);
         }
 
-        transaction.replace(fragmentLayoutID, fragmentToReplace);
 
-        transaction.addToBackStack(fragmentToReplace.className);
+        if (activity.getSupportFragmentManager().findFragmentById(fragmentLayoutID) == null) {
+
+            transaction.add(fragmentLayoutID, fragmentToReplace);
+
+        } else {
+
+            transaction.hide(activity.getSupportFragmentManager().findFragmentById(fragmentLayoutID));
+
+            transaction.add(fragmentLayoutID, fragmentToReplace);
+        }
+
+//        transaction.add(fragmentToReplace)
+
+        transaction.addToBackStack(fragmentToReplace.getRdaTag());
 
         transaction.commitAllowingStateLoss();
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static RDAFragment getCurrentFragment(RDAActivity activity) {
+    public RDAFragment getCurrentFragment(RDAActivity activity) {
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
 
-        if (fragmentManager.getFragments() != null && fragmentManager.getFragments().size() > 0) {
+        if (fragmentManager.getFragments().size() > 0) {
 
             return (RDAFragment) fragmentManager.getFragments().get(fragmentManager.getFragments().size() - 1);
 
@@ -62,7 +96,7 @@ public final class RDAFragmentHelpers {
         }
     }
 
-    public static int getActiveFragmentCount(RDAActivity activity) {
+    public int getActiveFragmentCount(RDAActivity activity) {
 
         return activity.getSupportFragmentManager().getBackStackEntryCount();
     }

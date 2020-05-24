@@ -54,6 +54,12 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         this.rdaItemListener = rdaItemListener;
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull VH holder, int position) {
+
+        setItemClick(holder, getItem(position));
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
