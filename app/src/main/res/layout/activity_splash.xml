@@ -37,6 +37,13 @@
         android:layout_height="wrap_content"
         android:text="FRAGMENT Test" />
 
+    <Button
+        android:id="@+id/splash_activity_button_screenDensity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00FF00"
+        android:text="SCREEN DENSITY" />
+
     <com.ardakaplan.rdalibrary.base.ui.views.ContinuousClickLinearLayout
         android:id="@+id/continious"
         android:layout_width="match_parent"

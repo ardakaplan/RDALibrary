@@ -248,6 +248,13 @@ public final class RDADeviceHelpers {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
+    public int getScreenDensity() {
+
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+
+        return (int) (metrics.density * 160f);
+    }
+
     /**
      * Cihazin hangi cozunurluge ait oldugunun bilgisini verir
      */
@@ -256,6 +263,8 @@ public final class RDADeviceHelpers {
         DisplayMetrics metrics = new DisplayMetrics();
 
         int density = metrics.densityDpi;
+
+        RDALogger.info("DP " + density);
 
         String screenType;
 
