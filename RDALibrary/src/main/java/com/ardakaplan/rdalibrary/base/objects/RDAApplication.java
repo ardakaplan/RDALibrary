@@ -47,8 +47,6 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
         initDagger();
 
-        initRDADialog();
-
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
     }
 
@@ -57,8 +55,6 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     protected abstract boolean doesRDALoggerWork();
 
     protected abstract void initDagger();
-
-    protected abstract void initRDADialog();
 
     public LanguageManager.Language getSelectedLanguage() {
         return languageManager.getSelectedLanguage();

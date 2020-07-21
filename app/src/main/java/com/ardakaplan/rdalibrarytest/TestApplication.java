@@ -1,7 +1,6 @@
 package com.ardakaplan.rdalibrarytest;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrarytest.di.AppComponent;
 import com.ardakaplan.rdalibrarytest.di.DaggerAppComponent;
@@ -14,8 +13,6 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
     @Override
     public void onCreate() {
         super.onCreate();
-
-        initRDADialog();
     }
 
     @Override
@@ -34,12 +31,5 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
         AppComponent appComponent = DaggerAppComponent.builder().application(this).build();
 
         appComponent.inject(this);
-    }
-
-    @Override
-    protected void initRDADialog() {
-
-        RDADialog.registerIds(R.style.Theme_Dialog, R.layout.af_dialog, R.id.afDialog_textView_title, R.id.afDialog_textView_message, R.id.afDialog_textView_button_positive,
-                R.id.afDialog_textView_button_negative, R.id.afDialog_textView_button_neutral, R.id.afDialog_imageView_icon);
     }
 }
