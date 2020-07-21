@@ -1,0 +1,37 @@
+task copyReleaseApk(type: Copy) {
+
+    println "REELEASE APK"
+
+    from 'build/outputs/apk/release'
+
+    into 'C:/Users/ardak/Desktop/APKS'
+
+    include '*.apk'
+
+    delete fileTree('build/outputs/apk/release') {
+
+        include '*.apk'
+    }
+}
+
+task copyDebugApk(type: Copy) {
+
+    println "DEBUG APK"
+
+    from 'build/outputs/apk/debug'
+
+    into 'C:/Users/ardak/Desktop/APKS'
+
+    include '*.apk'
+
+    delete fileTree('build/outputs/apk/debug') {
+
+        include '*.apk'
+    }
+}
+
+afterEvaluate {
+
+    assembleRelease.finalizedBy(copyReleaseApk)
+    assembleDebug.finalizedBy(copyDebugApk)
+}
