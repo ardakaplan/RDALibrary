@@ -1,7 +1,5 @@
 task copyReleaseApk(type: Copy) {
 
-    println "REELEASE APK"
-
     from 'build/outputs/apk/release'
 
     into 'C:/Users/ardak/Desktop/APKS'
@@ -15,8 +13,6 @@ task copyReleaseApk(type: Copy) {
 }
 
 task copyDebugApk(type: Copy) {
-
-    println "DEBUG APK"
 
     from 'build/outputs/apk/debug'
 

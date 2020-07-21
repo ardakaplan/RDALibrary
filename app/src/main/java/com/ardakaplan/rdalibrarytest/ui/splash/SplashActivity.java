@@ -6,9 +6,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDAButtonClickListener;
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialog;
-import com.ardakaplan.rdalibrary.base.ui.dialogs.rdaDialog.RDADialogButtonType;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
@@ -112,44 +109,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     @OnClick(R.id.splash_activity_button_dialogTest)
     void clickedDialogTest() {
 
-        RDADialog.showDialog(this, "TITLE",
-                "MESSAGE",
-                "POSITIVE",
-                "NEGATIVE",
-                "NEUTRAL",
-                null,
-                false,
-                new RDAButtonClickListener() {
-                    @Override
-                    public void onClick(RDADialog rdaDialog, RDADialogButtonType RDADialogButtonType) {
-
-                        rdaDialog.dismiss();
-
-                        switch (RDADialogButtonType) {
-
-                            case POSITIVE:
-
-                                RDALogger.info("POSITIVE CLICKED");
-
-                                break;
-
-                            case NEGATIVE:
-
-                                RDALogger.info("NEGATIVE CLICKED");
-
-                                break;
-
-                            case NEUTRAL:
-
-                                RDALogger.info("NEUTRAL CLICKED");
-
-                                break;
-
-                        }
-
-                    }
-                }
-        );
     }
 
     @OnClick(R.id.continious)
