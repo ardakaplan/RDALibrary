@@ -39,10 +39,6 @@ public abstract class RDADialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(getLayoutId());
-
-        setCancelable(false);
-
-        setCanceledOnTouchOutside(false);
     }
 
     @LayoutRes
