@@ -68,17 +68,17 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
 
     protected void setItemClick(VH vh, ItemObject itemObject) {
 
-        if (rdaItemListener != null) {
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
 
-            vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                @Override
-                public void onClick(View v) {
+                if (rdaItemListener != null) {
 
                     rdaItemListener.onItemClick(itemObject);
                 }
-            });
-        }
+            }
+        });
     }
 
     /**
