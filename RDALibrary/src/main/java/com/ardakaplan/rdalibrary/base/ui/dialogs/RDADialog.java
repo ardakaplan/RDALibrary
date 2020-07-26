@@ -10,6 +10,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Arda Kaplan at 31-May-20 - 13:13
  * <p>
@@ -39,6 +41,8 @@ public abstract class RDADialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(getLayoutId());
+
+        ButterKnife.bind(this, this);
     }
 
     @LayoutRes
