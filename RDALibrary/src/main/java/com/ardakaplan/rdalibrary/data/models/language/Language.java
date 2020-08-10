@@ -27,14 +27,6 @@ public class Language extends RDAObject {
         return screenName;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setScreenName(String screenName) {
-        this.screenName = screenName;
-    }
-
     public Locale getLocale() {
 
         return new Locale(code);

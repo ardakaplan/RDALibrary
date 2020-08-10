@@ -8,10 +8,13 @@ import android.content.res.Configuration;
 
 import androidx.fragment.app.Fragment;
 
+import com.ardakaplan.rdalibrary.data.models.language.ApplicationLanguage;
+import com.ardakaplan.rdalibrary.data.models.theme.ApplicationTheme;
 import com.ardakaplan.rdalibrary.data.shared.OpeningCountharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.managers.ThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalogger.RDALoggerConfig;
 
@@ -27,6 +30,12 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
     @Inject
     public LanguageManager languageManager;
+    @Inject
+    public ThemeManager themeManager;
+    @Inject
+    ApplicationTheme applicationTheme;
+    @Inject
+    ApplicationLanguage applicationLanguage;
 
     @Inject
     OpeningCountharedProperty openingCountharedProperty;
@@ -47,13 +56,17 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public void onCreate() {
         super.onCreate();
 
-        changeOpeningCount();
-
         RDALoggerConfig.setup(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
 
         initDagger();
 
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
+
+        changeOpeningCount();
+    }
+
+    private void saveInitialValues() {
+
     }
 
     private void changeOpeningCount() {

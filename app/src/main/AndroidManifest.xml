@@ -30,6 +30,10 @@
         </activity>
 
         <activity
+            android:name=".ui.ThemeTestActivity"
+            android:label="Theme Test Screen" />
+
+        <activity
             android:name=".ui.filetest.FileTestActivity"
             android:label="File Test Screen" />
 

@@ -1,5 +1,6 @@
 package com.ardakaplan.rdalibrarytest.di;
 
+import com.ardakaplan.rdalibrarytest.ui.ThemeTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentA;
 import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentB;
@@ -17,6 +18,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {SplashModule.class})
     abstract SplashActivity bindSplashActivity();
+
+    @ContributesAndroidInjector
+    abstract ThemeTestActivity bindThemeTestActivity();
 
     @ContributesAndroidInjector
     abstract FileTestActivity bindFileTestActivity();

@@ -11,6 +11,7 @@ import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
+import com.ardakaplan.rdalibrarytest.ui.ThemeTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
@@ -92,6 +93,12 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     void clickedFragmentTest() {
 
         startActivity(new Intent(this, FragmentTestActivity.class));
+    }
+
+    @OnClick(R.id.splash_activity_button_themeTest)
+    void clickedThemeTest() {
+
+        startActivity(new Intent(this, ThemeTestActivity.class));
     }
 
     @OnClick(R.id.splash_activity_button_fileTest)

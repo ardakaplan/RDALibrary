@@ -47,6 +47,8 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
+        adjustApplicationTheme();
+
         super.onCreate(savedInstanceState);
 
         checkLanguageAndChange();
@@ -62,6 +64,11 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
             //noinspection unchecked
             getPresenterContract().attach(this);
         }
+    }
+
+    private void adjustApplicationTheme() {
+
+        setTheme((((RDAApplication) getApplication())).themeManager.getCurrentTheme().getStyle());
     }
 
     @Override

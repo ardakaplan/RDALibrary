@@ -9,7 +9,7 @@ import java.util.List;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class ApplicationLanguage extends RDAObject {
+public final class ApplicationLanguage extends RDAObject {
 
     private Language defaultLanguage;
     private List<Language> allDefinedLanguages;
@@ -23,15 +23,7 @@ public class ApplicationLanguage extends RDAObject {
         return defaultLanguage;
     }
 
-    public void setDefaultLanguage(Language defaultLanguage) {
-        this.defaultLanguage = defaultLanguage;
-    }
-
     public List<Language> getAllDefinedLanguages() {
         return allDefinedLanguages;
-    }
-
-    public void setAllDefinedLanguages(List<Language> allDefinedLanguages) {
-        this.allDefinedLanguages = allDefinedLanguages;
     }
 }

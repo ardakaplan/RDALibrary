@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/themeTestActivity_textView_themeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:background="?test_attr_1" />
+
+    <Button
+        android:id="@+id/themeTestActivity_button_theme1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Theme 1" />
+
+    <Button
+        android:id="@+id/themeTestActivity_button_theme2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Theme 2" />
+</LinearLayout>
