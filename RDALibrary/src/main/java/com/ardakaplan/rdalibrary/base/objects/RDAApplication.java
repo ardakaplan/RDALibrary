@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 
 import androidx.fragment.app.Fragment;
 
+import com.ardakaplan.rdalibrary.data.shared.OpeningCountharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
@@ -25,7 +26,10 @@ import dagger.android.support.HasSupportFragmentInjector;
 public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
     @Inject
-    LanguageManager languageManager;
+    public LanguageManager languageManager;
+
+    @Inject
+    OpeningCountharedProperty openingCountharedProperty;
 
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
@@ -43,6 +47,8 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public void onCreate() {
         super.onCreate();
 
+        changeOpeningCount();
+
         RDALoggerConfig.setup(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
 
         initDagger();
@@ -50,16 +56,16 @@ public abstract class RDAApplication extends Application implements HasCustomAct
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
     }
 
+    private void changeOpeningCount() {
+
+        openingCountharedProperty.saveValue(openingCountharedProperty.getValue() + 1);
+    }
+
     protected abstract String getRDALoggerTag();
 
     protected abstract boolean doesRDALoggerWork();
 
     protected abstract void initDagger();
-
-    public LanguageManager.Language getSelectedLanguage() {
-        return languageManager.getSelectedLanguage();
-    }
-
 
     @Override
     public void onTrimMemory(int level) {

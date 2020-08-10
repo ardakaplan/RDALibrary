@@ -6,11 +6,10 @@ import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.helpers.RDAIntentHelpers;
 import com.ardakaplan.rdalibrary.managers.LanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
+import com.ardakaplan.rdalibrarytest.di.LanguageModule;
 import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
 import com.ardakaplan.rdalibrarytest.ui.splash.SplashActivity;
 import com.ardakaplan.rdalogger.RDALogger;
-
-import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -29,32 +28,18 @@ public class LanguageTestActivity extends BaseActivity {
     @Inject
     RDAIntentHelpers rdaIntentHelpers;
 
-    @OnClick(R.id.language_test_activity_button_changeLanguage)
-    void clickedChangeLanguage() {
-
-        Random random = new Random();
-
-        LanguageManager.Language selectedLanguage = LanguageManager.getAllDefinedLanguage().get(random.nextInt(LanguageManager.getAllDefinedLanguage().size()));
-
-        RDALogger.info("SET LANGUAGE -> " + selectedLanguage);
-
-        Toast.makeText(this, selectedLanguage.name(), Toast.LENGTH_SHORT).show();
-
-        languageManager.setSelectedLanguage(selectedLanguage);
-    }
-
     @OnClick(R.id.language_test_activity_button_getSelectedLanguage)
     void clickedGetSelectedLanguage() {
 
-        Toast.makeText(this, languageManager.getSelectedLanguage().name(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, languageManager.getSelectedLanguage().getScreenName(), Toast.LENGTH_SHORT).show();
 
-        RDALogger.info("SELECTED LANGUAGE -> " + languageManager.getSelectedLanguage());
+        RDALogger.info("SELECTED LANGUAGE -> " + languageManager.getSelectedLanguage().getScreenName());
     }
 
     @OnClick(R.id.language_test_activity_button_turkish)
     void clickedTurkish() {
 
-        languageManager.setSelectedLanguage(LanguageManager.Language.TURKISH);
+        languageManager.saveNewSelectedLanguage(LanguageModule.TURKISH);
 
         startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
     }
@@ -62,7 +47,7 @@ public class LanguageTestActivity extends BaseActivity {
     @OnClick(R.id.language_test_activity_button_english)
     void clickedEnglish() {
 
-        languageManager.setSelectedLanguage(LanguageManager.Language.ENGLISH);
+        languageManager.saveNewSelectedLanguage(LanguageModule.ENGLISH);
 
         startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
     }

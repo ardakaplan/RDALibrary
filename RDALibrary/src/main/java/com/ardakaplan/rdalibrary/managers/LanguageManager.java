@@ -3,11 +3,11 @@ package com.ardakaplan.rdalibrary.managers;
 import android.content.res.Resources;
 
 import com.ardakaplan.rdalibrary.base.RDASharedProperty;
+import com.ardakaplan.rdalibrary.data.models.language.ApplicationLanguage;
+import com.ardakaplan.rdalibrary.data.models.language.Language;
 import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -21,16 +21,18 @@ import javax.inject.Singleton;
 @Singleton
 public class LanguageManager {
 
+    private ApplicationLanguage applicationLanguage;
     private SelectedLanguageProperty selectedLanguageProperty;
 
     @Inject
-    LanguageManager(SelectedLanguageProperty selectedLanguageProperty) {
+    LanguageManager(ApplicationLanguage applicationLanguage, SelectedLanguageProperty selectedLanguageProperty) {
+        this.applicationLanguage = applicationLanguage;
         this.selectedLanguageProperty = selectedLanguageProperty;
     }
 
     public Language getSelectedLanguage() {
 
-        Language selectedLanguage = Language.DEFAULT;
+        Language selectedLanguage = applicationLanguage.getDefaultLanguage();
 
         String searchingLanguage;
 
@@ -43,7 +45,7 @@ public class LanguageManager {
             searchingLanguage = selectedLanguageProperty.getValue();
         }
 
-        for (Language language : Language.values()) {
+        for (Language language : applicationLanguage.getAllDefinedLanguages()) {
 
             if (language.getCode().equals(searchingLanguage)) {
 
@@ -56,57 +58,14 @@ public class LanguageManager {
         return selectedLanguage;
     }
 
-    public void setSelectedLanguage(Language language) {
+    public void saveNewSelectedLanguage(Language language) {
 
         selectedLanguageProperty.saveValue(language.getCode());
     }
 
-    public enum Language {
+    public List<Language> getAllDefinedLanguage() {
 
-        TURKISH("tr", "TÜRKÇE"),
-        ENGLISH("en", "ENGLISH"),
-        DEUTCSH("de", "DEUTSCH"),
-        RUSSIAN("ru", "по-русски"),
-
-        DEFAULT("-", "-");
-
-        private String code;
-        private String screenName;
-
-        Language(String code, String screenName) {
-            this.code = code;
-            this.screenName = screenName;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public String getScreenName() {
-            return screenName;
-        }
-
-        public Locale getLocale() {
-
-            if (this != DEFAULT) {
-
-                return new Locale(code);
-
-            } else {
-
-                return Locale.getDefault();
-            }
-        }
-    }
-
-    /**
-     * @return all languages apart from DEFAULT
-     */
-    public static List<Language> getAllDefinedLanguage() {
-
-        List<Language> languages = Arrays.asList(Language.values());
-
-        return languages.subList(0, languages.size() - 1);
+        return applicationLanguage.getAllDefinedLanguages();
     }
 
     public static class SelectedLanguageProperty extends RDASharedProperty<String> {

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.data.models.language.Language;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -31,7 +31,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
     private void checkLanguageAndChange() {
 
-        LanguageManager.Language selectedLanguage = ((RDAApplication) getApplication()).getSelectedLanguage();
+        Language selectedLanguage = ((RDAApplication) getApplication()).languageManager.getSelectedLanguage();
 
         Configuration configuration = getResources().getConfiguration();
 
@@ -63,17 +63,6 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
             getPresenterContract().attach(this);
         }
     }
-
-//    protected void onCreate(Bundle savedInstanceState, int layoutId) {
-//
-//        super.onCreate(savedInstanceState);
-//
-//        setContentView(layoutId);
-//
-//        ButterKnife.bind(this);
-//
-//        RDALogger.logLifeCycle(className);
-//    }
 
     @Override
     public void changeStatusBarColor(@ColorRes int colorId) {
