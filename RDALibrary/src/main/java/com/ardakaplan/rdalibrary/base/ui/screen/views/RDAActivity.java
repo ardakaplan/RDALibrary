@@ -49,9 +49,9 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         adjustApplicationTheme();
 
-        super.onCreate(savedInstanceState);
-
         checkLanguageAndChange();
+
+        super.onCreate(savedInstanceState);
 
         RDALogger.logLifeCycle(className);
 
@@ -66,7 +66,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
-    private void adjustApplicationTheme() {
+    protected void adjustApplicationTheme() {
 
         setTheme((((RDAApplication) getApplication())).themeManager.getCurrentTheme().getStyle());
     }
