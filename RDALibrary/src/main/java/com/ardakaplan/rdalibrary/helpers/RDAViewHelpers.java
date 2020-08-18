@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,8 +44,29 @@ public final class RDAViewHelpers {
         return typedValue.data;
     }
 
-    public int getNumberInDp(int size) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, context.getResources().getDisplayMetrics());
+    public void setListenerForKeyboard(View activityRootView, KeyboardListener keyboardListener) {
+
+        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+            @Override
+            public void onGlobalLayout() {
+
+                int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+
+                if (heightDiff > dpToPx(200)) {
+
+                    keyboardListener.onOpened();
+
+                } else {
+
+                    keyboardListener.onClosed();
+                }
+            }
+        });
+    }
+
+    public float dpToPx(int valueInDp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, context.getResources().getDisplayMetrics());
     }
 
     public void setTextSizeInSp(TextView textView, float size) {
@@ -76,5 +98,11 @@ public final class RDAViewHelpers {
         listView.setLayoutParams(params);
     }
 
+    public interface KeyboardListener {
+
+        void onOpened();
+
+        void onClosed();
+    }
 
 }

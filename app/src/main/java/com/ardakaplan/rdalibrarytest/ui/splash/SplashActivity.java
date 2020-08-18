@@ -7,10 +7,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
+import com.ardakaplan.rdalibrary.helpers.RDABase64CoderHelper;
 import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
+import com.ardakaplan.rdalibrarytest.ui.ThemeTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
@@ -26,7 +28,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     SplashContract.SplashPresenterContract presenter;
 
     @Inject
-    LanguageManager languageManager;
+    RDALanguageManager RDALanguageManager;
     @Inject
     RDADeviceHelpers rdaDeviceHelpers;
 
@@ -34,48 +36,26 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        encryptTest();
+//        String arda_kkaplan = RDAAESCryptionHelper.encode("ARDA KKAPLAN");
+//
+//        RDALogger.info(arda_kkaplan);
+//
+//        RDALogger.info(RDAAESCryptionHelper.decode(arda_kkaplan));
+
+
+        encryptTest();
     }
 
-//    private void encryptTest() {
-//
-//        String source = "Arda KaplanĞÜŞİÖÇğüşiöç";
-//
-//        try {
-//            String encrypt = RDAAESCryptionHelper.encrypt("112312321312", source);
-//
-//            RDALogger.info(encrypt);
-//
-//            decryptTest(encrypt);
-//
-//        } catch (GeneralSecurityException e) {
-//
-//            e.printStackTrace();
-//
-//        } catch (UnsupportedEncodingException e) {
-//
-//            e.printStackTrace();
-//
-//        }
-//    }
+    private void encryptTest() {
 
-//    private void decryptTest(String encryptedText) {
-//
-//        try {
-//
-//            String decrypt = RDAAESCryptionHelper.decrypt("112312321312", encryptedText);
-//
-//            RDALogger.info(decrypt);
-//
-//        } catch (GeneralSecurityException e) {
-//
-//            e.printStackTrace();
-//
-//        } catch (UnsupportedEncodingException e) {
-//
-//            e.printStackTrace();
-//        }
-//    }
+        String source = "Arda KaplanĞÜŞİÖÇğüşiöç";
+
+        String encrypt = RDABase64CoderHelper.encode(source);
+
+        RDALogger.info(encrypt);
+
+        RDALogger.info(RDABase64CoderHelper.decode(encrypt));
+    }
 
     @OnClick(R.id.splash_activity_button_screenDensity)
     void clickedScreenDensity() {
@@ -92,6 +72,12 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     void clickedFragmentTest() {
 
         startActivity(new Intent(this, FragmentTestActivity.class));
+    }
+
+    @OnClick(R.id.splash_activity_button_themeTest)
+    void clickedThemeTest() {
+
+        startActivity(new Intent(this, ThemeTestActivity.class));
     }
 
     @OnClick(R.id.splash_activity_button_fileTest)
@@ -112,7 +98,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     }
 
     @OnClick(R.id.continious)
-    void continous() {
+    void clickedContinious() {
 
         RDALogger.info("BURDA");
     }
@@ -122,6 +108,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
         return R.layout.activity_splash;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public RDAPresenterContract getPresenterContract() {
         return presenter;

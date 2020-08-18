@@ -8,9 +8,14 @@ import android.content.res.Configuration;
 
 import androidx.fragment.app.Fragment;
 
+import com.ardakaplan.rdalibrary.data.models.RDAApplicationOpeningChecker;
+import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
+import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
+import com.ardakaplan.rdalibrary.data.shared.OpeningCounterSharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalogger.RDALoggerConfig;
 
@@ -24,20 +29,29 @@ import dagger.android.support.HasSupportFragmentInjector;
 
 public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
-    @Inject
-    LanguageManager languageManager;
 
+    @Inject
+    public RDALanguageManager rdaLanguageManager;
+    @Inject
+    public RDAThemeManager rdaThemeManager;
+    @Inject
+    RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
+    @Inject
+    RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
+    @Inject
+    RDAApplicationOpeningChecker rdaApplicationOpeningChecker;
+    @Inject
+    OpeningCounterSharedProperty openingCounterSharedProperty;
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
-
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentInjector;
-
     @Inject
     DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector;
-
     @Inject
     DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
+
+    public RDAApplicationOpeningChecker.RDAApplicationOpeningType rdaApplicationOpeningType;
 
     @Override
     public void onCreate() {
@@ -47,7 +61,23 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
         initDagger();
 
+        getOpeningType();
+
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
+
+        changeOpeningCount();
+    }
+
+    private void getOpeningType() {
+
+        rdaApplicationOpeningType = rdaApplicationOpeningChecker.getOpeningType(getVersionCode());
+    }
+
+    protected abstract int getVersionCode();
+
+    private void changeOpeningCount() {
+
+        openingCounterSharedProperty.saveValue(openingCounterSharedProperty.getValue() + 1);
     }
 
     protected abstract String getRDALoggerTag();
@@ -55,11 +85,6 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     protected abstract boolean doesRDALoggerWork();
 
     protected abstract void initDagger();
-
-    public LanguageManager.Language getSelectedLanguage() {
-        return languageManager.getSelectedLanguage();
-    }
-
 
     @Override
     public void onTrimMemory(int level) {

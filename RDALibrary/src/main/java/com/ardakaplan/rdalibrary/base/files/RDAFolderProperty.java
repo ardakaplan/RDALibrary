@@ -21,15 +21,12 @@ public abstract class RDAFolderProperty extends RDAFileProperty {
             //this is root folder
             path.append(Environment.getExternalStorageDirectory());
 
-            path.append(File.separator);
-
         } else {
 
             path.append(getRootFilePath());
-
-            path.append(File.separator);
-
         }
+
+        path.append(File.separator);
 
         path.append(getFileName());
 

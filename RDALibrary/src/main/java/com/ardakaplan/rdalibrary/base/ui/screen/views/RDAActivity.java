@@ -5,11 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -31,15 +32,15 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
     private void checkLanguageAndChange() {
 
-        LanguageManager.Language selectedLanguage = ((RDAApplication) getApplication()).getSelectedLanguage();
+        RDALanguage selectedRDALanguage = ((RDAApplication) getApplication()).rdaLanguageManager.getSelectedLanguage();
 
         Configuration configuration = getResources().getConfiguration();
 
-        Locale.setDefault(selectedLanguage.getLocale());
+        Locale.setDefault(selectedRDALanguage.getLocale());
 
         Configuration config = new Configuration();
 
-        config.locale = selectedLanguage.getLocale();
+        config.locale = selectedRDALanguage.getLocale();
 
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
@@ -47,9 +48,11 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
+        adjustApplicationTheme();
 
         checkLanguageAndChange();
+
+        super.onCreate(savedInstanceState);
 
         RDALogger.logLifeCycle(className);
 
@@ -64,16 +67,10 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
-//    protected void onCreate(Bundle savedInstanceState, int layoutId) {
-//
-//        super.onCreate(savedInstanceState);
-//
-//        setContentView(layoutId);
-//
-//        ButterKnife.bind(this);
-//
-//        RDALogger.logLifeCycle(className);
-//    }
+    protected void adjustApplicationTheme() {
+
+        setTheme((((RDAApplication) getApplication())).rdaThemeManager.getCurrentTheme().getStyle());
+    }
 
     @Override
     public void changeStatusBarColor(@ColorRes int colorId) {
@@ -103,7 +100,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         RDALogger.logLifeCycle(className);

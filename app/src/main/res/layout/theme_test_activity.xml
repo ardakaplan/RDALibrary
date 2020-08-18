@@ -4,22 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/language_test_activity_button_getSelectedLanguage"
+    <TextView
+        android:id="@+id/themeTestActivity_textView_themeName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Selected Language" />
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:background="?test_attr_1" />
 
     <Button
-        android:id="@+id/language_test_activity_button_turkish"
+        android:id="@+id/themeTestActivity_button_theme1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MAKE TURKISH" />
+        android:text="Theme 1" />
 
     <Button
-        android:id="@+id/language_test_activity_button_english"
+        android:id="@+id/themeTestActivity_button_theme2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MAKE ENGLISH" />
-
+        android:text="Theme 2" />
 </LinearLayout>

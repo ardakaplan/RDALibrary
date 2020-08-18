@@ -52,13 +52,15 @@ configurations.all {
 dependencies {
 
     //GOOGLE - ANDROID
-    compileOnly 'com.google.android.material:material:1.1.0'
+    compileOnly 'com.google.android.material:material:1.2.0'
 
     //RECYCLER VIEW
     compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 
     //SWIPE LIST
     api "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    api 'commons-codec:commons-codec:1.14'
 
     //RDA-LOGGER
     compileOnly "com.github.ardakaplan:RDALogger:2.0.0"
@@ -80,6 +82,6 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:2.16"
 
 
-    compileOnly "androidx.appcompat:appcompat:1.1.0"
+    compileOnly "androidx.appcompat:appcompat:1.2.0"
     compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RDATheme">
+
+        <attr name="test_attr_1" format="color" />
+        <attr name="test_attr_2" format="color" />
+
+
+    </declare-styleable>
+</resources>
