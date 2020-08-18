@@ -2,6 +2,6 @@
     <string name="app_name">RDALibraryTest</string>
     <string name="language_test">CHANGES BY LANGUAGE</string>
 
-    <string name="theme_test_1" translatable="false">theme test 1</string>
-    <string name="theme_test_2" translatable="false">theme test 2</string>
+    <string name="theme_test_1" translatable="false">RDATheme test 1</string>
+    <string name="theme_test_2" translatable="false">RDATheme test 2</string>
 </resources>

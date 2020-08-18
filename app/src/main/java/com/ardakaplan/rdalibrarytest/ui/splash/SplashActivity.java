@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
 import com.ardakaplan.rdalibrarytest.ui.ThemeTestActivity;
@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     SplashContract.SplashPresenterContract presenter;
 
     @Inject
-    LanguageManager languageManager;
+    RDALanguageManager RDALanguageManager;
     @Inject
     RDADeviceHelpers rdaDeviceHelpers;
 

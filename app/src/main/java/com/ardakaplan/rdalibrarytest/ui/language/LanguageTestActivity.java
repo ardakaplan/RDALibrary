@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 import com.ardakaplan.rdalibrary.helpers.RDAIntentHelpers;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrarytest.R;
 import com.ardakaplan.rdalibrarytest.di.LanguageModule;
 import com.ardakaplan.rdalibrarytest.ui.BaseActivity;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
 public class LanguageTestActivity extends BaseActivity {
 
     @Inject
-    LanguageManager languageManager;
+    RDALanguageManager RDALanguageManager;
 
     @Inject
     RDAIntentHelpers rdaIntentHelpers;
@@ -31,15 +31,15 @@ public class LanguageTestActivity extends BaseActivity {
     @OnClick(R.id.language_test_activity_button_getSelectedLanguage)
     void clickedGetSelectedLanguage() {
 
-        Toast.makeText(this, languageManager.getSelectedLanguage().getScreenName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, RDALanguageManager.getSelectedLanguage().getScreenName(), Toast.LENGTH_SHORT).show();
 
-        RDALogger.info("SELECTED LANGUAGE -> " + languageManager.getSelectedLanguage().getScreenName());
+        RDALogger.info("SELECTED LANGUAGE -> " + RDALanguageManager.getSelectedLanguage().getScreenName());
     }
 
     @OnClick(R.id.language_test_activity_button_turkish)
     void clickedTurkish() {
 
-        languageManager.saveNewSelectedLanguage(LanguageModule.TURKISH);
+        RDALanguageManager.saveNewSelectedLanguage(LanguageModule.TURKISH);
 
         startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
     }
@@ -47,7 +47,7 @@ public class LanguageTestActivity extends BaseActivity {
     @OnClick(R.id.language_test_activity_button_english)
     void clickedEnglish() {
 
-        languageManager.saveNewSelectedLanguage(LanguageModule.ENGLISH);
+        RDALanguageManager.saveNewSelectedLanguage(LanguageModule.ENGLISH);
 
         startActivity(rdaIntentHelpers.getClearCacheIntent(SplashActivity.class));
     }

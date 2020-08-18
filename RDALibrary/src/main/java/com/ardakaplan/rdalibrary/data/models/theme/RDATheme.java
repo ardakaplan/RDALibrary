@@ -10,7 +10,7 @@ import com.ardakaplan.rdalibrary.base.objects.RDAObject;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class Theme extends RDAObject {
+public class RDATheme extends RDAObject {
 
     private int Id;
     private @StringRes
@@ -18,7 +18,7 @@ public class Theme extends RDAObject {
     private @StyleRes
     int style;
 
-    public Theme(int id, int themeName, int style) {
+    public RDATheme(int id, int themeName, int style) {
         Id = id;
         this.themeName = themeName;
         this.style = style;
@@ -44,7 +44,7 @@ public class Theme extends RDAObject {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Theme theme = (Theme) o;
-        return Id == theme.Id;
+        RDATheme RDATheme = (RDATheme) o;
+        return Id == RDATheme.Id;
     }
 }

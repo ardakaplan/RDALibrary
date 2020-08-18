@@ -1,7 +1,7 @@
 package com.ardakaplan.rdalibrarytest.di;
 
-import com.ardakaplan.rdalibrary.data.models.language.ApplicationLanguage;
-import com.ardakaplan.rdalibrary.data.models.language.Language;
+import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
+import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
 
 import java.util.Arrays;
 
@@ -11,12 +11,12 @@ import dagger.Provides;
 @Module
 public class LanguageModule {
 
-    public static final Language TURKISH = new Language("tr", "TÜRKÇE");
-    public static final Language ENGLISH = new Language("en", "ENGLISH");
+    public static final RDALanguage TURKISH = new RDALanguage("tr", "TÜRKÇE");
+    public static final RDALanguage ENGLISH = new RDALanguage("en", "ENGLISH");
 
     @Provides
-    ApplicationLanguage providesApplicationLanguage() {
+    RDAApplicationLanguageAdjuster providesApplicationLanguage() {
 
-        return new ApplicationLanguage(ENGLISH, Arrays.asList(TURKISH, ENGLISH));
+        return new RDAApplicationLanguageAdjuster(ENGLISH, Arrays.asList(TURKISH, ENGLISH));
     }
 }

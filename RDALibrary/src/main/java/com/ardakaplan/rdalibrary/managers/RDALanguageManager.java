@@ -3,8 +3,8 @@ package com.ardakaplan.rdalibrary.managers;
 import android.content.res.Resources;
 
 import com.ardakaplan.rdalibrary.base.RDASharedProperty;
-import com.ardakaplan.rdalibrary.data.models.language.ApplicationLanguage;
-import com.ardakaplan.rdalibrary.data.models.language.Language;
+import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
+import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
 import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 
 import java.util.List;
@@ -19,20 +19,20 @@ import javax.inject.Singleton;
  */
 @SuppressWarnings("unused")
 @Singleton
-public class LanguageManager {
+public class RDALanguageManager {
 
-    private ApplicationLanguage applicationLanguage;
+    private RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
     private SelectedLanguageProperty selectedLanguageProperty;
 
     @Inject
-    LanguageManager(ApplicationLanguage applicationLanguage, SelectedLanguageProperty selectedLanguageProperty) {
-        this.applicationLanguage = applicationLanguage;
+    RDALanguageManager(RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster, SelectedLanguageProperty selectedLanguageProperty) {
+        this.RDAApplicationLanguageAdjuster = RDAApplicationLanguageAdjuster;
         this.selectedLanguageProperty = selectedLanguageProperty;
     }
 
-    public Language getSelectedLanguage() {
+    public RDALanguage getSelectedLanguage() {
 
-        Language selectedLanguage = applicationLanguage.getDefaultLanguage();
+        RDALanguage selectedRDALanguage = RDAApplicationLanguageAdjuster.getDefaultRDALanguage();
 
         String searchingLanguage;
 
@@ -45,27 +45,27 @@ public class LanguageManager {
             searchingLanguage = selectedLanguageProperty.getValue();
         }
 
-        for (Language language : applicationLanguage.getAllDefinedLanguages()) {
+        for (RDALanguage RDALanguage : RDAApplicationLanguageAdjuster.getAllDefinedRDALanguages()) {
 
-            if (language.getCode().equals(searchingLanguage)) {
+            if (RDALanguage.getCode().equals(searchingLanguage)) {
 
-                selectedLanguage = language;
+                selectedRDALanguage = RDALanguage;
 
                 break;
             }
         }
 
-        return selectedLanguage;
+        return selectedRDALanguage;
     }
 
-    public void saveNewSelectedLanguage(Language language) {
+    public void saveNewSelectedLanguage(RDALanguage RDALanguage) {
 
-        selectedLanguageProperty.saveValue(language.getCode());
+        selectedLanguageProperty.saveValue(RDALanguage.getCode());
     }
 
-    public List<Language> getAllDefinedLanguage() {
+    public List<RDALanguage> getAllDefinedLanguage() {
 
-        return applicationLanguage.getAllDefinedLanguages();
+        return RDAApplicationLanguageAdjuster.getAllDefinedRDALanguages();
     }
 
     public static class SelectedLanguageProperty extends RDASharedProperty<String> {

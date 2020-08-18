@@ -1,8 +1,8 @@
 package com.ardakaplan.rdalibrary.managers;
 
 import com.ardakaplan.rdalibrary.base.RDASharedProperty;
-import com.ardakaplan.rdalibrary.data.models.theme.ApplicationTheme;
-import com.ardakaplan.rdalibrary.data.models.theme.Theme;
+import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
+import com.ardakaplan.rdalibrary.data.models.theme.RDATheme;
 import com.ardakaplan.rdalibrary.helpers.RDASharedHelpers;
 
 import java.util.List;
@@ -16,24 +16,24 @@ import javax.inject.Singleton;
  * ardakaplan101@gmail.com
  */
 @Singleton
-public class ThemeManager {
+public class RDAThemeManager {
 
     private ApplicationThemeSharedProperty applicationThemeSharedProperty;
-    private ApplicationTheme applicationTheme;
+    private RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
 
     @Inject
-    ThemeManager(ApplicationThemeSharedProperty applicationThemeSharedProperty, ApplicationTheme applicationTheme) {
+    RDAThemeManager(ApplicationThemeSharedProperty applicationThemeSharedProperty, RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster) {
         this.applicationThemeSharedProperty = applicationThemeSharedProperty;
-        this.applicationTheme = applicationTheme;
+        this.RDAApplicationThemeAdjuster = RDAApplicationThemeAdjuster;
     }
 
-    public boolean changeTheme(Theme theme) {
+    public boolean changeTheme(RDATheme RDATheme) {
 
         if (applicationThemeSharedProperty.getValue() != null) {
 
-            if (theme.getId() != applicationThemeSharedProperty.getValue()) {
+            if (RDATheme.getId() != applicationThemeSharedProperty.getValue()) {
 
-                applicationThemeSharedProperty.saveValue(theme.getId());
+                applicationThemeSharedProperty.saveValue(RDATheme.getId());
 
                 return true;
 
@@ -44,36 +44,36 @@ public class ThemeManager {
 
         } else {
 
-            applicationThemeSharedProperty.saveValue(theme.getId());
+            applicationThemeSharedProperty.saveValue(RDATheme.getId());
 
             return true;
         }
     }
 
-    public Theme getCurrentTheme() {
+    public RDATheme getCurrentTheme() {
 
         if (applicationThemeSharedProperty.getValue() != null) {
 
-            for (Theme theme : applicationTheme.getAllDefinedThemes()) {
+            for (RDATheme RDATheme : RDAApplicationThemeAdjuster.getAllDefinedRDAThemes()) {
 
-                if (theme.getId() == applicationThemeSharedProperty.getValue()) {
+                if (RDATheme.getId() == applicationThemeSharedProperty.getValue()) {
 
-                    return theme;
+                    return RDATheme;
                 }
             }
         }
 
-        return applicationTheme.getDefaultTheme();
+        return RDAApplicationThemeAdjuster.getDefaultRDATheme();
     }
 
-    public List<Theme> getAllThemes() {
+    public List<RDATheme> getAllThemes() {
 
-        return applicationTheme.getAllDefinedThemes();
+        return RDAApplicationThemeAdjuster.getAllDefinedRDAThemes();
     }
 
-    public Theme getDefaultTheme() {
+    public RDATheme getDefaultTheme() {
 
-        return applicationTheme.getDefaultTheme();
+        return RDAApplicationThemeAdjuster.getDefaultRDATheme();
     }
 
     public static class ApplicationThemeSharedProperty extends RDASharedProperty<Integer> {

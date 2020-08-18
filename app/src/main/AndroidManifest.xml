@@ -38,7 +38,7 @@
             android:label="File Test Screen" />
 
         <activity
-            android:name=".ui.language.LanguageTestActivity"
+            android:name=".ui.RDALanguage.LanguageTestActivity"
             android:label="Language Test Screen" />
 
         <activity

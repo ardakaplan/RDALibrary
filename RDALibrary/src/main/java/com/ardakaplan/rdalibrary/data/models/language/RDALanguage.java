@@ -9,12 +9,12 @@ import java.util.Locale;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class Language extends RDAObject {
+public class RDALanguage extends RDAObject {
 
     private String code;
     private String screenName;
 
-    public Language(String code, String screenName) {
+    public RDALanguage(String code, String screenName) {
         this.code = code;
         this.screenName = screenName;
     }

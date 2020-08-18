@@ -8,13 +8,13 @@ import android.content.res.Configuration;
 
 import androidx.fragment.app.Fragment;
 
-import com.ardakaplan.rdalibrary.data.models.language.ApplicationLanguage;
-import com.ardakaplan.rdalibrary.data.models.theme.ApplicationTheme;
+import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
+import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
 import com.ardakaplan.rdalibrary.data.shared.OpeningCountharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
-import com.ardakaplan.rdalibrary.managers.LanguageManager;
-import com.ardakaplan.rdalibrary.managers.ThemeManager;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
 import com.ardakaplan.rdalogger.RDALoggerConfig;
 
@@ -29,13 +29,13 @@ import dagger.android.support.HasSupportFragmentInjector;
 public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
     @Inject
-    public LanguageManager languageManager;
+    public RDALanguageManager rdaLanguageManager;
     @Inject
-    public ThemeManager themeManager;
+    public RDAThemeManager rdaThemeManager;
     @Inject
-    ApplicationTheme applicationTheme;
+    RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
     @Inject
-    ApplicationLanguage applicationLanguage;
+    RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
 
     @Inject
     OpeningCountharedProperty openingCountharedProperty;
