@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ardakaplan.rdalibrary.interfaces.RDAItemListener;
@@ -29,6 +30,8 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
     protected RDAItemListener<ItemObject> rdaItemListener;
 
     protected List<ItemObject> dataList = new ArrayList<>();
+
+    protected Integer selectedItemPosition;
 
     public RDARecyclerViewAdapter() {
 
@@ -57,7 +60,7 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
-        setItemClick(holder, getItem(position));
+        setItemClick(holder, position);
     }
 
     @NonNull
@@ -66,7 +69,7 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         return getViewHolderInstance(LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false));
     }
 
-    protected void setItemClick(VH vh, ItemObject itemObject) {
+    protected void setItemClick(VH vh, int position) {
 
         vh.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -75,10 +78,31 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
 
                 if (rdaItemListener != null) {
 
-                    rdaItemListener.onItemClick(itemObject);
+                    rdaItemListener.onItemClick(getItem(position));
+
+                    selectedItemPosition = position;
+
+                    itemClicked(vh, position);
                 }
             }
         });
+    }
+
+    protected void itemClicked(VH vh, int position) {
+
+    }
+
+    public List<ItemObject> getDataList() {
+        return dataList;
+    }
+
+    public @Nullable
+    Integer getSelectedItemPosition() {
+        return selectedItemPosition;
+    }
+
+    public void setSelectedItemPosition(Integer selectedItemPosition) {
+        this.selectedItemPosition = selectedItemPosition;
     }
 
     /**

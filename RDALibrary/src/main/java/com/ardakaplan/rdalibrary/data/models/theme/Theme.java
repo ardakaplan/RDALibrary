@@ -35,4 +35,16 @@ public class Theme extends RDAObject {
     public int getId() {
         return Id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Theme theme = (Theme) o;
+        return Id == theme.Id;
+    }
 }
