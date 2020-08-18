@@ -8,9 +8,10 @@ import android.content.res.Configuration;
 
 import androidx.fragment.app.Fragment;
 
+import com.ardakaplan.rdalibrary.data.models.RDAApplicationOpeningChecker;
 import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
 import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
-import com.ardakaplan.rdalibrary.data.shared.OpeningCountharedProperty;
+import com.ardakaplan.rdalibrary.data.shared.OpeningCounterSharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
@@ -28,6 +29,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 
 public abstract class RDAApplication extends Application implements HasCustomActivityInjector, HasSupportFragmentInjector, HasBroadcastReceiverInjector, HasServiceInjector {
 
+
     @Inject
     public RDALanguageManager rdaLanguageManager;
     @Inject
@@ -36,21 +38,20 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
     @Inject
     RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
-
     @Inject
-    OpeningCountharedProperty openingCountharedProperty;
-
+    RDAApplicationOpeningChecker rdaApplicationOpeningChecker;
+    @Inject
+    OpeningCounterSharedProperty openingCounterSharedProperty;
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
-
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentInjector;
-
     @Inject
     DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector;
-
     @Inject
     DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
+
+    public RDAApplicationOpeningChecker.RDAApplicationOpeningType rdaApplicationOpeningType;
 
     @Override
     public void onCreate() {
@@ -60,18 +61,23 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
         initDagger();
 
+        getOpeningType();
+
         RDALogger.logLifeCycle(this.getClass().getSimpleName());
 
         changeOpeningCount();
     }
 
-    private void saveInitialValues() {
+    private void getOpeningType() {
 
+        rdaApplicationOpeningType = rdaApplicationOpeningChecker.getOpeningType(getVersionCode());
     }
+
+    protected abstract int getVersionCode();
 
     private void changeOpeningCount() {
 
-        openingCountharedProperty.saveValue(openingCountharedProperty.getValue() + 1);
+        openingCounterSharedProperty.saveValue(openingCounterSharedProperty.getValue() + 1);
     }
 
     protected abstract String getRDALoggerTag();
