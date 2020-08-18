@@ -44,7 +44,7 @@ public final class RDAViewHelpers {
         return typedValue.data;
     }
 
-    private void setListenerForKeyboard(View activityRootView, KeyboardListener keyboardListener) {
+    public void setListenerForKeyboard(View activityRootView, KeyboardListener keyboardListener) {
 
         activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
