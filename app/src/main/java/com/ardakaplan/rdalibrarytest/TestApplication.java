@@ -41,4 +41,14 @@ public class TestApplication extends RDAApplication implements HasCustomActivity
 
         appComponent.inject(this);
     }
+
+    @Override
+    public boolean hasChangeableLanguage() {
+        return true;
+    }
+
+    @Override
+    public boolean hasChangeableTheme() {
+        return true;
+    }
 }

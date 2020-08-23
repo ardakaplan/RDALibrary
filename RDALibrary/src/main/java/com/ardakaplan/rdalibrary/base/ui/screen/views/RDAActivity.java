@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
+import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
+import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import java.util.Locale;
@@ -32,17 +34,20 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
     private void checkLanguageAndChange() {
 
-        RDALanguage selectedRDALanguage = ((RDAApplication) getApplication()).rdaLanguageManager.getSelectedLanguage();
+        if (RDALanguageManager.enableChangeLanguage) {
 
-        Configuration configuration = getResources().getConfiguration();
+            RDALanguage selectedRDALanguage = ((RDAApplication) getApplication()).rdaLanguageManager.getSelectedLanguage();
 
-        Locale.setDefault(selectedRDALanguage.getLocale());
+            Configuration configuration = getResources().getConfiguration();
 
-        Configuration config = new Configuration();
+            Locale.setDefault(selectedRDALanguage.getLocale());
 
-        config.locale = selectedRDALanguage.getLocale();
+            Configuration config = new Configuration();
 
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            config.locale = selectedRDALanguage.getLocale();
+
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }
     }
 
     @Override
@@ -69,7 +74,10 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
     protected void adjustApplicationTheme() {
 
-        setTheme((((RDAApplication) getApplication())).rdaThemeManager.getCurrentTheme().getStyle());
+        if (RDAThemeManager.enableChangeTheme) {
+
+            setTheme((((RDAApplication) getApplication())).rdaThemeManager.getCurrentTheme().getStyle());
+        }
     }
 
     @Override

@@ -13,6 +13,7 @@ public final class RDAApplicationLanguageAdjuster extends RDAObject {
 
     private RDALanguage defaultRDALanguage;
     private List<RDALanguage> allDefinedRDALanguages;
+    private boolean enableToChangeLanguage = false;
 
     public RDAApplicationLanguageAdjuster(RDALanguage defaultRDALanguage, List<RDALanguage> allDefinedRDALanguages) {
         this.defaultRDALanguage = defaultRDALanguage;

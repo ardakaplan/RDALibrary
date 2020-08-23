@@ -9,8 +9,6 @@ import android.content.res.Configuration;
 import androidx.fragment.app.Fragment;
 
 import com.ardakaplan.rdalibrary.data.models.RDAApplicationOpeningChecker;
-import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
-import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
 import com.ardakaplan.rdalibrary.data.shared.RDAOpeningCounterSharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
@@ -34,7 +32,7 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public RDALanguageManager rdaLanguageManager;
     @Inject
     public RDAThemeManager rdaThemeManager;
-//    @Inject
+    //    @Inject
 //    RDAApplicationThemeAdjuster rdaApplicationThemeAdjuster;
 //    @Inject
 //    RDAApplicationLanguageAdjuster rdaApplicationLanguageAdjuster;
@@ -57,6 +55,10 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     @Override
     public void onCreate() {
         super.onCreate();
+
+        RDALanguageManager.enableChangeLanguage = hasChangeableLanguage();
+
+        RDAThemeManager.enableChangeTheme = hasChangeableTheme();
 
         RDALoggerConfig.setup(getRDALoggerTag()).enableLogging(doesRDALoggerWork());
 
@@ -141,5 +143,15 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public AndroidInjector<Service> serviceInjector() {
 
         return serviceDispatchingAndroidInjector;
+    }
+
+    public boolean hasChangeableTheme() {
+
+        return false;
+    }
+
+    public boolean hasChangeableLanguage() {
+
+        return false;
     }
 }

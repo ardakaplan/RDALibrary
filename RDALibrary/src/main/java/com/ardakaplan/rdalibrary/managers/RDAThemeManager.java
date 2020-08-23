@@ -20,6 +20,7 @@ public class RDAThemeManager {
 
     private ApplicationThemeSharedProperty applicationThemeSharedProperty;
     private RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
+    public static boolean enableChangeTheme = false;
 
     @Inject
     RDAThemeManager(ApplicationThemeSharedProperty applicationThemeSharedProperty, RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster) {
