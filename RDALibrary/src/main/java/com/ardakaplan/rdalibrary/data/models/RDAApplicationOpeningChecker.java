@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrary.data.models;
 
-import com.ardakaplan.rdalibrary.data.shared.ApplicationVersionCodeSharedProperty;
+import com.ardakaplan.rdalibrary.data.shared.RDAApplicationVersionCodeSharedProperty;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -13,16 +13,16 @@ import javax.inject.Singleton;
 @Singleton
 public class RDAApplicationOpeningChecker {
 
-    private ApplicationVersionCodeSharedProperty applicationVersionCodeSharedProperty;
+    private RDAApplicationVersionCodeSharedProperty RDAApplicationVersionCodeSharedProperty;
 
     @Inject
-    RDAApplicationOpeningChecker(ApplicationVersionCodeSharedProperty applicationVersionCodeSharedProperty) {
-        this.applicationVersionCodeSharedProperty = applicationVersionCodeSharedProperty;
+    RDAApplicationOpeningChecker(RDAApplicationVersionCodeSharedProperty RDAApplicationVersionCodeSharedProperty) {
+        this.RDAApplicationVersionCodeSharedProperty = RDAApplicationVersionCodeSharedProperty;
     }
 
     public RDAApplicationOpeningType getOpeningType(int currentVersionCode) {
 
-        Integer value = applicationVersionCodeSharedProperty.getValue();
+        Integer value = RDAApplicationVersionCodeSharedProperty.getValue();
 
         RDAApplicationOpeningType rdaApplicationOpeningType;
 
@@ -39,7 +39,7 @@ public class RDAApplicationOpeningChecker {
             rdaApplicationOpeningType = RDAApplicationOpeningType.NORMAL;
         }
 
-        applicationVersionCodeSharedProperty.saveValue(currentVersionCode);
+        RDAApplicationVersionCodeSharedProperty.saveValue(currentVersionCode);
 
         return rdaApplicationOpeningType;
     }
