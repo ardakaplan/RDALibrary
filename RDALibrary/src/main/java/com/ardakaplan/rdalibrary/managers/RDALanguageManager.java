@@ -23,6 +23,7 @@ public class RDALanguageManager {
 
     private RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
     private SelectedLanguageProperty selectedLanguageProperty;
+    public static boolean enableChangeLanguage = false;
 
     @Inject
     RDALanguageManager(RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster, SelectedLanguageProperty selectedLanguageProperty) {
