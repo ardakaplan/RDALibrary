@@ -56,7 +56,7 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public void onCreate() {
         super.onCreate();
 
-        RDALanguageManager.enableChangeLanguage = hasChangeableLanguage();
+        RDALanguageManager.enableChangeLanguage = hasChangeableLanguage();//
 
         RDAThemeManager.enableChangeTheme = hasChangeableTheme();
 
