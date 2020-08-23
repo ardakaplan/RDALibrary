@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.ardakaplan.rdalibrary.data.models.RDAApplicationOpeningChecker;
 import com.ardakaplan.rdalibrary.data.models.language.RDAApplicationLanguageAdjuster;
 import com.ardakaplan.rdalibrary.data.models.theme.RDAApplicationThemeAdjuster;
-import com.ardakaplan.rdalibrary.data.shared.OpeningCounterSharedProperty;
+import com.ardakaplan.rdalibrary.data.shared.RDAOpeningCounterSharedProperty;
 import com.ardakaplan.rdalibrary.di.CustomDispatchingAndroidInjector;
 import com.ardakaplan.rdalibrary.di.HasCustomActivityInjector;
 import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
@@ -34,14 +34,15 @@ public abstract class RDAApplication extends Application implements HasCustomAct
     public RDALanguageManager rdaLanguageManager;
     @Inject
     public RDAThemeManager rdaThemeManager;
-    @Inject
-    RDAApplicationThemeAdjuster RDAApplicationThemeAdjuster;
-    @Inject
-    RDAApplicationLanguageAdjuster RDAApplicationLanguageAdjuster;
+//    @Inject
+//    RDAApplicationThemeAdjuster rdaApplicationThemeAdjuster;
+//    @Inject
+//    RDAApplicationLanguageAdjuster rdaApplicationLanguageAdjuster;
     @Inject
     RDAApplicationOpeningChecker rdaApplicationOpeningChecker;
     @Inject
-    OpeningCounterSharedProperty openingCounterSharedProperty;
+    RDAOpeningCounterSharedProperty rdaOpeningCounterSharedProperty;
+
     @Inject
     CustomDispatchingAndroidInjector<Activity> activityInjector;
     @Inject
@@ -77,7 +78,7 @@ public abstract class RDAApplication extends Application implements HasCustomAct
 
     private void changeOpeningCount() {
 
-        openingCounterSharedProperty.saveValue(openingCounterSharedProperty.getValue() + 1);
+        rdaOpeningCounterSharedProperty.saveValue(rdaOpeningCounterSharedProperty.getValue() + 1);
     }
 
     protected abstract String getRDALoggerTag();

@@ -10,16 +10,16 @@ import javax.inject.Inject;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class OpeningCounterSharedProperty extends RDASharedProperty<Integer> {
+public class RDAApplicationVersionCodeSharedProperty extends RDASharedProperty<Integer> {
 
     @Inject
-    OpeningCounterSharedProperty(RDASharedHelpers rdaSharedHelpers) {
+    RDAApplicationVersionCodeSharedProperty(RDASharedHelpers rdaSharedHelpers) {
         super(rdaSharedHelpers);
     }
 
     @Override
     public Integer getDefault() {
-        return 0;
+        return -1;
     }
 
     @Override
@@ -29,6 +29,6 @@ public class OpeningCounterSharedProperty extends RDASharedProperty<Integer> {
 
     @Override
     protected String getKey() {
-        return "APPLICATION_OPENING_COUNT";
+        return "APPLICATION_VERSION_CODE";
     }
 }
