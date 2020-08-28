@@ -78,7 +78,7 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
 
                 if (rdaItemListener != null) {
 
-                    rdaItemListener.onItemClick(getItem(position));
+                    rdaItemListener.onItemClick(getItem(position), position);
 
                     selectedItemPosition = position;
 
