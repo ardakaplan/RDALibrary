@@ -25,6 +25,8 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
 
     protected List<ItemObject> dataList;
 
+    protected Integer selectedItemPosition;
+
     public RDASwipeRecyclerViewAdapter() {
 
     }
@@ -52,10 +54,10 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
-        setItemClick(holder, getItem(position));
+        setItemClick(holder, position);
     }
 
-    protected void setItemClick(VH vh, ItemObject itemObject) {
+    protected void setItemClick(VH vh, int position) {
 
         vh.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -64,10 +66,18 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
 
                 if (rdaItemListener != null) {
 
-                    rdaItemListener.onItemClick(itemObject);
+                    rdaItemListener.onItemClick(getItem(position), position);
+
+                    selectedItemPosition = position;
+
+                    itemClicked(vh, position);
                 }
             }
         });
+    }
+
+    protected void itemClicked(VH vh, int position) {
+
     }
 
     @NonNull
