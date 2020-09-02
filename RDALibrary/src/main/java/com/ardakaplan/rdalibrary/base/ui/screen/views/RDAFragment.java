@@ -14,8 +14,6 @@ import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ScreenContract;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
-import java.io.Serializable;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
@@ -50,6 +48,22 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     public void onScreen() {
 
+    }
+
+    protected void closeKeyboard() {
+
+        if (getContainerActivity() != null) {
+
+            getContainerActivity().closeKeyboard();
+        }
+    }
+
+    protected void activityOnBackPressed() {
+
+        if (getContainerActivity() != null) {
+
+            getContainerActivity().onBackPressed();
+        }
     }
 
     public int[] getFragmentAnimationList() {
@@ -89,10 +103,6 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     }
 
-    public void onBackPressed() {
-
-    }
-
     public RDAActivity getContainerActivity() {
 
         return ((RDAActivity) getActivity());
@@ -101,9 +111,9 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
     @Override
     public void changeStatusBarColor(@ColorRes int colorId) {
 
-        if (getActivity() != null) {
+        if (getContainerActivity() != null) {
 
-            ((RDAActivity) getActivity()).changeStatusBarColor(colorId);
+            getContainerActivity().changeStatusBarColor(colorId);
         }
     }
 
@@ -113,6 +123,7 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
         if (getPresenterContract() != null) {
 
+            //noinspection unchecked
             getPresenterContract().attach(this);
         }
 
@@ -175,53 +186,17 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
         RDALogger.logLifeCycle(className);
     }
 
-    public boolean checkFragmentData(String key) {
-
-        return this.getArguments() != null && this.getArguments().containsKey(key);
-    }
-
-    public void open(RDAActivity rdaActivity, String key, Serializable fragmentData, boolean clearBackStack) {
-
-        Bundle bundle = new Bundle();
-
-        bundle.putSerializable(key, fragmentData);
-
-        open(rdaActivity, bundle, clearBackStack);
-    }
-
-    public void open(RDAActivity rdaActivity, String key, Serializable fragmentData) {
-
-        Bundle bundle = new Bundle();
-
-        bundle.putSerializable(key, fragmentData);
-
-        open(rdaActivity, bundle, false);
-    }
-
-    public void open(RDAActivity rdaActivity, boolean clearBackStack) {
-
-        open(rdaActivity, null, clearBackStack);
-    }
-
     public void open(RDAActivity rdaActivity) {
 
         open(rdaActivity, false);
     }
 
+    public void open(RDAActivity rdaActivity, boolean clearBackStack) {
 
-    public void open(RDAActivity rdaActivity, Bundle fragmentDataBundle, boolean clearBackStack) {
+        if (rdaActivity != null) {
 
-        if (fragmentDataBundle != null) {
-
-            this.setArguments(fragmentDataBundle);
+            getFragmentHelpers().addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
         }
-
-        getFragmentHelpers().addFragmentToBackStack(rdaActivity, this, fragmentPartContainerId(), clearBackStack);
-    }
-
-    public void open(RDAActivity rdaActivity, Bundle fragmentDataBundle) {
-
-        open(rdaActivity, fragmentDataBundle, false);
     }
 
     public abstract RDAFragmentHelpers getFragmentHelpers();
