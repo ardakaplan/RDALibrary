@@ -11,4 +11,6 @@ public interface BaseDao {
     String UPDATE = "UPDATE ";
     String SELECT_ALL_FROM = "SELECT * FROM ";
     String SELECT_COUNT_ALL_FROM = "SELECT COUNT(*) FROM ";
+    String WHERE = " WHERE ";
+    String SET = " SET ";
 }
