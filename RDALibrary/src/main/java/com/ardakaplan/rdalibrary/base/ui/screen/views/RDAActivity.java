@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
+import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
 import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -24,8 +25,6 @@ import dagger.android.support.DaggerAppCompatActivity;
 public abstract class RDAActivity extends DaggerAppCompatActivity implements RDAViewContract, ActivityContract {
 
     protected String className;
-
-    private boolean onScreen = false;
 
     protected RDAActivity() {
 
@@ -48,6 +47,11 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         }
+    }
+
+    protected void closeKeyboard() {
+
+        RDADeviceHelpers.closeKeyboard(this);
     }
 
     @Override
@@ -85,24 +89,13 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
-            getWindow().setStatusBarColor(getActivity().getResources().getColor(colorId));
+            getWindow().setStatusBarColor(getResources().getColor(colorId));
         }
-    }
-
-    @SuppressWarnings("unused")
-    public boolean isOnScreen() {
-        return onScreen;
-    }
-
-    protected RDAActivity getActivity() {
-        return this;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        onScreen = true;
 
         RDALogger.logLifeCycle(className);
     }
@@ -131,16 +124,12 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         super.onDestroy();
 
-        onScreen = false;
-
         RDALogger.logLifeCycle(className);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        onScreen = false;
 
         RDALogger.logLifeCycle(className);
     }
@@ -155,8 +144,6 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
     @Override
     protected void onStop() {
         super.onStop();
-
-        onScreen = false;
 
         RDALogger.logLifeCycle(className);
     }

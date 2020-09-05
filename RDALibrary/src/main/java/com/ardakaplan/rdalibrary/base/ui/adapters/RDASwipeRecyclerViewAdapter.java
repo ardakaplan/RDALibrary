@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ardakaplan.rdalibrary.interfaces.RDAItemListener;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
 
     protected RDAItemListener<ItemObject> rdaItemListener;
 
-    protected List<ItemObject> dataList;
+    protected List<ItemObject> dataList = new ArrayList<>();
 
     protected Integer selectedItemPosition;
 
