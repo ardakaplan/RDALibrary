@@ -32,6 +32,10 @@ public final class RDANumberHelpers {
         return decimalFormat.format(doubleValue);
     }
 
+    public static double limitDoubleValueToDouble(double doubleValue) {
+        return (long) (doubleValue * 1e2) / 1e2;
+    }
+
 //    public static DecimalFormat createDecimalFormatWithNotGrouping(int decimal) {
 //
 //        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();

@@ -81,6 +81,31 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
 
     }
 
+    public void removeItem(int position) {
+
+        dataList.remove(position);
+
+        notifyItemRemoved(position);
+
+        notifyItemRangeChanged(position, getItemCount());
+    }
+
+    public void addItem(int position, ItemObject itemObject) {
+
+        dataList.add(position, itemObject);
+
+        notifyItemInserted(position);
+
+        notifyItemRangeChanged(position, getItemCount());
+    }
+
+    public void changeItem(int position, ItemObject itemObject) {
+
+        dataList.set(position, itemObject);
+
+        notifyItemChanged(position);
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

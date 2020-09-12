@@ -63,6 +63,15 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         setItemClick(holder, position);
     }
 
+    public void removeItem(int position){
+
+        dataList.remove(position);
+
+        notifyItemRemoved(position);
+
+        notifyItemRangeChanged(position, getItemCount());
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -123,18 +132,20 @@ public abstract class RDARecyclerViewAdapter<ItemObject, VH extends RecyclerView
         return dataList.get(position);
     }
 
-    public void addItem(int position, ItemObject item) {
+    public void addItem(int position, ItemObject itemObject) {
 
-        dataList.add(position, item);
+        dataList.add(position, itemObject);
 
         notifyItemInserted(position);
+
+        notifyItemRangeChanged(position, getItemCount());
     }
 
-    public void removeItem(int position) {
+    public void changeItem(int position, ItemObject itemObject) {
 
-        dataList.remove(position);
+        dataList.set(position, itemObject);
 
-        notifyItemRemoved(position);
+        notifyItemChanged(position);
     }
 
     public void setData(List<ItemObject> dataList) {
