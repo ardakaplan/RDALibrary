@@ -77,6 +77,11 @@ public abstract class RDASwipeRecyclerViewAdapter<ItemObject, VH extends Recycle
         });
     }
 
+    public List<ItemObject> getDataList() {
+        return dataList;
+    }
+
+
     protected void itemClicked(VH vh, int position) {
 
     }
