@@ -32,6 +32,12 @@ public abstract class RDAFileProperty {
         });
     }
 
+    public File getFile() throws FileNotCreatedInteractionException {
+
+        return new File(getRootFilePath(), getFileName());
+    }
+
+
     public class FileNotCreatedInteractionException extends RDAInteractionException {
 
     }

@@ -61,11 +61,12 @@ public class FileTestActivity extends BaseActivity {
             RDALogger.info("INNER FOLDER " + innerFile.getAbsolutePath());
 
 
-            testTextProperty.setText("ARDA KAPLAN");
+            testTextProperty.setContent("ARDA KAPLAN");
+
 
             try {
 
-                File txtFile = testTextProperty.createFile();
+                File txtFile = testTextProperty.saveContent();
 
                 RDALogger.info("TEXT FILE -> " + txtFile.getAbsolutePath());
 
