@@ -47,7 +47,7 @@ public class RDADateHelpers {
 
 
     /**
-     * @param milliSeconds date miliseconds to convert
+     * @param milliSeconds date miliseconds to convertr
      * @param formatString formatting type
      *                     - dd MMMM yyyy HH:mm:ss
      *                     - dd MMM yyyy

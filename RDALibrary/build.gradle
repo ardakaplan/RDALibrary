@@ -50,25 +50,50 @@ configurations.all {
 
 dependencies {
 
+    //******************************************************
+    //******************GOOGLE******************************
+    //******************************************************
+
     //GOOGLE - ANDROID
-    compileOnly 'com.google.android.material:material:1.2.0'
+    compileOnly 'com.google.android.material:material:1.2.1'
+
+    //******************************************************
+    //******************ANDROID X***************************
+    //******************************************************
 
     //RECYCLER VIEW
     compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 
-    //SWIPE LIST
-    api "com.daimajia.swipelayout:library:1.2.0@aar"
+    //APPCOMBAT
+    compileOnly "androidx.appcompat:appcompat:1.2.0"
 
-    api 'commons-codec:commons-codec:1.14'
-
-    //RDA-LOGGER
-    compileOnly "com.github.ardakaplan:RDALogger:2.0.0"
+    //RECYCLER VIEW
+    compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 
     //GSON
     compileOnly "com.squareup.retrofit2:converter-gson:2.6.2"
 
     //BUTTER KNIFE
     compileOnly 'com.jakewharton:butterknife:10.2.0'
+
+    //******************************************************
+    //******************RDA*********************************
+    //******************************************************
+
+    //RDA-LOGGER
+    compileOnly "com.github.ardakaplan:RDALogger:2.0.0"
+
+    //RDA TOAST
+    compileOnly 'com.github.ardakaplan:RDAToast:53cd34ec48'
+
+    //******************************************************
+    //******************OTHER*******************************
+    //******************************************************
+
+    //SWIPE LIST
+    api "com.daimajia.swipelayout:library:1.2.0@aar"
+
+    api 'commons-codec:commons-codec:1.14'
 
     //DAGGER
     compileOnly "com.google.dagger:dagger:2.16"
@@ -80,7 +105,4 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:2.16"
     annotationProcessor "com.google.dagger:dagger-compiler:2.16"
 
-
-    compileOnly "androidx.appcompat:appcompat:1.2.0"
-    compileOnly "androidx.recyclerview:recyclerview:1.1.0"
 }

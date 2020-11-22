@@ -10,7 +10,7 @@ import com.ardakaplan.rdalibrary.base.exceptions.RDAInteractionException;
 public class RDAInteractionResult<Out> {
 
     private boolean success = false;
-    private RDAInteractionException exception;
+    private Exception exception;
     private Out out;
 
     public RDAInteractionResult(Out out){
@@ -18,7 +18,7 @@ public class RDAInteractionResult<Out> {
         this.out = out;
     }
 
-    public RDAInteractionResult(RDAInteractionException exception){
+    public RDAInteractionResult(Exception exception){
         this.success = false;
         this.exception = exception;
     }
@@ -31,7 +31,7 @@ public class RDAInteractionResult<Out> {
         return success;
     }
 
-    public RDAInteractionException getException(){
+    public Exception getException(){
         return exception;
     }
 

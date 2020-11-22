@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.IdRes;
@@ -56,6 +57,11 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
             getContainerActivity().closeKeyboard();
         }
+    }
+
+    public String getPureText(EditText editText) {
+
+        return editText.getText().toString().trim();
     }
 
     protected void activityOnBackPressed() {

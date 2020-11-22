@@ -5,6 +5,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by ardakaplan on 08/12/15.
  * <p/>
@@ -12,7 +14,7 @@ import android.util.AttributeSet;
  * <p/>
  * arda.kaplan09@gmail.com
  */
-public class RDAOneLineEditText extends RDAEditText {
+public class RDAOneLineEditText extends AppCompatEditText {
 
     TextWatcher onlyOneLineTextWatcher = new TextWatcher() {
         @Override
