@@ -50,7 +50,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
-    protected void closeKeyboard() {
+    public void closeKeyboard() {
 
         RDADeviceHelpers.closeKeyboard(this);
     }

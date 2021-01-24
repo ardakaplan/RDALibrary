@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,12 +24,32 @@ import javax.inject.Singleton;
 @Singleton
 public final class RDAViewHelpers {
 
-    private Context context;
+    private final Context context;
 
     @Inject
     RDAViewHelpers(Context context) {
 
         this.context = context;
+    }
+
+    public static void shrinkExtendToExtendedFloatingActionButtonByRecyclerViewScroll(RecyclerView recyclerView, ExtendedFloatingActionButton extendedFloatingActionButton) {
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) {
+
+                    extendedFloatingActionButton.shrink();
+
+                } else {
+
+                    extendedFloatingActionButton.extend();
+                }
+            }
+        });
     }
 
     /**
