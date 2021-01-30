@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAActivity;
-import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAInnerFragment;
 
 import java.util.Random;
 
@@ -14,12 +14,12 @@ public class RDAFragmentHelpers {
     //FragmentManager.OnBackStackChangedListener tetiklenince alınan fragment in id si
     protected static int callingFragmentId = -1;
 
-    protected boolean isEqual(RDAFragment fragment1, RDAFragment fragment2) {
+    protected boolean isEqual(RDAInnerFragment fragment1, RDAInnerFragment fragment2) {
 
         return !(fragment1 == null || fragment2 == null) && fragment1.className.equals(fragment2.className);
     }
 
-    public void addFragmentToBackStack(RDAActivity activity, RDAFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
+    public void addFragmentToBackStack(RDAActivity activity, RDAInnerFragment fragmentToReplace, int fragmentLayoutID, boolean clearBackStack) {
 
         fragmentToReplace.ID = new Random().nextInt(Integer.MAX_VALUE);
 
@@ -34,25 +34,6 @@ public class RDAFragmentHelpers {
         }
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-
-        activity.getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-
-            @Override
-            public void onBackStackChanged() {
-
-                //bu method 2 kez çağrılıyor, bu yüzden id bazlı bir yönetim var, çağrılan id bir daha çağrılmıyor
-
-                if (activity.getSupportFragmentManager().getBackStackEntryCount() > 0) {
-
-                    if (callingFragmentId == -1 || getCurrentFragment(activity).ID != callingFragmentId) {
-
-                        callingFragmentId = getCurrentFragment(activity).ID;
-
-                        getCurrentFragment(activity).onScreen();
-                    }
-                }
-            }
-        });
 
         if (fragmentToReplace.getFragmentAnimationList().length == 4) {
 
@@ -82,13 +63,13 @@ public class RDAFragmentHelpers {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public RDAFragment getCurrentFragment(RDAActivity activity) {
+    public RDAInnerFragment getCurrentFragment(RDAActivity activity) {
 
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
 
         if (fragmentManager.getFragments().size() > 0) {
 
-            return (RDAFragment) fragmentManager.getFragments().get(fragmentManager.getFragments().size() - 1);
+            return (RDAInnerFragment) fragmentManager.getFragments().get(fragmentManager.getFragments().size() - 1);
 
         } else {
 

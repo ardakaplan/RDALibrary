@@ -1,9 +1,6 @@
 package com.ardakaplan.rdalibrarytest.ui.fragmentscenerio;
 
-import android.os.Bundle;
-
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
-import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 
 /**
@@ -11,18 +8,11 @@ import com.ardakaplan.rdalibrarytest.R;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class FragmentA extends BaseFragment {
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
+public class InnerFragmentC extends BaseInnerFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_a;
+        return R.layout.fragment_c;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.ardakaplan.rdalibrarytest.ui.fragmentscenerio;
 
-import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAFragment;
+import com.ardakaplan.rdalibrary.base.ui.screen.views.RDAInnerFragment;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
 import com.ardakaplan.rdalibrarytest.R;
 
@@ -9,7 +9,7 @@ import com.ardakaplan.rdalibrarytest.R;
  * <p>
  * ardakaplan101@gmail.com
  */
-public abstract class BaseFragment extends RDAFragment {
+public abstract class BaseInnerFragment extends RDAInnerFragment {
 
     private RDAFragmentHelpers rdaFragmentHelpers = new RDAFragmentHelpers();
 
