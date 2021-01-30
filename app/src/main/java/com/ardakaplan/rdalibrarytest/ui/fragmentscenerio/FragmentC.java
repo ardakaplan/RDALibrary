@@ -11,7 +11,7 @@ import com.ardakaplan.rdalibrarytest.R;
 public class FragmentC extends BaseFragment {
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.fragment_c;
     }
 

@@ -13,6 +13,8 @@ import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
 import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAViewHelpers;
 import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -50,14 +52,25 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
+    @Override
     public void closeKeyboard() {
 
         RDADeviceHelpers.closeKeyboard(this);
     }
 
-    public String getPureText(EditText editText) {
+    @Override
+    public boolean isEditTextFilled(EditText editText) {
+        return RDAStringHelpers.isFilled(getPureText(editText));
+    }
 
-        return editText.getText().toString().trim();
+    @Override
+    public boolean isEditTextEmpty(EditText editText) {
+        return RDAStringHelpers.isEmpty(getPureText(editText));
+    }
+
+    @Override
+    public String getPureText(EditText editText) {
+        return RDAViewHelpers.getPureText(editText);
     }
 
     @Override
@@ -71,7 +84,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         RDALogger.logLifeCycle(className);
 
-        setContentView(getLayout());
+        setContentView(getLayoutId());
 
         ButterKnife.bind(this);
 

@@ -21,7 +21,7 @@ public class FragmentA extends BaseFragment {
 
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.fragment_a;
     }
 

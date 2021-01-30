@@ -57,7 +57,7 @@ public class ThemeTestActivity extends BaseActivity {
     }
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.theme_test_activity;
     }
 

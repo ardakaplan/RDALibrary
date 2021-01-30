@@ -17,7 +17,7 @@ import javax.inject.Singleton;
 @Singleton
 public final class RDAIntentHelpers {
 
-    private Context context;
+    private final Context context;
 
     @Inject
     RDAIntentHelpers(Context context) {
@@ -166,14 +166,19 @@ public final class RDAIntentHelpers {
 
             context.startActivity(intent);
 
-        } catch (ActivityNotFoundException anfe) {
+        } catch (ActivityNotFoundException ignored) {
 
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.googrle.com/store/apps/details?id=" + packageName));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getGooglePlayUrl(packageName)));
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             context.startActivity(intent);
         }
+    }
+
+    public static String getGooglePlayUrl(String packageName) {
+
+        return "https://play.google.com/store/apps/details?id=" + packageName;
     }
 
     public void openApplication(String applicationPackage) {

@@ -18,7 +18,7 @@ import com.ardakaplan.rdalibrarytest.R;
 public class FragmentTestActivity extends RDAActivity {
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.fragment_activity;
     }
 

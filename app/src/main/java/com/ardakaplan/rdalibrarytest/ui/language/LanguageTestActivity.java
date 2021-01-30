@@ -53,7 +53,7 @@ public class LanguageTestActivity extends BaseActivity {
     }
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.activity_language_test;
     }
 

@@ -1,8 +1,6 @@
 package com.ardakaplan.rdalibrary.base.ui.screen.screencontracts;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
-
+import com.ardakaplan.rdalibrary.base.ui.screen.ViewController;
 import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
 
 /**
@@ -12,18 +10,10 @@ import com.ardakaplan.rdalibrary.base.ui.screen.presenters.RDAPresenterContract;
  * <p>
  * common methods contract for activity and fragment
  */
-public interface ScreenContract {
-
-    /**
-     * @return screen layout
-     */
-    @LayoutRes
-    int getLayout();
+public interface ScreenContract extends ViewController {
 
     /**
      * @return view presenter
      */
     RDAPresenterContract getPresenterContract();
-
-    void changeStatusBarColor(@ColorRes int colorId);
 }

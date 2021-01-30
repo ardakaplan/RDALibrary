@@ -11,8 +11,12 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
+import com.ardakaplan.rdalibrary.base.ui.screen.ViewController;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ScreenContract;
+import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
 import com.ardakaplan.rdalibrary.helpers.RDAFragmentHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAViewHelpers;
 import com.ardakaplan.rdalogger.RDALogger;
 
 import butterknife.ButterKnife;
@@ -21,7 +25,7 @@ import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 @SuppressWarnings("unused")
-public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract {
+public abstract class RDAFragment extends DaggerFragment implements ScreenContract, RDAViewContract, ViewController {
 
     //FragmentManager.OnBackStackChangedListener yönetimi için oluşturulan id, manager dışında kesinlikle kullanılmaması lazım
     public int ID = 0;
@@ -51,17 +55,25 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
     }
 
-    protected void closeKeyboard() {
+    @Override
+    public void closeKeyboard() {
 
-        if (getContainerActivity() != null) {
-
-            getContainerActivity().closeKeyboard();
-        }
+        RDADeviceHelpers.closeKeyboard(getContainerActivity());
     }
 
-    public String getPureText(EditText editText) {
+    @Override
+    public boolean isEditTextFilled(EditText editText) {
+        return RDAStringHelpers.isFilled(this.getPureText(editText));
+    }
 
-        return editText.getText().toString().trim();
+    @Override
+    public boolean isEditTextEmpty(EditText editText) {
+        return RDAStringHelpers.isEmpty(getPureText(editText));
+    }
+
+    @Override
+    public String getPureText(EditText editText) {
+        return RDAViewHelpers.getPureText(editText);
     }
 
     protected void activityOnBackPressed() {
@@ -96,7 +108,7 @@ public abstract class RDAFragment extends DaggerFragment implements ScreenContra
 
         RDALogger.logLifeCycle(className);
 
-        View view = inflater.inflate(getLayout(), container, false);
+        View view = inflater.inflate(getLayoutId(), container, false);
 
         unbinder = ButterKnife.bind(this, view);
 

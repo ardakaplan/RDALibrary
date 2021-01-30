@@ -5,6 +5,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -66,6 +67,11 @@ public final class RDAViewHelpers {
         context.getTheme().resolveAttribute(attribute, typedValue, true);
 
         return typedValue.data;
+    }
+
+    public static String getPureText(EditText editText) {
+
+        return editText.getText().toString().trim();
     }
 
     public void setListenerForKeyboard(View activityRootView, KeyboardListener keyboardListener) {
