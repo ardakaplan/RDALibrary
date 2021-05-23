@@ -27,4 +27,8 @@ public interface ViewController {
     int getLayoutId();
 
     void changeStatusBarColor(@ColorRes int colorId);
+
+    void showProgress();
+
+    void closeProgress();
 }

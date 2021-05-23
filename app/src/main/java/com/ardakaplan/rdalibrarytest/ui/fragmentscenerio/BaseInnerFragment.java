@@ -22,4 +22,14 @@ public abstract class BaseInnerFragment extends RDAInnerFragment {
     public int fragmentPartContainerId() {
         return R.id.mainActivity_linearLayout_fragmentPart;
     }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void closeProgress() {
+
+    }
 }
