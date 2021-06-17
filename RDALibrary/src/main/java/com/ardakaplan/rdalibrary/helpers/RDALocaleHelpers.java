@@ -5,12 +5,9 @@ import java.util.Locale;
 @SuppressWarnings("unused")
 public final class RDALocaleHelpers {
 
+    public static final Locale TURKISH = new Locale("tr", "TR");
+
     private RDALocaleHelpers() {
 
-    }
-
-    public static Locale getTurkishLocale() {
-
-        return new Locale("tr", "TR");
     }
 }
