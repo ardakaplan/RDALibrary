@@ -1,6 +1,5 @@
 package com.ardakaplan.rdalibrarytest.ui.fragmentscenerio;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,7 +17,7 @@ import com.ardakaplan.rdalibrarytest.R;
 public class FragmentTestActivity extends RDAActivity {
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.fragment_activity;
     }
 
@@ -36,7 +35,7 @@ public class FragmentTestActivity extends RDAActivity {
             @Override
             public void onClick(View v) {
 
-                new FragmentA().open(FragmentTestActivity.this);
+                new InnerFragmentA().open(FragmentTestActivity.this);
             }
         });
 
@@ -45,7 +44,7 @@ public class FragmentTestActivity extends RDAActivity {
             @Override
             public void onClick(View v) {
 
-                new FragmentB().open(FragmentTestActivity.this);
+                new InnerFragmentB().open(FragmentTestActivity.this);
             }
         });
 
@@ -54,8 +53,18 @@ public class FragmentTestActivity extends RDAActivity {
             @Override
             public void onClick(View v) {
 
-                new FragmentC().open(FragmentTestActivity.this);
+                new InnerFragmentC().open(FragmentTestActivity.this);
             }
         });
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void closeProgress() {
+
     }
 }

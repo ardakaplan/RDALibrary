@@ -108,11 +108,14 @@ public final class RDADeviceHelpers {
 
     public static void closeKeyboard(Activity activity) {
 
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (activity != null) {
 
-        if (inputMethodManager != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-            inputMethodManager.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+            if (inputMethodManager != null) {
+
+                inputMethodManager.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+            }
         }
     }
 

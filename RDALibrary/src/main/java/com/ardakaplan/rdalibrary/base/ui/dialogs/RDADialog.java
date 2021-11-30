@@ -5,10 +5,15 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Window;
+import android.widget.EditText;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
+
+import com.ardakaplan.rdalibrary.base.ui.screen.ViewController;
+import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAViewHelpers;
 
 import butterknife.ButterKnife;
 
@@ -17,7 +22,7 @@ import butterknife.ButterKnife;
  * <p>
  * ardakaplan101@gmail.com
  */
-public abstract class RDADialog extends Dialog {
+public abstract class RDADialog extends Dialog implements ViewController {
 
     public RDADialog(@NonNull Activity activity) {
         super(activity);
@@ -30,7 +35,6 @@ public abstract class RDADialog extends Dialog {
 
         init(activity);
     }
-
 
     private void init(Activity activity) {
 
@@ -45,6 +49,24 @@ public abstract class RDADialog extends Dialog {
         ButterKnife.bind(this, this);
     }
 
-    @LayoutRes
-    protected abstract int getLayoutId();
+    @Override
+    public void closeKeyboard() {
+
+        RDADeviceHelpers.closeKeyboard(getOwnerActivity());
+    }
+
+    @Override
+    public boolean isEditTextFilled(EditText editText) {
+        return RDAStringHelpers.isFilled(getPureText(editText));
+    }
+
+    @Override
+    public boolean isEditTextEmpty(EditText editText) {
+        return RDAStringHelpers.isEmpty(getPureText(editText));
+    }
+
+    @Override
+    public String getPureText(EditText editText) {
+        return RDAViewHelpers.getPureText(editText);
+    }
 }

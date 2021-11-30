@@ -2,9 +2,9 @@ package com.ardakaplan.rdalibrarytest.di;
 
 import com.ardakaplan.rdalibrarytest.ui.ThemeTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.filetest.FileTestActivity;
-import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentA;
-import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentB;
-import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentC;
+import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.InnerFragmentA;
+import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.InnerFragmentB;
+import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.InnerFragmentC;
 import com.ardakaplan.rdalibrarytest.ui.fragmentscenerio.FragmentTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.language.LanguageTestActivity;
 import com.ardakaplan.rdalibrarytest.ui.splash.SplashActivity;
@@ -29,13 +29,13 @@ abstract class ActivityBuilder {
     abstract FragmentTestActivity FragmentTestActivity();
 
     @ContributesAndroidInjector
-    abstract FragmentA FragmentA();
+    abstract InnerFragmentA FragmentA();
 
     @ContributesAndroidInjector
-    abstract FragmentB FragmentB();
+    abstract InnerFragmentB FragmentB();
 
     @ContributesAndroidInjector
-    abstract FragmentC FragmentC();
+    abstract InnerFragmentC FragmentC();
 
     @ContributesAndroidInjector
     abstract LanguageTestActivity bindLanguageTestActivity();

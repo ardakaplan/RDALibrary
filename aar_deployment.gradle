@@ -1,17 +1,10 @@
 task copyReleaseApk(type: Copy) {
 
-    Properties properties = new Properties()
+    from 'build/outputs/aar', 'build/libs'
 
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    into "C:/Users/ardak/Desktop/AARS"
 
-    if (properties.containsKey('aar.dir')) {
-
-        from 'build/outputs/aar', 'build/libs'
-
-        into properties.getProperty('aar.dir')
-
-        include '**/*debug.aar', '**/*sources.jar'
-    }
+    include '*debug.aar', '*sources.jar'
 }
 
 afterEvaluate {

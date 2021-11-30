@@ -3,6 +3,7 @@ package com.ardakaplan.rdalibrary.base.ui.screen.views;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import com.ardakaplan.rdalibrary.base.objects.RDAApplication;
 import com.ardakaplan.rdalibrary.base.ui.screen.screencontracts.ActivityContract;
 import com.ardakaplan.rdalibrary.data.models.language.RDALanguage;
 import com.ardakaplan.rdalibrary.helpers.RDADeviceHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAStringHelpers;
+import com.ardakaplan.rdalibrary.helpers.RDAViewHelpers;
 import com.ardakaplan.rdalibrary.managers.RDALanguageManager;
 import com.ardakaplan.rdalibrary.managers.RDAThemeManager;
 import com.ardakaplan.rdalogger.RDALogger;
@@ -49,9 +52,25 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
         }
     }
 
-    protected void closeKeyboard() {
+    @Override
+    public void closeKeyboard() {
 
         RDADeviceHelpers.closeKeyboard(this);
+    }
+
+    @Override
+    public boolean isEditTextFilled(EditText editText) {
+        return RDAStringHelpers.isFilled(getPureText(editText));
+    }
+
+    @Override
+    public boolean isEditTextEmpty(EditText editText) {
+        return RDAStringHelpers.isEmpty(getPureText(editText));
+    }
+
+    @Override
+    public String getPureText(EditText editText) {
+        return RDAViewHelpers.getPureText(editText);
     }
 
     @Override
@@ -65,7 +84,7 @@ public abstract class RDAActivity extends DaggerAppCompatActivity implements RDA
 
         RDALogger.logLifeCycle(className);
 
-        setContentView(getLayout());
+        setContentView(getLayoutId());
 
         ButterKnife.bind(this);
 

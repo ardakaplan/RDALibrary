@@ -1,19 +1,27 @@
 package com.ardakaplan.rdalibrary.helpers;
 
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public final class RDACollectionsHelpers<W> {
+public final class RDACollectionsHelpers {
 
     private RDACollectionsHelpers() {
 
     }
 
-    public static boolean isEmpty(Map<Object, Object> map) {
-        if (map == null || map.isEmpty()) {
-            return true;
-        } else {
-            return true;
-        }
+    public static boolean isMapEmpty(Map<?, ?> map) {
+
+        return map == null || map.isEmpty();
+    }
+
+    public static boolean isListNull(List<?> list) {
+
+        return list == null;
+    }
+
+    public static boolean isListEmpty(List<?> list) {
+
+        return isListNull(list) || list.size() == 0;
     }
 }

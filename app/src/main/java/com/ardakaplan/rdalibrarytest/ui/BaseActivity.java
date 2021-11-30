@@ -19,4 +19,14 @@ public abstract class BaseActivity extends RDAActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void closeProgress() {
+
+    }
 }

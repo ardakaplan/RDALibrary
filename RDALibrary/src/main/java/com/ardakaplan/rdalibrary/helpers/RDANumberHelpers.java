@@ -19,13 +19,13 @@ public final class RDANumberHelpers {
 
     }
 
-    public static String limitDoubleValue(double doubleValue, int digitLimit) {
+    public static String limitDoubleValue(double doubleValue, int maximumFractionDigits, int minimumFractionDigits) {
 
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
 
-        decimalFormat.setMaximumFractionDigits(digitLimit);
+        decimalFormat.setMaximumFractionDigits(maximumFractionDigits);
 
-        decimalFormat.setMinimumFractionDigits(digitLimit);
+        decimalFormat.setMinimumFractionDigits(minimumFractionDigits);
 
         decimalFormat.setRoundingMode(RoundingMode.DOWN);
 

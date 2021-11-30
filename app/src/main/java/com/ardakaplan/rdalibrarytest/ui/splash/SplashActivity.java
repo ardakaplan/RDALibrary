@@ -104,7 +104,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     }
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.activity_splash;
     }
 

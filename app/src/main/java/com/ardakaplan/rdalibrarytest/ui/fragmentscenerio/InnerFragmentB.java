@@ -8,10 +8,10 @@ import com.ardakaplan.rdalibrarytest.R;
  * <p>
  * ardakaplan101@gmail.com
  */
-public class FragmentB extends BaseFragment {
+public class InnerFragmentB extends BaseInnerFragment {
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.fragment_b;
     }
 

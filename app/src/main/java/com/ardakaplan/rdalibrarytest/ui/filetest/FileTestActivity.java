@@ -115,7 +115,7 @@ public class FileTestActivity extends BaseActivity {
     }
 
     @Override
-    public int getLayout() {
+    public int getLayoutId() {
         return R.layout.file_test_activity;
     }
 
